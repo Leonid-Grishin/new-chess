@@ -239,9 +239,12 @@ class TeacherController extends Controller
             }
         }
 
+        //dd($remainTeacherAchievements);
+
         if(count($remainTeacherAchievements)) {
             foreach ($remainTeacherAchievements as $remainTeacherAchievement) {
                 if(isset($remainTeacherAchievement['is_camp_achievement'])) {
+
                     $remainTeacherAchievement['is_camp_achievement'] = 1;
                 } else {
                     $remainTeacherAchievement['is_camp_achievement'] = 0;

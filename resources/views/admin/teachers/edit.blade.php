@@ -98,7 +98,7 @@
                             </div>
 
                             <label class="d-flex mt-2">
-                                <input style="width: 50px" type="checkbox" class="mr-2 form-control teacher-achievement-is-camp-input"  name="" @if($teacher->achievements[$i]['is_camp_achievement']) checked @endif value="1">
+                                <input style="width: 50px" type="checkbox" class="mr-2 form-control teacher-achievement-is-camp-input"  name="{{ "achievement[".$i."][is_camp_achievement]"}}" @if($teacher->achievements[$i]['is_camp_achievement']) checked @endif value="1">
                                 <span class="d-block ml-3 d-flex flex-wrap align-items-center ">Достижение только на страницу лагеря <span class="text-info ml-3">Галочка - Да</span></span>
                             </label>
                         </div>
