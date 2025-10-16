@@ -1,0 +1,262 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.education-level {
+  background-color: variables.$color-basic;
+}
+
+.education-level__wrapper {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+    min-height: 775px;
+  }
+}
+
+.education-level__title {
+  color: variables.$background-color-second;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 740px;
+    margin-left: unset;
+    margin-right: unset;
+  }
+}
+
+.education-level__description {
+  margin-top: 30px;
+  color: variables.$background-color-second;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 50px;
+    max-width: variables.$tablet-content-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    margin-top: 70px;
+    margin-left: unset;
+    margin-right: unset;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 740px;
+    margin-top: 20px;
+    max-height: 110px;
+  }
+}
+
+.education-level__slider-number {
+  order: 2;
+  margin-top: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    display: none;
+  }
+}
+
+.education-level__list {
+  max-width: variables.$tablet-content-width;
+  margin: 10px 0 0 0;
+  padding: 0 0 30px 0;
+  list-style-type: none;
+  order: 2;
+
+  @media (min-width: variables.$mobile-width) {
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    order: unset;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 50px;
+    margin-top: 50px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    grid-template-columns: repeat(4, 1fr);
+    position: absolute;
+    max-width: variables.$desktop-big-content-width;
+    margin-top: 0;
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    height: unset;
+  }
+
+  .slick-dots {
+    justify-content: center;
+    width: 100%;
+    top: unset;
+    bottom: 0;
+    right: unset;
+  }
+}
+
+.education-level__item {
+  width: 300px;
+  box-sizing: border-box;
+  background-color: variables.$background-color-second;
+  border-radius: 5px;
+  padding: 110px 18px 30px 18px;
+  margin-right: 50px;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  background-position: top 30px left 19px;
+  border: 1px solid variables.$background-color-basic;
+
+  @media (min-width: variables.$tablet-width) {
+    width: unset;
+    max-width: 300px;
+    margin-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 370px;
+    padding: 125px 30px 35px 30px;
+    background-position: top 35px left 30px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 350px;
+  }
+
+  &--base {
+    background-image: url("/public/images/school/level-pawn-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-pawn-icon.webp"), 1x);
+
+    @media (min-width: variables.$desktop-big-width) {
+      grid-column: 3;
+    }
+  }
+
+  &--opening {
+    background-image: url("/public/images/school/level-knight-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-knight-icon.webp"), 1x);
+  }
+
+  &--tactics {
+    background-image: url("/public/images/school/level-desk-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-desk-icon.webp"), 1x);
+  }
+
+  &--endgame {
+    background-image: url("/public/images/school/level-rook-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-rook-icon.webp"), 1x);
+  }
+
+  &--practice {
+    background-image: url("/public/images/school/level-queen-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-queen-icon.webp"), 1x);
+  }
+
+  &--task {
+    background-image: url("/public/images/school/level-grade-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/level-grade-icon.webp"), 1x);
+  }
+}
+
+.education-level__item-title {
+  @include mixins.font-h3();
+  margin: 0;
+}
+
+.education-level__item-description {
+  margin: 10px 0 0 0;
+}
+
+.education-level__button {
+  width: 100%;
+  margin-top: 30px;
+  color: variables.$background-color-second;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    width: 512px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 563px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 563px;
+    margin-left: 0;
+  }
+
+  span {
+    display: none;
+  }
+}

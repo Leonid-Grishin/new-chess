@@ -1,0 +1,300 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-news {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    width: 2302px;
+    left: -100px;
+    bottom: 8px;
+    content: "время играть в шахматы";
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px variables.$background-color-basic;
+    z-index: -1;
+
+    @media (min-width: variables.$tablet-width) {
+      display: none;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      display: unset;
+      font-size: 150px;
+      line-height: 150px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      bottom: -18px;
+      left: -241px;
+    }
+  }
+}
+
+.index-news__title {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-news__description {
+  margin: 30px auto 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-news__list {
+  position: relative;
+  margin: 20px auto 0 auto;
+  padding: 0 0 25px 0;
+  list-style-type: none;
+  //max-width: variables.$mobile-content-width;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    padding-bottom: 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: 0;
+    top: unset;
+    right: unset;
+  }
+}
+
+.index-news__item {
+  margin-right: 20px;
+  width: 300px;
+
+  @media (min-width: variables.$mobile-width) {
+    margin-right: 63px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 370px;
+    margin-right: 80px;
+
+    &:not(.slick-current) {
+      opacity: 0.5;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-right:unset;
+
+    &:not(.slick-current) {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 480px;
+  }
+}
+
+.index-news__link {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background: variables.$background-color-second;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+  text-decoration: none;
+  padding-bottom: 10px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-bottom: 20px;
+  }
+
+  &--vk::before {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    content: "";
+    background-image: url("/public/images/news-vk-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 225px;
+    left: 14px;
+    z-index: 2;
+
+    @media (min-width: variables.$tablet-width) {
+      top: 240px;
+      left: 30px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      top: 282px;
+      left: 30px;
+    }
+  }
+
+  &--telegram::before {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    content: "";
+    background-image: url("/public/images/news-telegram-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 225px;
+    left: 14px;
+    z-index: 2;
+
+    @media (min-width: variables.$tablet-width) {
+      top: 240px;
+      left: 30px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      top: 282px;
+      left: 30px;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.08));
+    }
+  }
+}
+
+.index-news__item-title {
+  @include mixins.font-h3();
+  order: 2;
+  margin: 10px auto 0 auto;
+  max-width: 260px;
+
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 20px;
+    max-width: 308px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 20px;
+    max-width: 420px;
+  }
+}
+
+.index-news__item-date {
+  position: absolute;
+  color: variables.$background-color-second;
+  text-align: right;
+  z-index: 2;
+  top: 250px;
+  right: 14px;
+
+  @media (min-width: variables.$tablet-width) {
+    top: 265px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    top: 305px;
+    right: 30px;
+  }
+}
+
+.index-news__item-picture {
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 298px;
+    height: 289px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(rgba(39, 46, 62, 0) 50%, rgba(39, 46, 62, 0.6) 91%);
+
+    @media (min-width: variables.$tablet-width) {
+      width: 368px;
+      height: 319px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      width: 478px;
+      height: 359px;
+    }
+  }
+}
+
+.index-news__item-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+
+  @media (min-width: variables.$tablet-width) {
+    height: 320px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    height: 360px;
+  }
+}

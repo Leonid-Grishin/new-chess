@@ -1,0 +1,320 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.school-intro {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 85px;
+    padding-bottom: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+  }
+}
+
+.school-intro__wrapper {
+  //max-width: variables.$mobile-content-width;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.school-intro__image {
+  display: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+    position: absolute;
+    top: 150px;
+    width: 1200px;
+    height: 574px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    top: 0;
+    left: -215px;
+    width: 1920px;
+    height: 875px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    left: 0;
+  }
+}
+
+.school-intro__title {
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.school-intro__title-wrapper {
+  position: relative;
+  color: variables.$color-accent-basic;
+  z-index: 2;
+}
+
+.school-intro__description {
+  @include mixins.font-p1();
+  position: relative;
+  margin: 10px auto 0 auto;
+  z-index: 2;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 15px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 15px;
+    margin-left: 0;
+    max-width: 450px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: unset;
+  }
+
+  &.remove {
+    display: none;
+  }
+}
+
+.school-intro__button {
+  position: relative;
+  display: block;
+  margin: 30px auto 0 auto;
+  width: 100%;
+  z-index: 2;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 300px;
+    margin-left: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    width: 500px;
+    margin-top: 45px;
+  }
+
+  span {
+    display: none;
+
+    @media (min-width: variables.$desktop-width) {
+      display: inline;
+    }
+  }
+}
+
+.school-intro__secondary-button {
+  position: relative;
+  display: block;
+  margin: 20px auto 0 auto;
+  width: 100%;
+  z-index: 2;
+  color: variables.$color-basic;
+  text-decoration: none;
+  background-color: variables.$background-color-second;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 300px;
+    margin-left: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    width: 500px;
+    margin-top: 35px;
+  }
+}
+
+.school-intro__features-list {
+  position: relative;
+  margin: 50px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  z-index: 2;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 160px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 238px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 280px;
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  .slick-list {
+    overflow: visible;
+  }
+
+  .slick-slide {
+    height: 205px;
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: -35px;
+    top: unset;
+    right: unset;
+
+    @media (min-width: variables.$tablet-width) {
+      bottom: -47px;
+    }
+  }
+
+  .slick-prev.slick-arrow {
+    left: calc(50% - 250px);
+  }
+
+  .slick-next.slick-arrow {
+    right: calc(50% - 250px);
+  }
+}
+
+.school-intro__features-item {
+  position: relative;
+  @include mixins.font-p1();
+  display: block;
+  width: 300px;
+  height: 205px;
+  padding: 90px 55px 25px 55px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  margin-right: 100px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 150px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 270px;
+    height: 240px;
+    margin: 0 auto;
+    padding: 115px 22px 35px 22px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 350px;
+    height: 210px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  &::after {
+    left: 0;
+    top: 0;
+    position: absolute;
+    content: "";
+    width: 300px;
+    height: 205px;
+    transform: rotate(-3deg);
+    border-radius: 5px;
+    z-index: -1;
+
+    @media (min-width: variables.$desktop-width) {
+      width: 270px;
+      height: 240px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      width: 350px;
+      height: 210px;
+    }
+  }
+
+  &--red {
+    background-color: #ffeded;
+    background-image: url("/public/images/school/support-mobile-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/support-mobile-icon.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: top 25px center;
+
+    &::after {
+      background-color: #fbdcdc;
+    }
+  }
+
+  &--yellow {
+    background-color: #fffced;
+    background-image: url("/public/images/school/community-mobile-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/community-mobile-icon.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: top 25px center;
+
+    &::after {
+      background-color: #fcf7de;
+    }
+  }
+
+  &--green {
+    background-color: #edfff1;
+    background-image: url("/public/images/school/progress-mobile-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/progress-mobile-icon.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: top 25px center;
+
+    &::after {
+      background-color: #ddfce4;
+    }
+  }
+
+  &--blue {
+    background-color: #edf4ff;
+    background-image: url("/public/images/school/feedback-mobile-icon.png");
+    background-image: -webkit-image-set(url("/public/images/school/feedback-mobile-icon.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: top 25px center;
+
+    &::after {
+      background-color: #deeafc;
+    }
+  }
+}

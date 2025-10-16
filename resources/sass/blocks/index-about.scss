@@ -1,0 +1,276 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-about {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: "время играть в шахматы";
+    width: 2500px;
+    left: -140px;
+    bottom: -10px;
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px variables.$background-color-basic;
+    z-index: -1;
+    letter-spacing: 0.03em;
+
+    @media (min-width: variables.$tablet-width) {
+      left: -19px;
+      bottom: 30px;
+      font-size: 100px;
+      line-height: 100px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      font-size: 150px;
+      line-height: 150px;
+      left: -327px;
+      bottom: 21px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      left: -120px;
+    }
+  }
+
+  &::before {
+
+    @media (min-width: variables.$tablet-width) {
+      position: absolute;
+      width: 2302px;
+      content: "время играть в шахматы";
+      font-family: 'Gotham Pro', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 100px;
+      line-height: 100px;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px variables.$background-color-basic;
+      z-index: -1;
+      left: 340px;
+      top: 500px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      top: 410px;
+      font-size: 150px;
+      line-height: 150px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      left: 300px;
+      top: 370px;
+    }
+  }
+}
+
+.index-about__container {
+  margin: 0 auto;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-about__second-title {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.index-about__wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 32px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 53px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 73px;
+    display: grid;
+    grid-template-columns: 770px auto;
+    gap: 30px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 80px;
+    grid-template-columns: 780px auto;
+    gap: 130px;
+  }
+}
+
+.index-about__slider {
+  position: relative;
+  margin-top: 35px;
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+  }
+}
+
+.index-about__slider-image {
+  vertical-align: top;
+  border-radius: 5px;
+  object-fit: cover;
+  width: 300px;
+  height: 340px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 640px;
+    height: 340px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 770px;
+    height: 430px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 780px;
+    height: 430px;
+  }
+}
+
+.index-about__slider-item {
+  margin-right: 63px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 10px;
+  }
+}
+
+.index-about__slider .slick-prev.slick-arrow,
+.index-about__slider .slick-next.slick-arrow {
+  display: none;
+
+  @media (min-width: variables.$desktop-width) {
+    display: block;
+  }
+}
+
+.index-about__description > p {
+  @include mixins.font-p2();
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    padding-left: 0;
+    padding-right: 0;
+
+    & + p {
+      margin-top: 25px;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    & + p {
+      margin-top: 30px;
+    }
+  }
+}
+
+.index-about__description span {
+  @include mixins.font-p2-semiBold();
+}
+
+.index-about__blockquote-container {
+  margin: 0 auto;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-about__blockquote-wrapper {
+  display: block;
+  width: 100%;
+  margin: -50px auto 0 auto;
+
+  @media (min-width: variables.$tablet-width) {
+    margin: -65px 0 0 20px;
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 126px;
+      height: 1px;
+      background-color: variables.$background-color-basic;
+      bottom: -1px;
+      right: -122px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 147px;
+      height: 223px;
+      bottom: 0;
+      right: -147px;
+      background-image: url("/public/images/about-man.png");
+      background-image: -webkit-image-set(url("/public/images/about-man.webp") 1x);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: 118px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-left: 130px;
+  }
+}

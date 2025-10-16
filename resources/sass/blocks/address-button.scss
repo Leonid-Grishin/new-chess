@@ -1,0 +1,72 @@
+@use "../global/mixins";
+@use "../global/variables";
+
+.address-button {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: variables.$background-color-basic;
+
+  @media (min-width: variables.$tablet-width) {
+    position: relative;
+    width: auto;
+    padding-left: 29px;
+    padding-right: 29px;
+  }
+
+  &:hover {
+    color: variables.$color-accent-basic;
+
+    .address-button__text {
+      color: variables.$color-accent-basic;
+    }
+  }
+
+  &:active {
+    color: variables.$color-accent-basic;
+    opacity: 0.3;
+
+    .address-button__text {
+      color: variables.$color-accent-basic;
+      opacity: 0.3;
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 2px;
+  }
+}
+
+.address-button__text {
+  display: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+    @include mixins.font-p2-menu();
+    color: variables.$background-color-basic;
+  }
+}
+
+.address-button__svg-pin {
+  position: absolute;
+  left: 0;
+  top: calc(50% - 13px);
+  stroke: variables.$background-color-basic;
+}
+
+.address-button__svg-arrow {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 11px);
+  stroke: variables.$background-color-basic;
+
+  @media (min-width: variables.$tablet-width) {
+    display: inline;
+  }
+}

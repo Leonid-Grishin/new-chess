@@ -1,0 +1,305 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.navigation {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: variables.$mobile-content-width;
+  min-height: 67px;
+  margin: 0 auto;
+  align-items: center;
+  z-index: 5;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    min-height: 100px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    &::before {
+      position: absolute;
+      content: "";
+      width: 286px;
+      height: 286px;
+      border-radius: 50%;
+      background-color: #798FFF;
+      left: -280px;
+      top: -166px;
+      z-index: -1;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+      opacity: 0.15;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 278px;
+      height: 278px;
+      border-radius: 50%;
+      right: -310px;
+      top: -223px;
+      background: #798FFF;
+      opacity: 0.15;
+      z-index: 3;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+    }
+  }
+}
+
+.navigation__telephone-button {
+  margin-right: 77px;
+}
+
+.navigation__menu {
+  display: none;
+
+  @media (min-width: variables.$desktop-width) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 760px;
+    margin: 0 0 0 46px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-left: 100px;
+  }
+}
+
+.navigation__menu.navigation__menu--active {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  min-height: 400px;
+  z-index: 2;
+  top: 68px;
+  left: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    top: 101px;
+  }
+}
+
+.navigation__menu--mobile {
+  position: relative;
+  display: block;
+  margin: auto 0;
+  padding: 30px 0;
+  list-style-type: none;
+  text-align: center;
+  z-index: 2;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+
+  .navigation__menu-item + .navigation__menu-item {
+    margin-top: 15px;
+  }
+
+  .navigation__menu-link {
+    display: inline-block;
+  }
+}
+
+.navigation__menu-item {
+  margin-top: 15px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+}
+
+.navigation__menu-item--current {
+  .navigation__menu-link {
+    border-bottom: 3px solid variables.$color-accent-basic;
+  }
+}
+
+.navigation__menu-link {
+  display: block;
+  padding: 10px 0;
+  //text-transform: capitalize;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 25px;
+  color: variables.$background-color-second;
+  text-decoration: none;
+
+  @media (hover: hover) {
+      &:hover {
+        border-bottom: 3px solid variables.$color-accent-basic;
+    }
+  }
+
+  &:active {
+    color: variables.$color-accent-basic;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 2px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    @include mixins.font-p2-menu();
+    color: variables.$background-color-second;
+  }
+}
+
+.navigation__contacts-item--telephone {
+  display: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+  }
+}
+
+.navigation__telephone-button.telephone-button {
+  @media (min-width: variables.$tablet-width) {
+    display: none;
+  }
+}
+
+.navigation__hamburger-menu {
+  margin-left: auto;
+}
+
+.navigation__hamburger-menu.hamburger-menu {
+  @media (min-width: variables.$desktop-width) {
+    display: none;
+  }
+}
+
+.navigation__addresses {
+  display: none;
+}
+
+.navigation__addresses.navigation__addresses--active {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  top: 68px;
+  left: calc(50% - 150px);
+  width: 300px;
+  background: linear-gradient(180deg, #282F40 0%, #384264 32.05%, #4D465F 69.73%, #B97079 100%);
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 0 0 5px 5px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 403px;
+    top: 101px;
+    left: calc(50% - 201px);
+    padding: 40px 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    left: unset;
+    right: 0;
+  }
+}
+
+.navigation__address-name {
+  margin-bottom: 10px;
+  @include mixins.font-p2-semiBold();
+  color: variables.$color-accent-basic;
+
+  &:not(:first-of-type) {
+    margin-top: 20px;
+  }
+}
+
+.navigation__address {
+  position: relative;
+  @include mixins.font-p2();
+  color: variables.$background-color-basic;
+  padding-left: 34px;
+  margin-left: 0;
+}
+
+.navigation__address-svg-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  stroke: variables.$background-color-basic;
+  left: 0;
+  top: calc(50% - 12px);
+}
+
+.navigation__address-wrapper{
+  margin-left: 0;
+}
+
+.navigation__contacts {
+  list-style-type: none;
+  margin: 0 0 0 44px;
+  padding: 0;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-left: 64px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: auto;
+  }
+}
+
+.navigation__contacts-item {
+  text-align: center;
+
+  @media (min-width: variables.$tablet-width) {
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    text-align: right;
+  }
+}
+
+.navigation__contacts-item--telephone {
+  display: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+  }
+}

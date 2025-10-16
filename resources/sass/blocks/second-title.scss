@@ -1,0 +1,11 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.second-title {
+  @include mixins.font-h2();
+  margin: 0;
+}
+
+.second-title--light {
+  color: variables.$background-color-second;
+}

@@ -1,0 +1,415 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.about-coach {
+  position: relative;
+  background-color: variables.$color-basic;
+  overflow: hidden;
+}
+
+.about-coach__wrapper {
+  position: relative;
+  max-width: variables.$mobile-content-width;
+  margin: 0 auto;
+  padding: 50px 0 40px 0;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: "Павел Макаров";
+    width: 942px;
+    min-height: 100px;
+    bottom: 43%;
+    left: -80%;
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 100px;
+    opacity: 0.2;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px variables.$background-color-basic;
+    z-index: -1;
+
+    @media (min-width: variables.$tablet-width) {
+      left: -2%;
+      bottom: 39%;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      font-size: 100px;
+      left: -25%;
+      bottom: 38%;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      left: -15%;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "Павел Макаров";
+    width: 942px;
+    height: 100px;
+    bottom: 33%;
+    left: 80%;
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 100px;
+    opacity: 0.2;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px variables.$background-color-basic;
+    z-index: -1;
+
+    @media (min-width: variables.$tablet-width) {
+      left: 32%;
+      bottom: 27%;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      font-size: 100px;
+      left: 8%;
+      bottom: 24%;
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    padding-top: 67px;
+    padding-bottom: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding: 140px 0 138px 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+    padding-bottom: 134px;
+  }
+}
+
+.about-coach__second-title {
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.about-coach__description {
+  margin: 30px 0 0 0;
+  color: variables.$background-color-basic;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin: 52px auto 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    margin: 80px 0 0 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 1130px;
+  }
+}
+
+.about-coach__image-wrapper {
+  position: relative;
+  display: block;
+  width: 214px;
+  height: 289px;
+  margin: 14px auto 0 auto;
+
+  &::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 700px;
+    height: 3px;
+    background-color: variables.$color-accent-third;
+    bottom: 0;
+    left: -220px;
+    z-index: 2;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 1300px;
+      left: -520px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      width: 2000px;
+      left: -1535px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      left: -1422px;
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 260px;
+    height: 344px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    display: inline-block;
+    width: 413px;
+    height: 545px;
+    margin: 27px 0 0 101px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-left: 162px;
+  }
+}
+
+.about-coach__image {
+  display: inline-block;
+  object-fit: contain;
+  margin: 0;
+  width: 214px;
+  height: 289px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 260px;
+    height: 344px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 413px;
+    height: 542px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.about-coach__list {
+  position: relative;
+  margin: 60px 0 0 0;
+  padding: 0;
+  display: inline-block;
+  max-width: variables.$mobile-content-width;
+  height: 175px;
+  box-sizing: border-box;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 140px;
+    height: 140px;
+    top: 33%;
+    left: 5%;
+    border-radius: 50%;
+    background-color: variables.$color-blur;
+    z-index: -1;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0.3;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 125px;
+      height: 125px;
+      top: 33%;
+      left: 25%;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+      opacity: 0.4;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      -webkit-filter: blur(80px);
+      filter: blur(80px);
+      opacity: 0.2;
+      width: 250px;
+      height: 250px;
+      left: 5%;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 118px;
+    height: 118px;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: variables.$color-accent-third;
+    z-index: -1;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0.3;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 125px;
+      height: 125px;
+      top: 33%;
+      right: 25%;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+      opacity: 0.4;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      width: 250px;
+      height: 250px;
+      right: -5%;
+      -webkit-filter: blur(80px);
+      filter: blur(80px);
+      opacity: 0.2;
+    }
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: -35px;
+    top: unset;
+    right: unset;
+  }
+
+  .slick-arrow {
+    @media (min-width: variables.$tablet-width) {
+      background-color: transparent;
+      background-image: url("/public/images/button-arrow-right-white.svg");
+    }
+  }
+
+  .slick-next.slick-arrow {
+    @media (min-width: variables.$tablet-width) {
+      right: 140px;
+      top: 10px;
+    }
+  }
+
+  .slick-prev.slick-arrow {
+    @media (min-width: variables.$tablet-width) {
+      left: 140px;
+      top: 10px;
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    margin-top: 49px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    vertical-align: top;
+    max-width: 555px;
+    margin-top: 29px;
+    margin-left: 80px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    vertical-align: top;
+    max-width: 555px;
+    margin-top: 31px;
+    margin-left: 332px;
+  }
+}
+
+.about-coach__item-wrapper {
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 460px;
+    margin-right: 23px;
+    margin-left: 23px;
+    text-align: center;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: unset;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.about-coach__item-wrapper + .about-coach__item-wrapper {
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 19px;
+  }
+}
+
+.about-coach__item {
+  @include mixins.font-h3();
+  width: variables.$mobile-content-width;
+  color: variables.$background-color-second;
+  position: relative;
+  margin: 0 30px 0 30px;
+  padding: 0;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 459px;
+    margin: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-left: 25px;
+    text-align: left;
+    width: unset;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: calc(50% - 5px);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: variables.$color-accent-basic;
+    }
+  }
+}
+
+.about-coach__item-description {
+  @include mixins.font-p2();
+  width: variables.$mobile-content-width;
+  color: variables.$background-color-basic;
+  margin: 15px auto 0 auto;
+  padding: 0;
+  align-self: center;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 400px;
+    margin-top: 9px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    width: unset;
+    margin-top: 16px;
+    text-align: left;
+    padding-left: 25px;
+  }
+}
+
+.about-coach__item-description +.about-coach__item-description {
+  margin-top: 20px;
+}

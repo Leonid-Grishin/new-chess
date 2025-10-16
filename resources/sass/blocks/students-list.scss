@@ -1,0 +1,59 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.students-list {
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    justify-content: space-between;
+    grid-row-gap: 28px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    grid-template-columns: auto auto auto;
+    grid-row-gap: 37px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: 37px;
+  }
+}
+
+.students-list__item + .students-list__item {
+  margin-top: 18px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 0;
+  }
+}
+
+.students-list__item {
+  &:nth-child(n + 6) {
+    display: none;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    &:nth-child(n + 6) {
+      display: grid;
+    }
+
+    &:nth-child(n + 11) {
+      display: none;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    &:nth-child(n + 11) {
+      display: grid;
+    }
+
+    &:nth-child(n + 13) {
+      display: none;
+    }
+  }
+}

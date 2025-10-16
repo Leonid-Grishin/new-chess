@@ -1,0 +1,44 @@
+@use "../global/variables";
+
+.slick-dots {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  padding: 0;
+}
+
+.slick-dots li {
+  list-style-type: none;
+  padding: 0;
+}
+
+.slick-dots li:not(:last-child) {
+  margin-right: 10px;
+}
+
+.slick-dots button {
+  font-size: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid variables.$color-accent-basic;
+  border-radius: 50%;
+  background-color: initial;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .slick-dots button:hover,
+  .slick-dots button:hover {
+    outline: none;
+  }
+}
+
+.slick-dots button:focus-visible {
+  outline: 1px solid variables.$color-accent-basic;
+}
+
+.slick-dots li.slick-active button {
+  background-color: variables.$color-accent-basic;
+}

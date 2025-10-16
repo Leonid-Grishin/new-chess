@@ -1,0 +1,99 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.error-404 {
+    background-color: variables.$color-basic;
+    background-image: url("/public/images/error-main-image-mobile.png");
+    -webkit-background-image: -webkit-image-set(url("/public/images/error-main-image-mobile.webp") 1x);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: variables.$tablet-width) {
+        background-image: url("/public/images/error-main-image.png");
+        -webkit-background-image: -webkit-image-set(url("/public/images/error-main-image.webp") 1x);
+    }
+
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: 191px;
+        height: 191px;
+        border-radius: 50%;
+        background-color: variables.$color-blur;
+        left: calc(50%);
+        bottom: -30px;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0.15;
+
+        @media (min-width: variables.$tablet-width) {
+            width: 365px;
+            height: 365px;
+            bottom: -100px;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
+        }
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 191px;
+        height: 191px;
+        border-radius: 50%;
+        background-color: variables.$color-accent-third;
+        right: calc(50%);
+        bottom: -30px;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0.15;
+
+        @media (min-width: variables.$tablet-width) {
+            width: 365px;
+            height: 365px;
+            bottom: -100px;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
+        }
+    }
+}
+
+.error-404__section {
+    position: relative;
+    max-width: variables.$mobile-content-width;
+    margin: 0 auto;
+    padding-top: 160px;
+    padding-bottom: 425px;
+
+    @media (min-width: variables.$tablet-width) {
+        max-width: variables.$tablet-content-width;
+        padding-top: 210px;
+        padding-bottom: 510px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+        max-width: variables.$desktop-content-width;
+        padding-top: 150px;
+        padding-bottom: 420px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+        max-width: variables.$desktop-big-content-width;
+    }
+}
+
+.error-404__title {
+    @include mixins.font-h1();
+    margin: 0;
+    text-align: center;
+    color: variables.$background-color-second;
+}
+
+.error-404__description {
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: variables.$background-color-second;
+}

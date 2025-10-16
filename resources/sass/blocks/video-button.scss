@@ -1,0 +1,37 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.video-button {
+  display: block;
+  padding: 0;
+  margin: 0;
+  content: "";
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid variables.$color-accent-basic;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 1;
+  background-image: url("/public/images/video-button-icon.svg");
+  background-repeat: no-repeat;
+  background-position: calc(50% + 3px) 50%;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: variables.$color-accent-basic-light;
+    }
+  }
+
+  &:active {
+    background-color: variables.$color-accent-basic;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+}

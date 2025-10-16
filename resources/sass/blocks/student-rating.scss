@@ -1,0 +1,100 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.student-rating {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+  "student-rating-photo student-rating-name student-rating-number"
+  "student-rating-photo student-rating-change-line student-rating-change-line"
+  "student-rating-photo student-rating-change student-rating-change";
+  grid-auto-rows: auto auto auto;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  padding: 10px 15px 10px 10px;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 80px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    width: 300px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 350px;
+    grid-template-columns: 120px auto auto;
+  }
+}
+
+.student-rating__image-wrapper {
+  display: inline-flex;
+  grid-area: student-rating-photo;
+}
+
+.student-rating__image {
+  width: 90px;
+  height: 90px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 3px solid variables.$background-color-basic;
+
+  @media (min-width: variables.$desktop-width) {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.student-rating__order {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid variables.$color-accent-basic;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  background-color: variables.$background-color-second;
+  left: -4px;
+  top: -4px;
+}
+
+.student-rating__name {
+  grid-area: student-rating-name;
+  max-width: 125px;
+  align-self: end;
+}
+
+.student-rating__number {
+  grid-area: student-rating-number;
+  @include mixins.font-p2-semiBold();
+  align-self: end;
+}
+
+.student-rating__change-line {
+  grid-area: student-rating-change-line;
+  height: 4px;
+  border-radius: 50px;
+  background-color: variables.$color-accent-basic;
+
+  margin-top: 4px;
+
+  &--down {
+    background-color: variables.$color-accent-third;
+  }
+
+  &--up {
+    background-color: variables.$color-accept;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 7px;
+  }
+}
+
+.student-rating__change {
+  grid-area: student-rating-change;
+  opacity: 0.3;
+}

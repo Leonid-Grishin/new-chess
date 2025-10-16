@@ -1,0 +1,73 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.determination {
+  @media (min-width: variables.$tablet-width) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.determination__title {
+  @include mixins.font-h3();
+  position: relative;
+  display: inline;
+  margin: 0;
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 290px;
+    text-align: right;
+  }
+}
+
+.determination__container {
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 74px;
+    height: 74px;
+    background-color: variables.$color-accent-basic-light;
+    border-radius: 50%;
+    top: calc(50% - 37px);
+    right: -24px;
+    z-index: -1;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 100px;
+      height: 100px;
+      top: -35px;
+      right: -40px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      width: 150px;
+      height: 150px;
+      top: -55px;
+      right: -55px;
+    }
+  }
+}
+
+.determination__description {
+  padding-left: 65px;
+  @include mixins.font-p2-semiBold();
+  margin: 20px 0 0 auto;
+
+  @media (min-width: variables.$tablet-width) {
+    display: block;
+    width: 461px;
+    margin-top: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+    width: 970px;
+    text-align: left;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 1130px;
+  }
+}

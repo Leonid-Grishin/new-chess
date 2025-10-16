@@ -1,0 +1,260 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.school-promo {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  overflow: hidden;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 80px;
+    padding-bottom: 110px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+.school-promo__title {
+  @include mixins.font-h2();
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.school-promo__list {
+  margin: 30px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: variables.$desktop-content-width;
+    overflow-x: clip;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  .slick-list {
+    overflow: unset;
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    height: unset;
+  }
+
+  .slick-prev.slick-arrow {
+    @media (min-width: variables.$tablet-width) {
+      left: calc(50% - 400px);
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      left: unset;
+      right: 120px;
+      top: -110px;
+    }
+  }
+
+  .slick-next.slick-arrow {
+    @media (min-width: variables.$tablet-width) {
+      right: calc(50% - 400px);
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      right: 0;
+      top: -110px;
+    }
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    bottom: -30px;
+    top: unset;
+    right: unset;
+
+    @media (min-width: variables.$tablet-width) {
+      bottom: -40px;
+    }
+  }
+}
+
+.school-promo__item {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+  background-color: #fafafa;
+  margin-right: 35px;
+  margin-left: 35px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 620px;
+    margin-right: 75px;
+    margin-left: 75px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 568px;
+    margin-right: -50px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 738px;
+    margin-right: -40px;
+  }
+
+  &:not(.slick-current) {
+    opacity: 0.5;
+
+    @media (min-width: variables.$desktop-width) {
+      opacity: 1;
+    }
+  }
+}
+
+.school-promo__item-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px;
+  min-height: 325px;
+  box-sizing: border-box;
+
+  @media (min-width: variables.$tablet-width) {
+    min-height: 275px;
+    padding: 30px 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    min-height: 380px;
+    padding: 50px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    min-height: 320px;
+    padding: 50px;
+  }
+}
+
+.school-promo__item-title {
+  @include mixins.font-h3();
+  margin: 0;
+}
+
+.school-promo__item-description {
+  margin: 10px 0 0 0;
+  flex-grow: 1;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 20px;
+  }
+}
+
+.school-promo__image-wrapper {
+  position: relative;
+  border-bottom: 1px solid variables.$background-color-basic;
+  height: 140px;
+  box-sizing: border-box;
+  background-color: variables.$background-color-second;
+  border-radius: 5px 5px 0 0;
+
+  @media (min-width: variables.$tablet-width) {
+    height: 240px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    height: 280px;
+  }
+}
+
+.school-promo__item-image {
+  display: block;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  height: auto;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 620px;
+    height: auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 570px;
+    height: auto;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 740px;
+    height: auto;
+  }
+}
+
+.school-promo__button {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    margin-top: 25px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 100%;
+    max-width: unset;
+  }
+
+  span {
+    display: none;
+
+    @media (min-width: variables.$tablet-width) {
+      display: inline;
+    }
+  }
+}

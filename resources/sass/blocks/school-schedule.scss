@@ -1,0 +1,24 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.school-promo {
+  padding-top: 50px;
+
+  display: grid;
+  grid-template-rows: repeat(40, 16px);
+  grid-template-columns: repeat(6, 120px);
+}
+
+.a-1-10-15-4 {
+  grid-column: 1/2;
+  grid-row: 2/6;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.b-2-11-15-6 {
+  grid-column: 2/3;
+  grid-row: 6/12;
+  background-color: red;
+  border-radius: 5px;
+}

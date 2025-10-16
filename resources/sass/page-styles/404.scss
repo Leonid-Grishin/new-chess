@@ -1,0 +1,22 @@
+/*Шрифт*/
+@use "../global/fonts.scss";
+@use "../global/visually-hidden";
+
+/*Глобальные секции*/
+@use "../blocks/page";
+
+/*Шапка*/
+@use "../blocks/main-header";
+@use "../blocks/navigation";
+@use "../blocks/telephone-button";
+@use "../blocks/telephone";
+@use "../blocks/logo";
+@use "../blocks/address-button";
+@use "../blocks/hamburger-menu";
+@use "../blocks/ellipse";
+
+/*Футер*/
+@use "../blocks/footer";
+
+/*Контент 404*/
+@use "../blocks/error-404";

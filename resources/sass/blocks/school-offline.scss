@@ -1,0 +1,102 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.school-offline {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 35px 20px 25px 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-top: 40px;
+    padding-bottom: 35px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  .school-offline__text-wrapper {
+    display: none;
+
+    @media (min-width: variables.$tablet-width) {
+      display: inline;
+    }
+  }
+
+  p {
+    margin: 0;
+
+    @media (min-width: variables.$desktop-width) {
+      width: 970px;
+      margin-left: auto;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      width: 1130px;
+    }
+  }
+
+  p:first-of-type {
+    margin-top: 20px;
+  }
+
+  p + p {
+    margin-top: 15px;
+  }
+}
+
+.school-offline__title {
+  margin: 0;
+}
+
+.school-offline__mission {
+  margin: 30px 0 0 0;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 55px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 77px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 80px;
+  }
+}
+
+.school-offline__image {
+  display: block;
+  width: 100%;
+  //width: 300px;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-top: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 50px;
+  }
+}
+
+.school-offline__image-wrapper {
+  @media (min-width: variables.$tablet-width) {
+    order: 2;
+  }
+}

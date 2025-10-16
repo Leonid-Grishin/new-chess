@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /pdf/offer.pdf
+Disallow: /pdf/private-policy.pdf
+Disallow: /pdf/personal-data.pdf
+Disallow: /*?*
+Disallow: /admin
+Disallow: /login
+Disallow: /ads.txt
+Disallow: /manager

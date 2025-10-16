@@ -1,0 +1,327 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.block-rating {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.block-rating--index {
+  padding-top: 25px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 70px;
+  }
+}
+
+/*.block-rating__title {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}*/
+
+.block-rating__list {
+  list-style-type: none;
+  margin: 30px 0 0 0;
+  padding: 0;
+
+
+  @media (min-width: variables.$mobile-width) {
+/*    padding-left: 63px;
+    padding-right: 62px;*/
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 53px;
+/*    padding-left: 0;
+    padding-right: 0;*/
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 80px;
+  }
+}
+
+.block-rating__item {
+  display: grid;
+  grid-template-areas:
+  'rating-date rating-title'
+  'rating-description rating-description'
+  'rating-list rating-list';
+  grid-template-columns: 80px auto;
+  grid-column-gap: 8px;
+
+  @media (min-width: variables.$tablet-width) {
+    grid-template-areas:
+  'rating-date rating-title'
+  'rating-date rating-description'
+  'rating-list rating-list';
+
+    grid-column-gap: 60px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    grid-column-gap: 50px;
+  }
+}
+
+.block-rating__subtitle {
+  @include mixins.font-h3();
+  grid-area: rating-title;
+  margin: 0;
+  max-width: 220px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 480px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 650px;
+  }
+}
+
+.block-rating__time {
+  grid-area: rating-date;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.block-rating__time-month {
+  text-align: center;
+}
+
+.block-rating__time-day {
+  display: block;
+  text-align: center;
+  font-family: 'Gotham Pro', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 50px;
+  color: variables.$color-basic;
+
+  @media (min-width: variables.$desktop-width) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+}
+
+.block-rating__time-year {
+  @include mixins.font-p2-semiBold();
+  color: variables.$color-accent-basic;
+  display: block;
+  text-align: center;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 10px;
+  }
+}
+
+.block-rating__description {
+  grid-area: rating-description;
+  margin: 20px 0 0 0;
+  //height: 175px;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 650px;
+    margin-top: 30px;
+    height: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 850px;
+  }
+}
+
+.block-rating__students-list {
+  grid-area: rating-list;
+  margin-top: 120px;
+  display: grid;
+  justify-items: center;
+
+  @media (min-width: variables.$tablet-width) {
+    //margin-top: 63px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 80px;
+    justify-items: unset;
+  }
+}
+
+.block-rating__button {
+  width: 100%;
+  margin-top: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 400px;
+    align-self: center;
+    margin-top: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 530px;
+    max-width: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 70px;
+  }
+}
+
+.block-rating__toggle {
+  position: absolute;
+  display: flex;
+  bottom: 715px;
+  width: calc(100% - 40px);
+/*  padding-left: 20px;
+  padding-right: 20px;*/
+  //top: 470px;
+  //left: calc(50% - 150px);
+  @media (min-width: variables.$mobile-width) {
+    width: calc(100% - 125px);
+/*    padding-left: 63px;
+    padding-right: 62px;*/
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: unset;
+/*    padding-left: 0;
+    padding-right: 0;*/
+    left: calc(50% - 310px);
+    //top: 400px;
+    bottom: 775px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    left: unset;
+    right: 0;
+    bottom: unset;
+    top: 275px;
+  }
+}
+
+.block-rating__toggle-rapid {
+  box-sizing: border-box;
+  //width: 150px;
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  background-color: variables.$background-color-second;
+  border: 1px solid variables.$color-accent-basic;
+  border-radius: 80px 0 0 80px;
+  @include mixins.font-button();
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: variables.$color-accent-basic-light;
+    }
+  }
+
+  &:active {
+    border-color: variables.$color-blur;
+    background-color: variables.$color-blur;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+
+  &--active {
+    background-color: variables.$color-accent-basic;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 310px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 195px;
+  }
+}
+
+.block-rating__toggle-classic {
+  box-sizing: border-box;
+  //width: 150px;
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  background-color: variables.$background-color-second;
+  border: 1px solid variables.$color-accent-basic;
+  border-radius: 0 80px 80px 0;
+  @include mixins.font-button();
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: variables.$color-accent-basic-light;
+    }
+  }
+
+  &:active {
+    border-color: variables.$color-blur;
+    background-color: variables.$color-blur;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+
+  &--active {
+    background-color: variables.$color-accent-basic;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 310px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 195px;
+  }
+}

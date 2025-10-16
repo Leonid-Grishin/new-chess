@@ -1,0 +1,323 @@
+@use "../global/variables";
+@use "../global/mixins";
+@use "../global/font-variables";
+
+.modal-request {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  align-self: center;
+  background-color: rgba(1, 1, 1, 0.7);
+
+  .request-form__label {
+    @include mixins.font-p2;
+    font-weight: font-variables.$font-weight-600;
+  }
+
+  .request-form__policy-control-label {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .request-form__button {
+    width: 100%;
+  }
+}
+
+.modal-request--request {
+  display: none;
+}
+
+.modal-request__close-button {
+  position: absolute;
+  padding: 0;
+  right: calc(50% - 190px);
+  top: 15px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: variables.$tablet-width) {
+    right: calc(50% - 340px);
+    top: 15px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    right: calc(50% - 590px);
+    top: 15px;
+  }
+
+  &::before {
+    position: absolute;
+    display: block;
+    top: 19px;
+    left: -7px;
+    transform: rotate(45deg);
+    content: "";
+    width: 40px;
+    height: 1px;
+    background-color: variables.$background-color-second;
+
+    @media (min-width: variables.$tablet-content-width) {
+      width: 56px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    top: 19px;
+    left: -7px;
+    transform: rotate(-45deg);
+    content: "";
+    width: 40px;
+    height: 1px;
+    background-color: variables.$background-color-second;
+
+    @media (min-width: variables.$tablet-content-width) {
+      width: 56px;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover::before,
+    &:hover::after {
+      background-color: variables.$color-accent-basic;
+    }
+  }
+
+  &:active::before,
+  &:active::after {
+    background-color: variables.$color-accent-basic-light;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+}
+
+.modal-request__wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  max-width: 375px;
+  max-height: 100%;
+  overflow: auto;
+  height: 605px;
+  margin: 67px auto auto auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: variables.$color-basic;
+  border: 1px solid #505768;
+  border-radius: 5px;
+  z-index: 11;
+  box-sizing: border-box;
+  padding: 50px 37px 50px 37px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 700px;
+    height: 615px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 1200px;
+    height: 715px;
+    padding: 65px 100px;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 100px);
+    content: "";
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: variables.$color-blur;
+    -webkit-filter: blur(80px);
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.19;
+
+    @media (min-width: variables.$desktop-width) {
+      opacity: 0.4;
+      left: 100px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    bottom: 15%;
+    left: calc(50% - 100px);
+    content: "";
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: variables.$color-accent-third;
+    -webkit-filter: blur(80px);
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.2;
+
+    @media (min-width: variables.$desktop-width) {
+      opacity: 0.4;
+      left: 100px;
+    }
+  }
+}
+
+.modal-request__container {
+  @media (min-width: variables.$desktop-width) {
+    max-width: 590px;
+    margin-left: auto;
+  }
+}
+
+.modal-request__image {
+
+  @media (min-width: variables.$desktop-width) {
+      position: absolute;
+      display: block;
+      bottom: calc(50% - 235px);
+      width: 239px;
+      height: 469px;
+      content: "";
+      background-image: url("/public/images/girl-request-desktop.png");
+    background-image: -webkit-image-set(url("/public/images/girl-request-desktop.webp") 1x);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 239px 469px;
+    }
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 450px;
+    height: 1px;
+    left: -99px;
+    bottom: 0;
+    background-color: #272E3E;
+  }
+}
+
+.modal-request__title {
+  @include mixins.font-h3();
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  color: variables.$background-color-second;
+}
+
+.modal-request__title-wrapper {
+  text-align: center;
+  color: variables.$color-accent-basic;
+}
+
+.modal-request__subtitle {
+  text-align: center;
+  padding: 0;
+  margin: 5px 0 0 0;
+  color: variables.$background-color-second;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 10px;
+  }
+}
+
+.modal-request__form {
+  margin-top: 25px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 420px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+
+  }
+}
+
+.modal-request--subscribe {
+  display: none;
+  background-color: rgba(1, 1, 1, 0.7);
+
+  .modal-request__wrapper {
+    background-color: variables.$background-color-second;
+    border-color: variables.$background-color-basic;
+    height: 650px;
+
+    @media (min-width: variables.$tablet-width) {
+      height: 670px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      height: 782px;
+      background-image: url("/public/images/girl-with-books-desktop.png");
+      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop.webp") 1x);
+      background-repeat: no-repeat;
+      background-size: 919px 620px;
+      background-position: right -250px bottom -50px;
+    }
+
+    &::before {
+      @media (min-width: variables.$desktop-width) {
+        width: 400px;
+        height: 400px;
+        -webkit-filter: blur(100px);
+        filter: blur(100px);
+        opacity: 0.1;
+        left: 200px;
+      }
+    }
+
+    &::after {
+      @media (min-width: variables.$desktop-width) {
+        width: 400px;
+        height: 400px;
+        -webkit-filter: blur(100px);
+        filter: blur(100px);
+        opacity: 0.1;
+        left: 200px;
+      }
+    }
+  }
+
+  .modal-request__title {
+    color: variables.$color-basic;
+  }
+
+  .modal-request__subtitle {
+    color: variables.$color-basic;
+  }
+
+  .request-form__policy {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-request__container {
+    @media (min-width: variables.$desktop-width) {
+      margin-left: unset;
+      margin-right: auto;
+    }
+  }
+
+  .modal-request__image {
+    display: none;
+  }
+}

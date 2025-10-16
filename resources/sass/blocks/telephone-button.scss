@@ -1,0 +1,21 @@
+@use "../global/variables";
+
+.telephone-button {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  background-image: url("/public/images/icons/header-phone-button-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.telephone-button__image {
+  stroke: variables.$background-color-second;
+
+  &--dark {
+    stroke: variables.$color-basic;
+  }
+}

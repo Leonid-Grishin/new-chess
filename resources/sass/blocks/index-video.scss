@@ -1,0 +1,168 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-video {
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+      margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-video__second-title {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+/*.index-video__image-wrapper {
+  display: block;
+  margin-top: 31px;
+  position: relative;
+
+  &::after{
+    position: absolute;
+    display: block;
+    padding: 0;
+    margin: 0;
+    content: "";
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid variables.$color-accent-basic;
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 1;
+    background-image: url("/images/video-button-icon.svg");
+    background-repeat: no-repeat;
+    background-position: calc(50% + 3px) 50%;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      background-color: variables.$color-accent-basic-light;
+    }
+  }
+
+  &:active::after {
+    background-color: variables.$color-accent-basic;
+  }
+
+  &:focus-visible::after {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 51px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 73px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 80px;
+  }
+}*/
+
+/*.index-video__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  vertical-align: top;
+
+  @media (min-width: variables.$tablet-width) {
+    width: variables.$tablet-content-width;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: variables.$desktop-big-content-width;
+  }
+}*/
+
+.index-video__wrapper {
+  position: relative;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 31px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 51px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 73px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 80px;
+  }
+}
+
+.index-video__videofile {
+  display: block;
+  width: 100%;
+  max-height: 640px;
+}
+
+.index-video__link {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-size: 12px;
+
+  @media (min-width: variables.$tablet-width) {
+    bottom: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    bottom: 40px;
+    right: 40px;
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+}

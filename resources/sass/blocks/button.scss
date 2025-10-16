@@ -1,0 +1,120 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.button {
+  @include mixins.font-button();
+  max-width: 480px;
+  box-sizing: border-box;
+  border-radius: 80px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button--glass {
+  background-color: rgba(251, 206, 2, 0.5);
+  padding: 15px 25px;
+  color: variables.$background-color-second;
+
+  &:hover {
+    background-color:     rgba(121, 143, 255, 0.5);
+
+  }
+}
+
+.button--primary {
+  background-color: variables.$color-accent-basic;
+  padding: 15px 10px;
+  border: none;
+
+  &:hover {
+    background-color: variables.$color-blur;
+  }
+
+  &:active {
+    background-color: variables.$color-blur-active;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: variables.$background-color-basic;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding: 20px 30px;
+  }
+
+  &-intro {
+    width: 300px;
+
+    &.remove {
+      display: none;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      width: 305px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      /*    width: 365px;*/
+    }
+  }
+}
+
+.button--secondary {
+  padding: 15px 30px;
+  border: 1px solid variables.$color-accent-basic;
+  background-color: transparent;
+
+  &:hover {
+    background-color: variables.$color-accent-basic-light;
+  }
+
+  &:active {
+    background-color: variables.$color-accent-basic;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: variables.$background-color-basic;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding: 20px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  &-intro {
+    width: 300px;
+    min-height: 60px;
+    color: variables.$background-color-second;
+    padding: 15px 10px;
+
+    &.remove {
+      display: none;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      margin-left: 15px;
+      width: 309px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      margin-left: 15px;
+      width: 360px;
+      padding: 20px 15px;
+    }
+  }
+}
+
+

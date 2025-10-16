@@ -1,0 +1,126 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.blockquote {
+  position: relative;
+  //max-width: 425px;
+  padding: 70px 70px 18px 70px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid variables.$background-color-basic;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 580px;
+    padding: 60px 95px 23px 97px;
+    overflow: unset;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 704px;
+    padding: 60px 100px 22px 101px;
+  }
+}
+
+.blockquote__text {
+  @include mixins.font-p2();
+  margin: 0;
+
+  &::before {
+    position: absolute;
+    left: 61px;
+    top: 10px;
+    content: "“";
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 80px;
+
+    @media (min-width: variables.$tablet-width) {
+      left: 50px;
+      top: 15px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    right: 62px;
+    bottom: 11px;
+    content: "“";
+    transform: rotate(180deg);
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 80px;
+
+    @media (min-width: variables.$tablet-width) {
+      right: 50px;
+      bottom: 18px;
+    }
+  }
+}
+
+.blockquote__author {
+  @include mixins.font-p2-semiBold();
+  margin-top: 29px;
+  margin-right: 50px;
+  text-align: right;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 15px;
+  }
+}
+
+.blockquote__ellipse {
+  &::before {
+    position: absolute;
+    content: "";
+    width: 169px;
+    height: 169px;
+    border-radius: 50%;
+    background: variables.$color-blur;
+    left: -100px;
+    bottom: 30%;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    z-index: -1;
+    opacity: 0.2;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 150px;
+      height: 150px;
+      left: 60px;
+      bottom: 50px;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+      opacity: 0.3;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: variables.$color-accent-third;
+    right: 40px;
+    bottom: 10px;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    z-index: -1;
+    opacity: 0.2;
+
+    @media (min-width: variables.$tablet-width) {
+      right: 100px;
+      bottom: 110px;
+      -webkit-filter: blur(60px);
+      filter: blur(60px);
+      opacity: 0.4;
+    }
+  }
+}

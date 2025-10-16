@@ -1,0 +1,99 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-subscription {
+
+  @media (min-width: variables.$tablet-width) {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.index-subscription__wrapper {
+  max-width: variables.$mobile-content-width;
+  border: 1px solid variables.$background-color-basic;
+  position: relative;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 26px 20px;
+  border-radius: 5px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding: 47px 35px 50px 59px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding: 70px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  &::after {
+
+    @media (min-width: variables.$tablet-width) {
+      position: absolute;
+      content: "";
+      width: 684px;
+      height: 483px;
+      background-image: url("/public/images/girl-with-books-tablet.png");
+      background-image: -webkit-image-set(url("/public/images/girl-with-books-tablet.webp") 1x);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 684px auto;
+      bottom: -116px;
+      left: calc(43% - 7px);
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      width: 1023px;
+      height: 690px;
+      bottom: -137px;
+      left: calc(48% + 15px);
+      background-image: url("/public/images/girl-with-books-desktop.png");
+      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop.webp") 1x);
+      background-size: 1023px auto;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      height: 723px;
+      left: calc(45% + 15px);
+      bottom: -200px;
+      background-image: url("/public/images/girl-with-books-desktop-big.png");
+      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop-big.webp") 1x);
+    }
+  }
+}
+
+.index-subscription__description {
+  max-width: 500px;
+  margin: 22px 0 0 0;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 33px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 800px;
+    margin-top: 26px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 1050px;
+  }
+}
+
+.index-subscription__subscription-form {
+  margin: 20px 0 0 0;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 50px;
+  }
+}

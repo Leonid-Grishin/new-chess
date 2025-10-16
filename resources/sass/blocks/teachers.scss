@@ -1,0 +1,143 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.teachers {
+  //max-width: variables.$desktop-big-content-width;
+  margin: 0 auto;
+  padding: 25px 20px;
+
+  @media (min-width: 425px) {
+    padding-right: 62px;
+    padding-left: 63px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.teachers__title {
+  margin: 0;
+}
+
+.teachers__description {
+  margin: 30px 0 0 0;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 70px;
+  }
+}
+
+.teachers__list {
+  display: grid;
+  grid-gap: 40px;
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 50px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.teachers__item {
+  max-width: 740px;
+  border-radius: 5px;
+  border: 1px solid variables.$background-color-basic;
+  box-sizing: border-box;
+  flex-shrink: 1;
+}
+
+.teachers__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.teachers__item-container {
+  padding: 25px 15px;
+
+  @media (min-width: 380px) {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 40px 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding: 50px;
+  }
+}
+
+.teachers__item-title {
+  @include mixins.font-h3();
+  text-align: center;
+  margin: 0;
+}
+
+.teachers__item-subtitle {
+  @include mixins.font-p2-semiBold();
+  color: variables.$color-accent-second;
+  text-align: center;
+  margin: 5px 0 0 0;
+}
+
+.teachers__features {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.teachers__features-item {
+  position: relative;
+  padding-left: 25px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: variables.$color-accent-basic;
+    left: 0;
+    top: 8px;
+
+    @media (min-width: variables.$tablet-width) {
+      width: 10px;
+      height: 10px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      top: 10px;
+    }
+  }
+}
+
+.teachers__features-item + .teachers__features-item {
+  margin-top: 10px;
+}

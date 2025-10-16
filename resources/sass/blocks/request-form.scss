@@ -1,0 +1,175 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.request-form {
+  padding: 18px 20px 30px 20px;
+  box-sizing: border-box;
+  border: 1px solid  variables.$background-color-basic;
+  border-radius: 5px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 50px 80px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding: 70px 100px 60px 100px;
+  }
+}
+
+.request-form__input-wrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.request-form__input-wrapper + .request-form__input-wrapper {
+  margin-top: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 28px;
+  }
+}
+
+.request-form__label {
+  @include mixins.font-h3();
+  text-align: left;
+}
+
+.request-form__input {
+  @include mixins.font-p2();
+  width: 100%;
+  padding: 8px 7px 7px 30px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+  background-color: transparent;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 10px;
+  }
+
+  &::placeholder {
+    opacity: 0.3;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    border: 1px solid transparent;
+  }
+}
+
+.request-form__button {
+  width: 100%;
+  margin-top: 27px;
+
+  @media (min-width: variables.$tablet-width) {
+    z-index: 3;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 365px;
+    margin-top: 47px;
+  }
+
+  span {
+    display: none;
+
+    @media (min-width: variables.$tablet-width) {
+      display: unset;
+    }
+  }
+}
+
+.request-form__policy-control {
+  display: block;
+  margin-top: 22px;
+  position: relative;
+  padding-left: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-left: 35px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-left: 43px;
+  }
+
+  @media (hover: hover) {
+    :hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.request-form__policy-control-input[type="checkbox"]:checked + .request-form__policy-control-checkbox {
+  background-image: url("/public/images/icons/checkbox-checked-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.request-form__policy-control-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  background-color: inherit;
+  background-image: url("/public/images/icons/checkbox-icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0.3;
+
+  @media (min-width: variables.$desktop-width) {
+    top: 5px;
+  }
+}
+
+.request-form__policy-control-label {
+  @include mixins.font-p2();
+  opacity: 0.3;
+}
+
+.request-form__error {
+  @include mixins.font-p2();
+  color: variables.$color-accent-third;
+}
+
+.request-form--modal {
+  padding: 0;
+  border: none;
+}
+
+.request-form--dark {
+
+  .request-form__label {
+    color: variables.$background-color-second;
+  }
+
+  .request-form__input {
+    color: variables.$background-color-second;
+
+    &::placeholder {
+      opacity: 1;
+    }
+  }
+
+  .request-form__policy-control-label {
+    color: variables.$background-color-second;
+  }
+
+  .request-form__policy-control-checkbox {
+    background-image: url("/public/images/icons/checkbox-white-icon.svg");
+  }
+
+  .request-form__policy-control-input[type="checkbox"]:checked + .request-form__policy-control-checkbox {
+    background-image: url("/public/images/icons/checkbox-checked-white-icon.svg");
+  }
+}

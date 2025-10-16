@@ -1,0 +1,22 @@
+@use "../global/variables";
+@use  "../global/mixins";
+
+.telephone {
+  @include mixins.font-h3();
+  color: variables.$background-color-second;
+  text-decoration: none;
+
+  &:hover {
+    color: variables.$color-accent-basic;
+  }
+
+  &:active {
+    color: variables.$color-accent-basic;
+    opacity: 0.3;
+  }
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 2px;
+  }
+}

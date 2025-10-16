@@ -1,0 +1,66 @@
+@use "../global/variables";
+
+.ellipse--middle {
+  content: "";
+  width: 278px;
+  height: 278px;
+  border-radius: 50%;
+  background: variables.$color-blur;
+  opacity: 0.1;
+  -webkit-filter: blur(70px);
+  filter: blur(70px);
+}
+
+.ellipse--first {
+  content: "";
+  width: 167px;
+  height: 167px;
+  border-radius: 50%;
+  background-color: variables.$color-blur;
+  opacity: 0.5;
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+
+  @media (min-width: variables.$tablet-width) {
+    width: 264px;
+    height: 264px;
+    -webkit-filter: blur(60px);
+    filter: blur(60px);
+    opacity: 0.3;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 442px;
+    height: 442px;
+    opacity: 0.3;
+    -webkit-filter: blur(90px);
+    filter: blur(90px);
+  }
+}
+
+.ellipse--second {
+  content: "";
+  width: 191px;
+  height: 191px;
+  border-radius: 50%;
+  background-color: variables.$color-accent-third;
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+  opacity: 0.3;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 395px;
+    height: 395px;
+    opacity: 0.2;
+    -webkit-filter: blur(90px);
+    filter: blur(90px);
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 732px;
+    height: 732px;
+    opacity: 0.5;
+    -webkit-filter: blur(90px);
+    filter: blur(90px);
+  }
+}

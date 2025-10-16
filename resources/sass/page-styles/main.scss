@@ -1,0 +1,81 @@
+/*Шрифт*/
+@use "../global/fonts.scss";
+@use "../global/visually-hidden";
+
+/*Блоки Глобальные компоненты*/
+@use "../blocks/button";
+@use "../blocks/video-button";
+@use "../blocks/second-title";
+
+/*Глобальные секции*/
+@use "../blocks/page";
+
+/*Слайдер*/
+@use "../blocks/slick-dots";
+@use "../blocks/slick-arrow";
+@use "../blocks/slider-number.scss";
+
+/*Шапка*/
+@use "../blocks/main-header";
+@use "../blocks/navigation";
+@use "../blocks/telephone-button";
+@use "../blocks/telephone";
+@use "../blocks/logo";
+@use "../blocks/address-button";
+@use "../blocks/hamburger-menu";
+@use "../blocks/ellipse";
+
+/*Футер*/
+@use "../blocks/footer";
+
+/*Модальные окна*/
+@use "../blocks/modal-request";
+@use "../blocks/request-form";
+@use "../blocks/popup";
+
+/*/////////////////////////Главная страница\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+/*Интро*/
+@use "../blocks/index-intro";
+
+/*О школе*/
+@use "../blocks/index-about";
+@use "../blocks/blockquote";
+
+/*Видео о школе*/
+@use "../blocks/index-video";
+
+/*Стоимость занятий*/
+@use "../blocks/lessons-price";
+
+/*Онлайн занятия*/
+@use "../blocks/online-lessons";
+
+/*Лагерь*/
+@use "../blocks/index-camp";
+
+/*Подписка*/
+@use  "../blocks/index-subscription";
+@use "../blocks/subscription-form";
+
+/*О тренере*/
+@use "../blocks/teachers";
+
+/*Рейтинг*/
+@use "../blocks/block-rating";
+@use "../blocks/students-list";
+@use "../blocks/student-rating";
+
+/*Отзывы*/
+@use  "../blocks/index-reviews";
+
+/*Новости*/
+@use "../blocks/index-news";
+
+/*Адреса*/
+@use "../blocks/index-location";
+
+/*Заявка*/
+@use "../blocks/index-request";
+
+
+@use "../blocks/policy-popup";

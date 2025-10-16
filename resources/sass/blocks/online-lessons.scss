@@ -1,0 +1,155 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+
+.online-lessons {
+  position: relative;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  &::after {
+    position: absolute;
+/*    width: 300px;
+    width: 100%;*/
+    height: 215px;
+    content: "";
+    background-image: url("/public/images/online-lessons-tablet.jpg");
+    background-image: -webkit-image-set(url("/public/images/online-lessons-tablet.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    top: 90px;
+    right: 20px;
+    left: 20px;
+    border-radius: 5px;
+
+    @media (min-width: variables.$mobile-width) {
+      right: 63px;
+      left: 62px;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      top: 140px;
+      right: 0;
+      left: unset;
+      width: 620px;
+      height: 360px;
+/*      background-image: url("/images/online-lessons-tablet.jpg");
+      background-image: -webkit-image-set(url("/images/online-lessons-tablet.webp") 1x);*/
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      bottom: 70px;
+      top: unset;
+      width: 670px;
+      height: 540px;
+      background-image: url("/public/images/online-lessons-desktop.jpg");
+      background-image: -webkit-image-set(url("/public/images/online-lessons-desktop.webp") 1x);
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      width: 1000px;
+      height: 540px;
+      background-image: url("/public/images/online-lessons-desktop-big.jpg");
+      background-image: -webkit-image-set(url("/public/images/online-lessons-desktop-big.webp") 1x);
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.online-lessons__list {
+  margin: 265px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 444px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 485px;
+    margin-top: 80px;
+  }
+}
+
+.online-lessons__item {
+  position: relative;
+  padding-left: 25px;
+
+
+    &::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: calc(50% - 5px);
+    left: 0;
+    border-radius: 50%;
+    background-color: variables.$color-accent-basic;
+    }
+
+  & + .online-lessons__item {
+    margin-top: 11px;
+
+    @media (min-width: variables.$tablet-width) {
+      margin-top: 20px;
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      margin-top: 30px;
+    }
+  }
+}
+
+.online-lessons__primary-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 17px;
+  margin-left: auto;
+  margin-right: auto;
+
+  span {
+    display: none;
+
+    @media (min-width: variables.$tablet-width) {
+      display: unset;
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    width: 418px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 470px;
+    margin-top: 48px;
+    margin-left: unset;
+    margin-right: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 485px;
+  }
+}

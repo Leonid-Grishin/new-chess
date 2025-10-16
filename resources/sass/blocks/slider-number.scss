@@ -1,0 +1,12 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.slider-number {
+  @include mixins.font-h3;
+  text-align: center;
+  color: variables.$background-color-basic;
+}
+
+.slider-number__wrapper {
+  color: variables.$color-accent-basic;
+}

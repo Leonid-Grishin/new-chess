@@ -1,0 +1,193 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-intro {
+  background-color: variables.$color-basic;
+  overflow: hidden;
+}
+
+.index-intro__wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 593px;
+  margin: 76px auto 0 auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-top: 18px;
+    min-height: 763px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-top: 117px;
+    min-height: 613px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 316px;
+    height: 220px;
+    background-image: url("/public/images/index-intro-mobile.png");
+    background-image: -webkit-image-set(url("/public/images/index-intro-mobile.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: center;
+    left: calc(50% - 158px);
+    bottom: 0;
+    z-index: 2;
+
+    @media (min-width: variables.$tablet-width) {
+      background-image: url("/public/images/index-intro-tablet.png");
+      background-image: -webkit-image-set(url("/public/images/index-intro-tablet.webp") 1x);
+      width: 516px;
+      height: 360px;
+      left: calc(50% - 258px);
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      background-image: url("/public/images/index-intro-desktop.png");
+      background-image: -webkit-image-set(url("/public/images/index-intro-desktop.webp") 1x);
+      width: 586px;
+      height: 410px;
+      left: calc(61% + 4px);
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      background-image: url("/public/images/index-intro-big.png");
+      background-image: -webkit-image-set(url("/public/images/index-intro-big.webp") 1x);
+      width: 655px;
+      height: 458px;
+      left: calc(56% + 15px);
+    }
+  }
+}
+
+.index-intro__clubname-wrapper {
+  color: variables.$color-accent-basic;
+}
+
+.index-intro__first-title {
+  margin: 0;
+  color: variables.$background-color-second;
+}
+
+.index-intro__description {
+  margin: 23px 0 20px 0;
+  @include mixins.font-p1();
+  color: #FFFFFF;
+
+  &.remove {
+    display: none;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 35px;
+    max-width: 550px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 45px;
+  }
+}
+
+.index-intro__primary-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 300px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    width: 300px;
+    display: inline-block;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 430px;
+
+  }
+
+  span {
+    display: none;
+
+    @media (min-width: variables.$desktop-width) {
+      display: inline;
+    }
+  }
+}
+
+.index-intro__secondary-button {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  text-decoration: none;
+  min-height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 19px;
+  z-index: 2;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+    width: 300px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: 20px;
+    width: 340px;
+    height: 70px;
+  }
+}
+
+.index-intro__ellipse-first {
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+
+  @media (min-width: variables.$tablet-width) {
+    left: unset;
+    right: 40%;
+    bottom: 5%;;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    right: 18%;
+    bottom: -10%;
+  }
+}
+
+.index-intro__ellipse-second {
+  position: absolute;
+  right: -40px;
+  bottom: -30px;
+
+  @media (min-width: variables.$tablet-width) {
+    right: -100px;
+    bottom: -10%;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    right: -320px;
+    bottom: -65%;
+  }
+}

@@ -1,0 +1,68 @@
+.slick-prev.slick-arrow {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid #FBCE02;
+  background-color: #FFFFFF;
+  font-size: 0;
+  color: #272E3E;
+  cursor: pointer;
+  background-image: url("/public/images/button-arrow-right.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  transform: rotate(180deg);
+  top: calc(50% - 35px);
+  left: -90px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.slick-next.slick-arrow {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid #FBCE02;
+  background-color: #FFFFFF;
+  font-size: 0;
+  color: #272E3E;
+  cursor: pointer;
+  background-image: url("/public/images/button-arrow-right.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+  top: calc(50% - 35px);
+  right: -90px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@media (hover: hover) {
+  .slick-prev.slick-arrow:hover,
+  .slick-next.slick-arrow:hover {
+    background-color: rgba(251, 206, 2, 0.3);
+  }
+}
+
+.slick-prev.slick-arrow:active,
+.slick-next.slick-arrow:active {
+  background-color: #FBCE02;
+}
+
+.slick-prev.slick-arrow:focus-visible,
+.slick-next.slick-arrow:focus-visible {
+  outline: 1px solid #FBCE02;
+  outline-offset: 4px;
+}
+
+.slick-prev.slick-arrow:disabled,
+.slick-next.slick-arrow:disabled {
+  border-color: rgba(39, 46, 62, 0.5);
+  opacity: 0.4;
+  background-color: #FFFFFF;
+  cursor: unset;
+}

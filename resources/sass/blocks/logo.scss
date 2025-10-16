@@ -1,0 +1,31 @@
+@use "../global/variables";
+
+.logo {
+  border: none;
+
+  &:focus-visible {
+    outline: 1px solid variables.$color-accent-basic;
+    outline-offset: 2px;
+  }
+}
+
+.logo__image {
+  vertical-align: top;
+  fill: variables.$background-color-second;
+
+  &--dark {
+    fill: variables.$color-basic;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 103px;
+    height: 54px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 120px;
+    height: 62px;
+  }
+}
+
+

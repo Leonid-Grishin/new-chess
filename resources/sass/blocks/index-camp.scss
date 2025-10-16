@@ -1,0 +1,209 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.index-camp {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+}
+
+.index-camp__title {
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-camp__pictures-list {
+  padding: 0;
+  margin: 50px 0 0 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.index-camp__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.index-camp__picture-item:nth-child(2) {
+  display: none;
+
+  @media (min-width: variables.$tablet-width) {
+    display: unset;
+  }
+}
+
+.index-camp__picture-item + .index-camp__picture-item {
+  margin-left: 30px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-left: 40px;
+  }
+}
+
+.index-camp__features-list {
+  position: relative;
+  margin: -30px auto 0 auto;
+  padding: 0 20px;
+  list-style-type: none;
+
+  @media (min-width: 880px) {
+    margin-top: -50px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: -75px;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-camp__features-item {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 330px;
+  background-color: white;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid variables.$background-color-basic;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: unset;
+    margin-left: unset;
+  }
+}
+
+.index-camp__features-item + .index-camp__features-item {
+  margin-top: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: unset;
+  }
+}
+
+.index-camp__features-item:nth-child(2) {
+  @media (min-width: variables.$tablet-width) {
+    margin-right: auto;
+  }
+}
+
+.index-camp__features-item:nth-child(3) {
+  @media (min-width: variables.$tablet-width) {
+    margin-right: auto;
+  }
+}
+
+.index-camp__features-item:nth-child(4) {
+  @media (min-width: variables.$tablet-width) {
+    justify-self: end;
+  }
+}
+
+.index-camp__features-item-number {
+  display: block;
+  color: variables.$color-accent-second;
+}
+
+.index-camp__features-item-text {
+  display: block;
+  margin-top: 10px;
+}
+
+.index-camp__text-wrapper {
+  margin: 30px auto 0 auto;
+  padding: 0 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 70px;
+    max-width: variables.$desktop-content-width;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas:
+  "index-camp__text-title index-camp__link-wrapper"
+  "index-camp__text-description index-camp__link-wrapper";
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.index-camp__text-title {
+  margin: 0;
+
+  @media (min-width: variables.$desktop-width) {
+    grid-area: index-camp__text-title;
+  }
+}
+
+.index-camp__text-description {
+  margin: 20px 0 0 0;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    grid-area: index-camp__text-description;
+  }
+}
+
+.index-camp__link-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: variables.$desktop-width) {
+    display: unset;
+    justify-content: unset;
+    margin-top: 0;
+    grid-area: index-camp__link-wrapper;
+  }
+}
+
+.index-camp__link {
+  display: block;
+  width: 100%;
+}
+

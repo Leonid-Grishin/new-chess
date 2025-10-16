@@ -1,0 +1,333 @@
+@use "../global/variables";
+@use "../global/mixins";
+
+.lessons-price {
+  margin: 0 auto;
+  overflow: hidden;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.lessons-price__slide-number {
+  margin-top: 31px;
+
+  @media (min-width: variables.$desktop-width) {
+    display: none;
+  }
+}
+
+.lessons-price__title {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$mobile-width) {
+    padding-left: 63px;
+    padding-right: 62px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.lessons-price__list {
+  display: block;
+  list-style-type: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-dots {
+    justify-content: center;
+    width: 100%;
+    top: unset;
+    bottom: -25px;
+    right: unset;
+
+    @media (min-width: variables.$tablet-width) {
+      bottom: -35px;
+    }
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    br {
+      display: none;
+    }
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 370px 370px 370px;
+    row-gap: 50px;
+    column-gap: 30px;
+    padding-bottom: 0;
+
+    br {
+      display: unset;
+    }
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    grid-template-columns: 480px 480px 480px;
+    column-gap: 40px;
+  }
+}
+
+.lessons-price__item {
+  padding: 25px 5px;
+  border-radius: 5px;
+  border: 1px solid variables.$background-color-basic;
+  box-sizing: border-box;
+  width: variables.$mobile-content-width;
+  //margin-right: 30px;
+  margin-right: 35px;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 50px 55px;
+    width: variables.$tablet-content-width;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: unset;
+    padding: 50px 20px;
+    margin: 0;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--dark {
+    background-color: variables.$color-basic;
+    border: none;
+
+    .lessons-price__sub-title {
+      color: variables.$background-color-second;
+    }
+
+    .lessons-price__sub-title-accent {
+      color: variables.$color-accent-basic;
+      text-transform: uppercase;
+    }
+
+    .lessons-price__description {
+      color: variables.$background-color-second;
+
+      @media (min-width: variables.$desktop-width) {
+        margin-top: 40px;
+      }
+
+      @media (min-width: variables.$desktop-big-width) {
+        margin-top: 32px;
+        margin-bottom: unset;
+
+        br {
+          display: none;
+        }
+      }
+    }
+
+    .lessons-price__sub-list {
+      margin-top: 10px;
+      max-width: 250px;
+
+      @media (min-width: variables.$tablet-width) {
+        margin-top: 20px;
+        max-width: 380px;
+      }
+
+      @media (min-width: variables.$desktop-width) {
+        margin-top: 40px;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      @media (min-width: variables.$desktop-big-width) {
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .lessons-price__sub-item {
+      color: variables.$background-color-second;
+
+      &::before {
+        background-image: url("/public/images/icons/list-type-icon.svg");
+      }
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+}
+
+.lessons-price__item.slick-slide {
+  display: flex!important;
+  flex-direction: column;
+  height: unset;
+}
+
+.lessons-price__button-wrapper {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 2;
+  margin-top: 20px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 60px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 40px;
+  }
+}
+
+.lessons-price__button {
+  margin: auto auto 0 auto;
+  display: block;
+
+  @media (min-width: variables.$tablet-width) {
+    width: 380px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 340px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 380px;
+  }
+}
+
+.lessons-price__sub-title {
+  @include mixins.font-h3();
+  max-width: 250px;
+  text-align: center;
+  margin: 0 auto;
+  @media (min-width: variables.$tablet-width) {
+    max-width: unset;
+  }
+}
+
+.lessons-price__price {
+  position: relative;
+  @include mixins.font-h2();
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 45px;
+  line-height: 50px;
+  color: variables.$color-accent-second;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 25px;
+    margin-right: 23px;
+  }
+}
+
+.lessons-price__price-wrapper {
+  @include mixins.font-p2-semiBold;
+  position: absolute;
+  bottom: 20%;
+  margin-left: 10px;
+}
+
+.lessons-price__description {
+  @include mixins.font-p2();
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 20px;
+  margin-bottom: 0;
+
+/*  @media (min-width: variables.$desktop-width) {
+    br {
+      display: none;
+    }
+  }*/
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 30px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 350px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.lessons-price__sub-list {
+  margin: 20px auto 0 auto;
+  padding: 0;
+  list-style-type: none;
+  max-width: 250px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 380px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: unset;
+    margin-top: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.lessons-price__sub-item {
+  @include mixins.font-p2();
+  position: relative;
+  padding-left: 35px;
+
+  &::before {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    content: "";
+    background-image: url("/public/images/icons/list-type-green-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 0;
+    top: 0;
+  }
+}
+
+.lessons-price__sub-item + .lessons-price__sub-item {
+  margin-top: 10px;
+}

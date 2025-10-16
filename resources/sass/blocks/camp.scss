@@ -1,0 +1,1507 @@
+@use "../global/variables";
+@use "../global/mixins";
+@use "../global/font-variables";
+
+.camp-intro {
+  max-width: variables.$tablet-content-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 0;
+    max-width: unset;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    grid-column-gap: 60px;
+  }
+}
+
+.camp-intro__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: variables.$tablet-content-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 70px 0;
+  overflow: hidden;
+
+  @media (min-width: variables.$desktop-width) {
+    padding: 0;
+    margin-right: unset;
+    max-width: unset;
+    margin-left: auto;
+    width: 565px;
+    overflow: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 730px;
+  }
+}
+
+.camp-intro__content-container {
+}
+
+.camp-intro__star {
+  display: block;
+  position: absolute;
+  width: 242px;
+  height: 243px;
+  content: "";
+  background-image: url("/public/images/camp/camp-star.png");
+  background-size: 200px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  right: -13px;
+  top: -47px;
+
+  @media (min-width: variables.$tablet-width) {
+    background-size: 242px auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    right: -50px;
+    top: 20px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    right: 105px;
+    top: 20px;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    top: 108px;
+    right: 82px;
+    transform: rotate(18deg);
+    font-size: 10px;
+    line-height: 130%;
+    color: white;
+    text-align: center;
+
+    @media (min-width: variables.$tablet-width) {
+      font-size: 13px;
+      top: 102px;
+      right: 69px;
+    }
+  }
+}
+
+.camp-intro__video-wrapper {
+
+  position: relative;
+  overflow: hidden;
+  max-width: variables.$tablet-content-width;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 1080px;
+    margin-right: unset;
+    margin-left: unset;
+    height: 100%;
+    min-height: 690px;
+  }
+}
+
+.camp-intro__video-videofile {
+  //position: absolute;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: unset;
+  }
+}
+
+.camp-intro__video-link {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-size: 12px;
+
+  @media (min-width: variables.$tablet-width) {
+    bottom: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    bottom: 40px;
+    right: 40px;
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+}
+
+.camp-intro__title {
+  margin: 0;
+
+  @media (min-width: variables.$desktop-width) {
+    margin: 0;
+  }
+  span {
+    color: variables.$color-accent-basic;
+  }
+}
+
+.camp-intro__subtitle {
+  margin: 20px 0 0 0;
+  font-size: 20px;
+  font-weight: 400;
+  max-width: 520px;
+}
+
+.camp-intro__button {
+  margin: 30px 0 0 0;
+  color: variables.$background-color-second;
+  max-width: 400px;
+  align-self: center;
+  width: 100%;
+
+
+  @media (min-width: variables.$tablet-width) {
+    align-self: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 480px;
+  }
+}
+
+.camp-intro__text {
+  margin: 61px 0 0 0;
+  font-size: 20px;
+  font-weight: 400;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: 450px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 600px;
+  }
+}
+
+.camp-intro__features {
+  margin: 30px 0 0 0;
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: left;
+
+  @media (min-width: variables.$tablet-width) {
+    grid-template-columns: repeat(3, auto);
+    justify-content: unset;
+    grid-column-gap: 30px;
+  }
+
+  li {
+    position: relative;
+    padding: 7px 14px;
+    display: inline-block;
+    width: fit-content;
+    border-radius: 5px;
+    border: 1px solid rgba(222, 221, 221, 1);
+    white-space: nowrap;
+    min-width: 150px;
+
+    @media (min-width: variables.$tablet-width) {
+      min-width: unset;
+      padding: 15px 30px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      padding: 25px 50px;
+    }
+  }
+
+  li:last-child::before {
+
+
+    @media (min-width: variables.$mobile-width) {
+      position: absolute;
+      content: "";
+      width: 126px;
+      height: 190px;
+      background-image: url("/public/images/camp/woman-in-chair.png");
+      background-size: 126px 190px;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: -130px;
+      right: -190px;
+
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      top: -172px;
+      right: -45px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      width: 144px;
+      height: 217px;
+      top: -187px;
+      right: -50px;
+    }
+  }
+}
+
+.camp-about {
+  padding: 50px 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 70px 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+}
+
+.camp-about__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-column-gap: 40px;
+  grid-row-gap: 50px;
+  grid-template-areas:
+  "camp-about__item--education"
+  "camp-about__item--education-image "
+  "camp-about__item--safety"
+  "camp-about__item--safety-image";
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+  "camp-about__item--education-image camp-about__item--education"
+  "camp-about__item--safety camp-about__item--safety-image";
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-about__item {
+  position: relative;
+
+  ul {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    top: 30px;
+    left: 0;
+  }
+
+  li {
+    font-size: 12px;
+    padding: 5px 10px;
+    background-color: variables.$background-color-second;
+    border-radius: 5px;
+    margin-left: 15px;
+    text-transform: lowercase;
+
+    @media (min-width: variables.$mobile-width) {
+      padding: 7px 14px;
+      font-size: 14px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      margin-left: 30px;
+      padding: 10px 30px;
+    }
+  }
+
+  h3 {
+    margin-top: 10px;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+  }
+}
+
+.camp-about__item--education-image {
+  grid-area: camp-about__item--education-image;
+}
+
+.camp-about__item--education {
+  grid-area: camp-about__item--education;
+}
+
+.camp-about__item--safety {
+  grid-area: camp-about__item--safety;
+}
+
+.camp-about__item--safety-image {
+  grid-area: camp-about__item--safety-image;
+}
+
+.camp-about__image {
+  display: block;
+  border-radius: 5px;
+  background-color: variables.$color-accent-second;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.camp-about__item.camp-about__item--safety-image {
+  ul {
+    top: initial;
+    bottom: 20px;
+
+    @media (min-width: variables.$tablet-width) {
+      bottom: 30px;
+    }
+  }
+}
+
+.camp-dates {
+  max-width: variables.$tablet-content-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px 50px 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 0 20px 70px 20px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+    padding-bottom: 140px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-dates__list {
+  overflow: hidden;
+  list-style-type: none;
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 50px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+
+  @media (min-width: variables.$mobile-width) {
+    padding: 50px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+
+}
+
+.camp-dates__date {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: variables.$desktop-width) {
+    display: initial;
+    margin-bottom: 100px;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border: 1px solid variables.$background-color-basic;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  p {
+    width: 176px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    @media (min-width: variables.$desktop-width) {
+      position: absolute;
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
+}
+
+.camp-dates__date--arrival {
+
+  span {
+    position: relative;
+    background-color: variables.$color-accent-second;
+    color: white;
+    border: none;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: variables.$color-accent-basic;
+      background-image: url("/public/images/camp/check.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.camp-dates__dashed {
+  width: 100%;
+  height: 80px;
+  position: relative;
+}
+
+.camp-dates__dashed-container {
+  position: absolute;
+  content: "";
+  height: 80px;
+  left: calc(50% - 90px);
+  width: 1px;
+  border: none;
+  border-left: 2px dashed variables.$background-color-basic;
+
+  @media (min-width: variables.$desktop-width) {
+    width: 100%;
+    position: relative;
+    left: unset;
+    margin: 50px 0;
+    height: 0;
+    border-top: 2px dashed variables.$background-color-basic;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: variables.$background-color-basic;
+    left: -6px;
+    top: 0;
+
+    @media (min-width: variables.$desktop-width) {
+      left: -2px;
+      top: calc(50% - 6px);
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: variables.$background-color-basic;
+    left: -6px;
+    bottom: 0;
+
+    @media (min-width: variables.$desktop-width) {
+      left: unset;
+      bottom: unset;
+      right: 2px;
+      top: calc(50% - 6px);
+    }
+  }
+}
+
+.camp-growth {
+  background-color: variables.$color-basic;
+  color: variables.$background-color-second;
+  padding: 50px 0;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+}
+
+.camp-growth {
+  margin: 0;
+}
+
+.camp-growth__wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-growth__title {
+  color: variables.$background-color-second;
+}
+
+.camp-growth__description {
+  margin: 50px 0 0 0;
+
+  @media (min-width: variables.$desktop-width) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+  }
+
+  p {
+    margin: 20px 0 0 0;
+
+    @media (min-width: variables.$desktop-width) {
+      margin-top: 0;
+    }
+  }
+}
+
+.camp-growth__list {
+  margin: 125px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-row-gap: 150px;
+
+
+  @media (min-width: variables.$tablet-width) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 130px;
+    grid-column-gap: 40px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    grid-row-gap: 0;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.camp-growth__item {
+  position: relative;
+  padding-top: 30px;
+  border-top: 1px solid variables.$background-color-basic;
+
+  span {
+    display: none;
+
+
+    @media (min-width: variables.$desktop-big-width) {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      display: inline-block;
+      max-width: 175px;
+      font-size: 12px;
+      line-height: 130%;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 20px;
+  }
+
+  h3 {
+    font-size: 25px;
+
+    @media (min-width: variables.$desktop-big-width) {
+      font-size: 30px;
+    }
+  }
+}
+
+.camp-growth__item:nth-child(odd) {
+  padding-top: 235px;
+}
+
+.camp-growth__item-number {
+  position: absolute;
+  margin: 0;
+  top: -85px;
+  right: 0;
+
+  color: variables.$color-accent-basic;
+}
+
+.camp-growth__third-title {
+  margin: 0 0 30px 0;
+  color: variables.$background-color-second;
+}
+
+.camp-growth__image {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+
+.camp-schedule {
+  padding: 50px 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    max-width: variables.$tablet-content-width;
+    margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-schedule__activities-list {
+  padding: 0;
+  margin: 50px 0 0 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+
+  @media (min-width: variables.$tablet-width) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 30px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    grid-column-gap: 40px;
+  }
+}
+
+.camp-schedule__activities-item {
+  border: 1px solid variables.$color-accent-basic;
+  border-radius: 5px;
+  padding: 50px 30px;
+
+  @media (min-width: variables.$desktop-width) {
+
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding: 50px 40px;
+  }
+}
+
+.camp-schedule__activities-item:last-child {
+
+  @media (min-width: variables.$tablet-width) {
+    grid-column: 1 / 3;
+  }
+
+
+  @media (min-width: variables.$desktop-width) {
+    grid-column: initial;
+  }
+}
+
+.camp-schedule__activities-title-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.camp-schedule__activities-title {
+  margin: 0 0 0 30px;
+}
+
+.camp-schedule__activities-image {
+
+}
+
+.camp-schedule__day-list {
+  margin: 45px 0 0 0;
+  padding: 30px 0 0 0;
+  list-style-type: none;
+  border-top: 1px solid variables.$color-accent-basic-light;
+}
+
+.camp-schedule__day-item {
+  border-left: 4px solid rgba(222, 221, 221, 0.5);
+  padding-left: 20px;
+}
+
+.camp-schedule__day-item + .camp-schedule__day-item {
+  margin-top: 30px;
+}
+
+.camp-schedule__day-time,
+.camp-schedule__day-activity-title {
+  font-weight: font-variables.$font-weight-700;
+}
+
+.camp-schedule__day-activity-description {
+  opacity: 0.6;
+}
+
+.camp-image {
+  margin: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.camp-teachers {
+  padding: 50px 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    max-width: variables.$tablet-content-width;
+    margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-teachers__description {
+  font-weight: 400;
+  margin: 30px 0 0 0;
+}
+
+.camp-teachers__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-top: 50px;
+}
+
+.camp-teachers__item {
+  display: grid;
+  grid-column-gap: 40px;
+
+  @media (min-width: variables.$desktop-width) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  picture {
+    order: -1;
+
+    @media (min-width: variables.$desktop-width) {
+      order: initial;
+    }
+  }
+}
+
+.camp-teachers__item:nth-child(even)  {
+  picture {
+    order: -1;
+  }
+}
+
+.camp-teachers__item + .camp-teachers__item {
+  margin-top: 60px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 40px;
+  }
+}
+
+.camp-teachers__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.camp-teachers__name-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+
+  @media (min-width: variables.$tablet-width) {
+    flex-direction: row;
+  }
+}
+
+.camp-teachers__item-name {
+  font-size: 20px;
+  display: block;
+
+  @media (min-width: variables.$tablet-width) {
+    margin-right: 30px;
+  }
+}
+
+.camp-teachers__item-category {
+  display: inline-block;
+
+
+  font-size: 16px;
+  color: variables.$color-accent-second;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-left: 30px;
+    border-left: 1px solid variables.$background-color-basic;
+  }
+}
+
+.camp-teachers__item-features-list {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.camp-teachers__button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  font-size: 12px;
+
+  @media (min-width: variables.$mobile-width) {
+    font-size: 14px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    font-size: 16px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 35px;
+  }
+
+  svg {
+    margin-left: 15px;
+    fill: variables.$color-accent-basic;
+  }
+}
+
+.camp-teachers__item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: unset;
+  }
+}
+
+.camp-teachers__item-features-item {
+  position: relative;
+  padding-left: 45px;
+
+  &:before {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    content: "";
+    background-image: url("/public/images/camp/check-green.svg");
+    background-repeat: no-repeat;
+    left: 0;
+  }
+}
+
+.camp-teachers__item-features-item + .camp-teachers__item-features-item {
+  margin-top: 15px;
+}
+
+.camp-location {
+  position: relative;
+  padding: 0 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    max-width: variables.$tablet-content-width;
+    margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-location__features-list {
+  position: relative;
+  margin: 40px 0 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  z-index: 4;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 40%;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    margin-top: 70px;
+  }
+}
+
+.camp-location__features-item {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+
+  @media (min-width: variables.$desktop-width) {
+    width: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding: 30px;
+  }
+}
+
+.camp-location__features-item + .camp-location__features-item {
+ margin-top: 20px;
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 30px;
+  }
+}
+
+.camp-location__features-item-title,
+.camp-location__features-item-description {
+  color: rgba(39, 46, 62, 0.6);
+  font-size: 16px;
+
+  @media (min-width: variables.$desktop-big-width) {
+    font-size: 18px;
+  }
+}
+
+.camp-location__features-item-description {
+  margin: 10px 0 0 0;
+
+  b {
+    font-size: 24px;
+    line-height: 130%;
+    display: block;
+    margin-bottom: 10px;
+    color: variables.$color-basic;
+
+    @media (min-width: variables.$desktop-big-width) {
+      font-size: 30px;
+    }
+  }
+}
+
+.camp-location__slider {
+  padding: 0;
+  list-style-type: none;
+}
+
+.camp-location__slider-item.slick-slide {
+  margin-right: 27px;
+  margin-left: 27px;
+}
+
+.camp-location__image {
+  width: 450px;
+  height: auto;
+  border-radius: 5px;
+
+  @media (min-width: variables.$mobile-width) {
+    width: 600px;
+  }
+
+  @media (min-width: variables.$tablet-width) {
+    width: 650px;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    width: 1000px;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    width: 1131px;
+    height: 690px;
+  }
+}
+
+.camp-location__slider.slick-slider {
+  width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 50px;
+  margin-top: 50px;
+  overflow: hidden;
+
+  .slick-list.draggable {
+    padding: 0 !important;
+  }
+
+
+  @media (min-width: variables.$desktop-width) {
+    margin-top: 0;
+    width: initial;
+    max-width: 65%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  .slick-dots {
+    top: unset;
+    bottom: 20px;
+    right: 50%;
+  }
+}
+
+.camp-price {
+  padding: 50px 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    max-width: variables.$tablet-content-width;
+    margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-price__wrapper {
+  margin: 50px 0 0 0;
+
+
+  @media (min-width: variables.$desktop-width) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.camp-price__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+
+  @media (min-width: variables.$desktop-width) {
+    max-width: 480px;
+    width: unset;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: 520px;
+  }
+}
+
+.camp-price__item {
+  position: relative;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  border: 1px solid variables.$background-color-basic;
+  border-radius: 5px;
+
+  @media (min-width: variables.$desktop-width) {
+    &::after {
+      position: absolute;
+      width: 148px;
+      height: 1px;
+      content: "";
+      background-color: variables.$background-color-basic;
+      right: -148px;
+      top: calc(50% - 1px);
+    }
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding: 50px;
+  }
+
+  span {
+    display: block;
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.camp-price__item + .camp-price__item {
+  margin-top: 50px;
+}
+
+.camp-price__item:has(.camp-price__item-discount-list) {
+  border-color: variables.$color-accent-third;
+}
+
+.camp-price__item-title {
+  font-size: 30px;
+  line-height: 130%;
+  margin-bottom: 30px;
+  font-weight: font-variables.$font-weight-600;
+}
+
+.camp-price__item-duration,
+.camp-price__item-discount-amount {
+  margin-top: 20px;
+}
+
+.camp-price__item-duration {
+  color: rgba(39, 46, 62, 0.5);
+}
+
+.camp-price__item-cost {
+  color: variables.$color-accent-second;
+  font-weight: font-variables.$font-weight-700;
+  font-size: 50px;
+  line-height: 130%;
+}
+
+.camp-price__item-discount-amount {
+  color: variables.$color-accent-third;
+  font-weight: font-variables.$font-weight-700;
+  font-size: 50px;
+}
+
+.camp-price__item-discount-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.camp-price__item-discount-item {
+  text-align: center;
+  padding: 0 10px;
+
+  p {
+    margin: 20px 0 0 0;
+    color: rgba(39, 46, 62, 0.5);
+  }
+}
+
+
+.camp-price__include-list {
+  position: relative;
+  margin: 0;
+  padding:0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 2;
+  background-color: white;
+  margin-top: 50px;
+
+  @media (min-width: variables.$desktop-width) {
+    border-left: 1px solid variables.$background-color-basic;
+    padding-left: 44px;
+    max-width: 575px;
+    width: unset;
+    margin-top: unset;
+
+    &::after,
+    &::before {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      content: "";
+      border-radius: 50%;
+      left: -6px;
+      background-color: variables.$background-color-basic;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    padding: 0 0 0 94px;
+    max-width: unset;
+  }
+}
+
+.camp-price__include-item {
+  position: relative;
+  padding: 30px 70px;
+  background-color: #FFFCEC;
+  border-radius: 5px;
+
+
+
+  @media (min-width: variables.$desktop-width) {
+    &::before {
+      position: absolute;
+      width: 50px;
+      height: 1px;
+      content: "";
+      left: -50px;
+      top: calc(50% - 2px);
+      background-color: variables.$background-color-basic;
+
+      @media (min-width: variables.$desktop-big-width) {
+        width: 100px;
+        left: -100px;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      content: "";
+      left: -50px;
+      top: calc(50% - 6px);
+      background-color: variables.$background-color-basic;
+
+      @media (min-width: variables.$desktop-big-width) {
+        left: -100px;
+      }
+    }
+  }
+}
+
+.camp-price__include-item + .camp-price__include-item {
+  margin-top: 30px;
+}
+
+.camp-price__include-item:nth-child(even) {
+  background-color: #E8FBEC;
+}
+
+.camp-price__include-item.camp-price__include-item--discount {
+  background-color: #FFDDDF;
+}
+
+.camp-photos {
+  width: 100%;
+  padding: 0 0 50px 0;
+
+  @media (min-width: variables.$tablet-width) {
+    padding-bottom: 70px;
+    max-width: variables.$tablet-content-width;
+    margin: 0 auto;
+  }
+
+  @media (min-width: variables.$desktop-width) {
+    padding-bottom: 140px;
+    max-width: variables.$desktop-content-width;
+  }
+
+  @media (min-width: variables.$desktop-big-width) {
+    max-width: variables.$desktop-big-content-width;
+  }
+}
+
+.camp-photos__title {
+  padding: 0 20px;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 0 ;
+  }
+}
+
+.camp-photos__list {
+  margin: 50px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-content: space-between;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+
+  @media (min-width: variables.$desktop-width) {
+    grid-row-gap: unset;
+    grid-column-gap: unset;
+    grid-template-columns: auto auto auto;
+  }
+}
+
+.camp-photos__item {
+  width: fit-content;
+}
+
+.camp-photos__item:nth-child(4),
+.camp-photos__item:nth-child(5) {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+.camp-photos__item--first {
+  grid-column: 1 / 3;
+
+  @media (min-width: variables.$desktop-width) {
+    grid-column: unset;
+    grid-row: 1 / 3;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+
+    @media (min-width: variables.$desktop-width) {
+      max-width: 600px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      max-width: unset;
+    }
+  }
+}
+
+.camp-photos__item--second {
+
+  img {
+
+    width: 100%;
+    height: auto;
+
+    @media (min-width: variables.$desktop-width) {
+      max-width: 269px;
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      max-width: unset;
+    }
+  }
+}
+
+.camp-photos__item--others {
+  display: none;
+}
+
+.camp-photos__image {
+  display: block;
+}
+
+.camp-photos__item--dark {
+  position: relative;
+
+  picture {
+    position: relative;
+  }
+
+  picture:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: linear-gradient(rgba(9, 16, 26, 0.4), rgba(9, 16, 26, 0.8));
+  }
+
+  a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    align-self: center;
+    color: white;
+    font-size: font-variables.$font-line-height-h2;
+    font-weight: font-variables.$font-weight-700;
+    line-height: 130%;
+  }
+}
