@@ -1,7 +1,9 @@
 @extends('layouts.chess')
 
 @push('styles')
-    @vite('resources/sass/page-styles/404.scss')
+    {{--@vite('resources/sass/page-styles/404.scss')--}}
+    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/404-DWt-ArC2.css" />
+    <link rel="stylesheet" href="https://a5chess.ru/build/assets/404-DWt-ArC2.css" />
 @endpush
 @section('title', 'Ошибка, такой страницы не существует')
 

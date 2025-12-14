@@ -1,7 +1,9 @@
 @extends('layouts.chess')
 
 @push('styles')
-    @vite('resources/sass/page-styles/camp.scss')
+    {{--@vite('resources/sass/page-styles/camp.scss')--}}
+    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/camp-_1LHVWhH.css" />
+    <link rel="stylesheet" href="https://a5chess.ru/build/assets/camp-_1LHVWhHS.css" />
 @endpush
 
 @section('content')

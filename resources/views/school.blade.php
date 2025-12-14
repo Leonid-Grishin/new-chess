@@ -3,7 +3,9 @@
 {{--@section('styles', asset('css/school.min.css'))--}}
 
 @push('styles')
-    @vite('resources/sass/page-styles/school.scss')
+    {{--@vite('resources/sass/page-styles/school.scss')--}}
+    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/school-B_u3gPla.css" />
+    <link rel="stylesheet" href="https://a5chess.ru/build/assets/school-B_u3gPla.css" />
 @endpush
 
 @section('content')

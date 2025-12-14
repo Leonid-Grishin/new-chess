@@ -185,7 +185,7 @@
             <p class="footer__navigation-address-title">Адрес школы в СПб:</p>
             <ul class="footer__navigation-address-list">
                 <li class="footer__navigation-address-item">
-                    <address class="footer__address"><a class="footer__address-link" href="https://yandex.ru/maps/-/CLwqqYPm" target="_blank" rel="noreferrer noopener">БЦ ”Level Up”: Проспект Испытателей, 30 к2, 3 этаж </a></address>
+                    <address class="footer__address"><a class="footer__address-link" href="https://yandex.ru/maps/-/CLwqqYPm" target="_blank" rel="noreferrer noopener">БЦ ”Level Up”: Проспект Испытателей, дом 30, корпус 2, 3 этаж </a></address>
                 </li>
             </ul>
             <p class="footer__ip">ИП Макаров Павел Владимирович</p>
