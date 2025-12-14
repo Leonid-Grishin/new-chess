@@ -132,7 +132,7 @@
                         <li class="school-groups__subitem">На зянятиях дети изучают какие есть фигуры и как они ходят</li>
                     </ul>
                     {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа пешка" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
+                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
                 </div>
             </li>
             <li class="school-groups__item">
@@ -157,7 +157,7 @@
                         <li class="school-groups__subitem">На зянятиях ученики пробуют играть свои первые партии</li>
                     </ul>
                     {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа слон" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
+                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
                 </div>
             </li>
             <li class="school-groups__item">
@@ -182,7 +182,7 @@
                         <li class="school-groups__subitem">Группы до 8 человек</li>
                     </ul>
                     {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа до 1200" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
+                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
                 </div>
             </li>
             <li class="school-groups__item">
@@ -207,7 +207,7 @@
                         <li class="school-groups__subitem">Группы до 8 человек</li>
                     </ul>
                     {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа от 1200" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
+                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
                 </div>
             </li>
         </ul>

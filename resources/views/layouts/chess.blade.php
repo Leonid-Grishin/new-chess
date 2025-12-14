@@ -128,7 +128,7 @@
         <div class="footer__social">
             <ul class="footer__social-list">
                 <li class="footer__social-item">
-                    <a href="https://vk.com/a5chess" class="footer__social-link" target="_blank">
+                    <a href="https://vk.com/a5chess" class="footer__social-link" target="_blank" rel="nofollow">
                         <svg class="footer__social-icon" width="24" height="24">
                             <use href="{{ asset('images/icons/sprite/sprite.svg#vk-icon') }}"></use>
                         </svg>
@@ -136,7 +136,7 @@
                     </a>
                 </li>
                 <li class="footer__social-item">
-                    <a href="https://t.me/a5chess" class="footer__social-link" target="_blank">
+                    <a href="https://t.me/a5chess" class="footer__social-link" target="_blank" rel="nofollow">
                         <svg class="footer__social-icon" width="24" height="24">
                             <use href="{{ asset('images/icons/sprite/sprite.svg#telegram-icon') }}"></use>
                         </svg>
@@ -144,7 +144,7 @@
                     </a>
                 </li>
                 <li class="footer__social-item">
-                    <a href="https://www.youtube.com/channel/UCIynB-_wplU5zbWVVtXyyXw" class="footer__social-link" target="_blank">
+                    <a href="https://www.youtube.com/channel/UCIynB-_wplU5zbWVVtXyyXw" class="footer__social-link" target="_blank" rel="nofollow">
                         <svg class="footer__social-icon" width="24" height="24">
                             <use href="{{ asset('images/icons/sprite/sprite.svg#youtube-icon') }}"></use>
                         </svg>
