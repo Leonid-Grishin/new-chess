@@ -185,12 +185,12 @@
             <p class="footer__navigation-address-title">Адрес школы в СПб:</p>
             <ul class="footer__navigation-address-list">
                 <li class="footer__navigation-address-item">
-                    <address class="footer__address">БЦ ”Level Up”: Проспект Испытателей, 30 к2, 3 этаж</address>
+                    <address class="footer__address"><a class="footer__address-link" href="https://yandex.ru/maps/-/CLwqqYPm" target="_blank" rel="noreferrer noopener">БЦ ”Level Up”: Проспект Испытателей, 30 к2, 3 этаж </a></address>
                 </li>
-{{--                <li class="footer__navigation-address-item">
-                    <address class="footer__address">Детский центр “Дар Речи”: Переулок Лыжный, д.8 к1</address>
-                </li>--}}
             </ul>
+            <p class="footer__ip">ИП Макаров Павел Владимирович</p>
+            <p class="footer__inn">Инн: 100303550398</p>
+            <p class="footer__ogrn">ОГРН: 323100000003801</p>
         </div>
         <a class="footer__telephone" href="tel:+79022027148">+7 (902) 202-71-48</a>
         <ul class="footer__user-navigation">

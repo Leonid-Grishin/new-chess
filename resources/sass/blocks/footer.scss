@@ -276,6 +276,22 @@
   }
 }
 
+.footer__address-link {
+  color: #DEDDDD;
+}
+
+.footer__inn {
+  margin: 5px 0 0 0;
+}
+
+.footer__ip {
+  margin: 15px 0 0 0;
+}
+
+.footer__ogrn {
+  margin: 5px 0 0 0;
+}
+
 .footer__telephone {
   @include mixins.font-h3();
   grid-area: footer-telephone;

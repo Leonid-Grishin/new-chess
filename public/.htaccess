@@ -22,4 +22,10 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    RewriteCond %{HTTP_HOST} ^www.a5chess.ru
+    RewriteRule ^(.*) https://a5chess.ru/$1 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+    RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
 </IfModule>
