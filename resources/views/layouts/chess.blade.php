@@ -6,8 +6,8 @@
 
     {{--@vite('resources/sass/page-styles/main-styles.scss')--}}
 
-    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/main-styles-CznHd0ej.css" />
-    <link rel="stylesheet" href="https://a5chess.ru/build/assets/main-styles-CznHd0ej.css" />
+    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/main-styles-BOaOsGkQ.css" />
+    <link rel="stylesheet" href="https://a5chess.ru/build/assets/main-styles-BOaOsGkQ.css" />
 
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet" type="text/css" >
     <link  href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet">
