@@ -191,8 +191,8 @@
   }
 
   &--base {
-    background-image: url("/public/images/school/level-pawn-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-pawn-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-pawn-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-pawn-icon.webp"), 1x);
 
     @media (min-width: variables.$desktop-big-width) {
       grid-column: 3;
@@ -200,28 +200,28 @@
   }
 
   &--opening {
-    background-image: url("/public/images/school/level-knight-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-knight-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-knight-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-knight-icon.webp"), 1x);
   }
 
   &--tactics {
-    background-image: url("/public/images/school/level-desk-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-desk-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-desk-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-desk-icon.webp"), 1x);
   }
 
   &--endgame {
-    background-image: url("/public/images/school/level-rook-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-rook-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-rook-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-rook-icon.webp"), 1x);
   }
 
   &--practice {
-    background-image: url("/public/images/school/level-queen-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-queen-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-queen-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-queen-icon.webp"), 1x);
   }
 
   &--task {
-    background-image: url("/public/images/school/level-grade-icon.png");
-    background-image: -webkit-image-set(url("/public/images/school/level-grade-icon.webp"), 1x);
+    background-image: url("https://a5chess.ru/images/school/level-grade-icon.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/school/level-grade-icon.webp"), 1x);
   }
 }
 

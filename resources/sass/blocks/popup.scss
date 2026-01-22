@@ -60,13 +60,13 @@
 
 .popup--success {
   &::after {
-    background-image: url("/public/images/icons/popup-smile-icon.svg");
+    background-image: url("https://a5chess.ru/images/icons/popup-smile-icon.svg");
   }
 }
 
 .popup--error {
   &::after {
-    background-image: url("/public/images/icons/popup-frown-icon.svg");
+    background-image: url("https://a5chess.ru/images/icons/popup-frown-icon.svg");
   }
 }
 

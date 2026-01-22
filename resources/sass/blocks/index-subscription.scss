@@ -39,8 +39,8 @@
       content: "";
       width: 684px;
       height: 483px;
-      background-image: url("/public/images/girl-with-books-tablet.png");
-      background-image: -webkit-image-set(url("/public/images/girl-with-books-tablet.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-with-books-tablet.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-with-books-tablet.webp") 1x);
       background-repeat: no-repeat;
       background-position: center;
       background-size: 684px auto;
@@ -53,8 +53,8 @@
       height: 690px;
       bottom: -137px;
       left: calc(48% + 15px);
-      background-image: url("/public/images/girl-with-books-desktop.png");
-      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-with-books-desktop.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-with-books-desktop.webp") 1x);
       background-size: 1023px auto;
     }
 
@@ -62,8 +62,8 @@
       height: 723px;
       left: calc(45% + 15px);
       bottom: -200px;
-      background-image: url("/public/images/girl-with-books-desktop-big.png");
-      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop-big.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-with-books-desktop-big.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-with-books-desktop-big.webp") 1x);
     }
   }
 }

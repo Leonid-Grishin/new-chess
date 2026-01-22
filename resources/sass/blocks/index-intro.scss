@@ -43,6 +43,44 @@
     content: "";
     width: 316px;
     height: 220px;
+    background-image: url("https://a5chess.ru/images/index-intro-mobile.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/index-intro-mobile.webp") 1x);
+    background-repeat: no-repeat;
+    background-position: center;
+    left: calc(50% - 158px);
+    bottom: 0;
+    z-index: 2;
+
+    @media (min-width: variables.$tablet-width) {
+      background-image: url("https://a5chess.ru/images/index-intro-tablet.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/index-intro-tablet.webp") 1x);
+      width: 516px;
+      height: 360px;
+      left: calc(50% - 258px);
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      background-image: url("https://a5chess.ru/images/index-intro-desktop.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/index-intro-desktop.webp") 1x);
+      width: 586px;
+      height: 410px;
+      left: calc(61% + 4px);
+    }
+
+    @media (min-width: variables.$desktop-big-width) {
+      background-image: url("https://a5chess.ru/images/index-intro-big.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/index-intro-big.webp") 1x);
+      width: 655px;
+      height: 458px;
+      left: calc(56% + 15px);
+    }
+  }
+
+/*  &::before {
+    position: absolute;
+    content: "";
+    width: 316px;
+    height: 220px;
     background-image: url("/public/images/index-intro-mobile.png");
     background-image: -webkit-image-set(url("/public/images/index-intro-mobile.webp") 1x);
     background-repeat: no-repeat;
@@ -74,7 +112,7 @@
       height: 458px;
       left: calc(56% + 15px);
     }
-  }
+  }*/
 }
 
 .index-intro__clubname-wrapper {

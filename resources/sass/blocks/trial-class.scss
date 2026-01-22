@@ -54,8 +54,8 @@
       height: 420px;
       bottom: 0;
       right: -170px;
-      background-image: url("/public/images/school/school-superman-tablet.png");
-      background-image: -webkit-image-set(url("/public/images/school/school-superman-tablet.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/school-superman-tablet.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/school-superman-tablet.webp") 1x);
       background-repeat: no-repeat;
       background-position: center;
     }
@@ -64,16 +64,16 @@
       width: 585px;
       height: 530px;
       right: -115px;
-      background-image: url("/public/images/school/school-superman-desktop.png");
-      background-image: -webkit-image-set(url("/public/images/school/school-superman-desktop.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/school-superman-desktop.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/school-superman-desktop.webp") 1x);
     }
 
     @media (min-width: variables.$desktop-big-width) {
       width: 606px;
       height: 549px;
       right: 70px;
-      background-image: url("/public/images/school/school-superman-big.png");
-      background-image: -webkit-image-set(url("/public/images/school/school-superman-big.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/school-superman-big.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/school-superman-big.webp") 1x);
     }
   }
 }

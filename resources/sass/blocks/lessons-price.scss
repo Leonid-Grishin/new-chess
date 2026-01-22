@@ -181,7 +181,7 @@
       color: variables.$background-color-second;
 
       &::before {
-        background-image: url("/public/images/icons/list-type-icon.svg");
+        background-image: url("https://a5chess.ru/images/icons/list-type-icon.svg");
       }
     }
 
@@ -320,7 +320,7 @@
     width: 25px;
     height: 25px;
     content: "";
-    background-image: url("/public/images/icons/list-type-green-icon.svg");
+    background-image: url("https://a5chess.ru/images/icons/list-type-green-icon.svg");
     background-repeat: no-repeat;
     background-position: center;
     left: 0;

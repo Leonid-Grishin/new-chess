@@ -1,7 +1,3 @@
-@push('styles')
-    @vite('resources/sass/page-styles/book-component.scss')
-@endpush
-
 <section class="book" id="book">
     <h2 class="book__second-title second-title" id="about-school">Учебные пособия</h2>
     <p class="book__description">Программа разработана авторами на основе многолетней работы с начинающими шахматистами школьного и дошкольного возраста. Рабочая тетрадь может использоваться как в образовательных учреждениях, центрах дополнительного образования, так и для самостоятельного обучения.</p>

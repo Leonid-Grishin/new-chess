@@ -106,7 +106,7 @@
 }
 
 .request-form__policy-control-input[type="checkbox"]:checked + .request-form__policy-control-checkbox {
-  background-image: url("/public/images/icons/checkbox-checked-icon.svg");
+  background-image: url("https://a5chess.ru/images/icons/checkbox-checked-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -121,7 +121,7 @@
   width: 20px;
   height: 20px;
   background-color: inherit;
-  background-image: url("/public/images/icons/checkbox-icon.svg");
+  background-image: url("https://a5chess.ru/images/icons/checkbox-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -166,10 +166,10 @@
   }
 
   .request-form__policy-control-checkbox {
-    background-image: url("/public/images/icons/checkbox-white-icon.svg");
+    background-image: url("https://a5chess.ru/images/icons/checkbox-white-icon.svg");
   }
 
   .request-form__policy-control-input[type="checkbox"]:checked + .request-form__policy-control-checkbox {
-    background-image: url("/public/images/icons/checkbox-checked-white-icon.svg");
+    background-image: url("https://a5chess.ru/images/icons/checkbox-checked-white-icon.svg");
   }
 }

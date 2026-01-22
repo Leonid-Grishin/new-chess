@@ -1,11 +1,5 @@
 @extends('layouts.chess')
 
-@push('styles')
-    @vite('resources/sass/page-styles/camp.scss')
-{{--    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/camp-_1LHVWhH.css" />
-    <link rel="stylesheet" href="https://a5chess.ru/build/assets/camp-_1LHVWhHS.css" />--}}
-@endpush
-
 @section('content')
     <main class="page__main page__main--camp">
         <section class="camp-intro">
@@ -15,9 +9,9 @@
                 <button class="camp-intro__button button button--primary request-button" type="button" data-name="Лагерь > главный экран">Узнать подробности</button>
                 <p class="camp-intro__text">Интенсивы по шахматам, веселые старты, игры на свежем воздухе, активный отдых и настольные игры</p>
                 <ul class="camp-intro__features">
-                    @if( $camp->intro_feature_1 )<li>2 смены</li>@endif
-                    @if( $camp->intro_feature_2 )<li>7 дней</li>@endif
-                    @if( $camp->intro_feature_3 )<li>30 000 руб.</li>@endif
+                    @if( $camp->intro_feature_1 )<li>{{ $camp->intro_feature_1 }}</li>@endif
+                    @if( $camp->intro_feature_2 )<li>{{ $camp->intro_feature_2 }}</li>@endif
+                    @if( $camp->intro_feature_3 )<li>{{ $camp->intro_feature_3 }}</li>@endif
                 </ul>
                 @if($camp->is_camp_promo)
                     <div class="camp-intro__star">

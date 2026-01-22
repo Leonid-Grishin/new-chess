@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @stack('styles')
 
-    {{--<link href="@yield('styles')" rel="stylesheet">--}}
+    {{--@vite('resources/sass/page-styles/main-styles.scss')--}}
+
+    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/main-styles-CznHd0ej.css" />
+    <link rel="stylesheet" href="https://a5chess.ru/build/assets/main-styles-CznHd0ej.css" />
+
     <link href="{{ asset('css/slick.css') }}" rel="stylesheet" type="text/css" >
     <link  href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet">
 

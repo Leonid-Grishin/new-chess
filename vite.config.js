@@ -4,7 +4,7 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/sass/page-styles/main.scss', 'resources/sass/page-styles/school.scss', 'resources/sass/page-styles/camp.scss', 'resources/sass/page-styles/404.scss', 'resources/sass/page-styles/book-component.scss', 'resources/js/main.js'],
+            input: [ 'resources/js/main.js', 'resources/sass/page-styles/main-styles.scss'],
             refresh: true,
         }),
         /*tailwindcss(),*/

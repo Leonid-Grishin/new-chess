@@ -35,16 +35,16 @@
       bottom: 0;
       left: calc(5% - 2px);
       content: "";
-      background-image: url("/public/images/girl-request-tablet.png");
-      background-image: -webkit-image-set(url("/public/images/girl-request-tablet.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-request-tablet.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-request-tablet.webp") 1x);
       background-repeat: no-repeat;
       background-position: center;
       background-size: 169px 334px;
       z-index: 2;
 
       @media (min-width: variables.$desktop-width) {
-        background-image: url("/public/images/girl-request-desktop.png");
-        background-image: -webkit-image-set(url("/public/images/girl-request-desktop.webp") 1x);
+        background-image: url("https://a5chess.ru/images/girl-request-desktop.png");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-request-desktop.webp") 1x);
         width: 330px;
         height: 650px;
         background-size: 330px 650px;
@@ -94,8 +94,8 @@
 
     @media (min-width: variables.$desktop-width) {
       display: block;
-      background-image: url("/public/images/school/school-request.png");
-      background-image: -webkit-image-set(url("/public/images/school/school-request.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/school-request.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/school-request.webp") 1x);
       width: 969px;
       height: 898px;
       background-size: 969px 898px;
@@ -133,8 +133,8 @@
 
     @media (min-width: variables.$desktop-big-width) {
       display: block;
-      background-image: url("/public/images/camp/camp-request-sheet.png");
-      background-image: -webkit-image-set(url("/public/images/camp/camp-request-sheet.webp") 1x);
+      background-image: url("https://a5chess.ru/images/camp/camp-request-sheet.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/camp/camp-request-sheet.webp") 1x);
       width: 657px;
       height: 754px;
       background-size: 657px 754px;
@@ -169,8 +169,8 @@
       filter: unset;
       opacity: 1;
       left: 0;
-      background-image: url("/public/images/camp/camp-request-girl.png");
-      background-image: -webkit-image-set(url("/public/images/camp/camp-request-girl.webp") 1x);
+      background-image: url("https://a5chess.ru/images/camp/camp-request-girl.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/camp/camp-request-girl.webp") 1x);
       width: 447px;
       height: 602px;
       background-size: 447px 602px;

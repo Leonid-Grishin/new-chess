@@ -194,8 +194,8 @@
       width: 239px;
       height: 469px;
       content: "";
-      background-image: url("/public/images/girl-request-desktop.png");
-    background-image: -webkit-image-set(url("/public/images/girl-request-desktop.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-request-desktop.png");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-request-desktop.webp") 1x);
       background-repeat: no-repeat;
       background-position: center;
       background-size: 239px 469px;
@@ -266,8 +266,8 @@
 
     @media (min-width: variables.$desktop-width) {
       height: 782px;
-      background-image: url("/public/images/girl-with-books-desktop.png");
-      background-image: -webkit-image-set(url("/public/images/girl-with-books-desktop.webp") 1x);
+      background-image: url("https://a5chess.ru/images/girl-with-books-desktop.png");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/girl-with-books-desktop.webp") 1x);
       background-repeat: no-repeat;
       background-size: 919px 620px;
       background-position: right -250px bottom -50px;

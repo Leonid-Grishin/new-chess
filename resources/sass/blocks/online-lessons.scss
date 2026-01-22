@@ -19,8 +19,8 @@
     width: 100%;*/
     height: 215px;
     content: "";
-    background-image: url("/public/images/online-lessons-tablet.jpg");
-    background-image: -webkit-image-set(url("/public/images/online-lessons-tablet.webp") 1x);
+    background-image: url("https://a5chess.ru/images/online-lessons-tablet.jpg");
+    background-image: -webkit-image-set(url("https://a5chess.ru/images/online-lessons-tablet.webp") 1x);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -49,15 +49,15 @@
       top: unset;
       width: 670px;
       height: 540px;
-      background-image: url("/public/images/online-lessons-desktop.jpg");
-      background-image: -webkit-image-set(url("/public/images/online-lessons-desktop.webp") 1x);
+      background-image: url("https://a5chess.ru/images/online-lessons-desktop.jpg");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/online-lessons-desktop.webp") 1x);
     }
 
     @media (min-width: variables.$desktop-big-width) {
       width: 1000px;
       height: 540px;
-      background-image: url("/public/images/online-lessons-desktop-big.jpg");
-      background-image: -webkit-image-set(url("/public/images/online-lessons-desktop-big.webp") 1x);
+      background-image: url("https://a5chess.ru/images/online-lessons-desktop-big.jpg");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/online-lessons-desktop-big.webp") 1x);
     }
   }
 

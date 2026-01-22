@@ -56,7 +56,7 @@
       left: -505px;
       width: 415px;
       height: 480px;
-      background-image: url("/public/images/school/chess-principles-desktop.png");
+      background-image: url("https://a5chess.ru/images/school/chess-principles-desktop.png");
       background-repeat: no-repeat;
       background-position: center;
     }
@@ -70,7 +70,7 @@
       left: -940px;
       width: 850px;
       height: 480px;
-      background-image: url("/public/images/school/chess-principles-big.png");
+      background-image: url("https://a5chess.ru/images/school/chess-principles-big.png");
       background-repeat: no-repeat;
       background-position: center;
     }
@@ -121,51 +121,51 @@
 
   &--age {
     &::after{
-      background-image: url("/public/images/school/chess-knight-mobile-icon.jpg");
-      background-image: -webkit-image-set(url("/public/images/school/chess-knight-mobile-icon.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/chess-knight-mobile-icon.jpg");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-knight-mobile-icon.webp") 1x);
 
       @media (min-width: variables.$tablet-width) {
-        background-image: url("/public/images/school/chess-knight-tablet-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-knight-tablet-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-knight-tablet-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-knight-tablet-icon.webp") 1x);
       }
 
       @media (min-width: variables.$desktop-width) {
-        background-image: url("/public/images/school/chess-knight-desktop-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-knight-desktop-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-knight-desktop-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-knight-desktop-icon.webp") 1x);
       }
     }
   }
 
   &--level {
     &::after {
-      background-image: url("/public/images/school/chess-queen-mobile-icon.jpg");
-      background-image: -webkit-image-set(url("/public/images/school/chess-queen-mobile-icon.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/chess-queen-mobile-icon.jpg");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-queen-mobile-icon.webp") 1x);
 
       @media (min-width: variables.$tablet-width) {
-        background-image: url("/public/images/school/chess-queen-tablet-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-queen-tablet-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-queen-tablet-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-queen-tablet-icon.webp") 1x);
       }
 
       @media (min-width: variables.$desktop-width) {
-        background-image: url("/public/images/school/chess-queen-desktop-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-queen-desktop-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-queen-desktop-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-queen-desktop-icon.webp") 1x);
       }
     }
   }
 
   &--format {
     &::after {
-      background-image: url("/public/images/school/chess-desk-mobile-icon.jpg");
-      background-image: -webkit-image-set(url("/public/images/school/chess-desk-mobile-icon.webp") 1x);
+      background-image: url("https://a5chess.ru/images/school/chess-desk-mobile-icon.jpg");
+      background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-desk-mobile-icon.webp") 1x);
 
       @media (min-width: variables.$tablet-width) {
-        background-image: url("/public/images/school/chess-desk-desktop-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-desk-tablet-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-desk-desktop-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-desk-tablet-icon.webp") 1x);
       }
 
       @media (min-width: variables.$desktop-width) {
-        background-image: url("/public/images/school/chess-desk-desktop-icon.jpg");
-        background-image: -webkit-image-set(url("/public/images/school/chess-desk-desktop-icon.webp") 1x);
+        background-image: url("https://a5chess.ru/images/school/chess-desk-desktop-icon.jpg");
+        background-image: -webkit-image-set(url("https://a5chess.ru/images/school/chess-desk-desktop-icon.webp") 1x);
       }
     }
   }

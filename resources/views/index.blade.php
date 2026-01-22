@@ -1,12 +1,5 @@
 @extends('layouts.chess')
 
-{{--@section('styles', asset('css/main.min.css'))--}}
-@push('styles')
-    {{--@vite('resources/sass/page-styles/main.scss')--}}
-    <link rel="preload" as="style" href="https://a5chess.ru/build/assets/main-JZOK-P7b.css" />
-    <link rel="stylesheet" href="https://a5chess.ru/build/assets/main-JZOK-P7b.css" />
-@endpush
-
 @section('content')
 <main class="page__main">
     <section class="index-intro">
