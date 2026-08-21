@@ -61,8 +61,8 @@
             <p class="lessons-price__description">Для тех,<br> кто готов двигаться вперед</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Выгодная стоимость занятий</li>
-                <li class="lessons-price__sub-item">Занятия 2 - 3 раза в неделю</li>
-                <li class="lessons-price__sub-item">Персональный дневник шахматиста</li>
+                <li class="lessons-price__sub-item">Неограниченного занятий в месяц в своей группе</li>
+                <li class="lessons-price__sub-item">Турнир и практика входят в стоимость</li>
             </ul>
             <div class="lessons-price__button-wrapper">
                 <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на 16 занятий">Записаться на занятие</button>
