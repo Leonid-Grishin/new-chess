@@ -18,7 +18,7 @@
         </li>
         <li class="lessons-price__item">
             <h3 class="lessons-price__sub-title">Разовое <br>занятие</h3>
-            <p class="lessons-price__price">1000 <span class="lessons-price__price-wrapper">&#8381;</span></p>
+            <p class="lessons-price__price">1200 <span class="lessons-price__price-wrapper">&#8381;</span></p>
             <p class="lessons-price__description">Знакомство с образовательным процессом</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Определение уровня игры</li>
@@ -31,7 +31,7 @@
         </li>
         <li class="lessons-price__item">
             <h3 class="lessons-price__sub-title">Абонемент<br> на 4 занятия</h3>
-            <p class="lessons-price__price">3600 <span class="lessons-price__price-wrapper">&#8381;</span></p>
+            <p class="lessons-price__price">4500 <span class="lessons-price__price-wrapper">&#8381;</span></p>
             <p class="lessons-price__description">Для тех, кто хочет сохранить уровень игры</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Посещение занятий 1 раз в&#160;неделю</li>
@@ -44,7 +44,7 @@
         </li>
         <li class="lessons-price__item">
             <h3 class="lessons-price__sub-title">Абонемент<br> на 8 занятий</h3>
-            <p class="lessons-price__price">6000 <span class="lessons-price__price-wrapper">&#8381;</span></p>
+            <p class="lessons-price__price">7200 <span class="lessons-price__price-wrapper">&#8381;</span></p>
             <p class="lessons-price__description">Для тех,<br> кто хочет играть уверенно</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Посещение занятий 2 раза в&#160;неделю</li>
@@ -56,8 +56,8 @@
             </div>
         </li>
         <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Абонемент<br> на 16 занятий</h3>
-            <p class="lessons-price__price">11000 <span class="lessons-price__price-wrapper">&#8381;</span></p>
+            <h3 class="lessons-price__sub-title">Безлимит<br> на месяц</h3>
+            <p class="lessons-price__price">7900 <span class="lessons-price__price-wrapper">&#8381;</span></p>
             <p class="lessons-price__description">Для тех,<br> кто готов двигаться вперед</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Выгодная стоимость занятий</li>
@@ -70,7 +70,7 @@
         </li>
         <li class="lessons-price__item">
             <h3 class="lessons-price__sub-title">Индивидуальное<br> занятие</h3>
-            <p class="lessons-price__price">2500 <span class="lessons-price__price-wrapper">&#8381;</span></p>
+            <p class="lessons-price__price">по запросу</p>
             <p class="lessons-price__description">Для тех, кому подходит индивидуальный график занятий</p>
             <ul class="lessons-price__sub-list">
                 <li class="lessons-price__sub-item">Постоянная связь с тренером</li>

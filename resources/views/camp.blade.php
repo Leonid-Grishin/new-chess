@@ -324,12 +324,12 @@
                                 <span class="camp-price__item-title">{{ $prices[$i]->title }}</span>
                                 <ul class="camp-price__item-discount-list" @if($prices[$i]->second_amoun) style="display: flex" @endif>
                                     <li class="camp-price__item-discount-item">
-                                        <span class="camp-price__item-discount-amount">{{ $prices[$i]->amount }}</span>
+                                        <span class="camp-price__item-discount-amount">{!! $prices[$i]->amount !!}</span>
                                         <p>{{ $prices[$i]->description }}</p>
                                     </li>
                                     @if($prices[$i]->second_amount)
                                         <li class="camp-price__item-discount-item">
-                                            <span class="camp-price__item-discount-amount">{{ $prices[$i]->second_amount }}</span>
+                                            <span class="camp-price__item-discount-amount">{!! $prices[$i]->second_amount !!}</span>
                                             <p>{{ $prices[$i]->second_description }}</p>
                                         </li>
                                     @endif
