@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'max' => [
+        'token'     => env('MAX_BOT_TOKEN'),
+        'base_url'  => env('MAX_API_URL', 'https://platform-api2.max.ru'),
+        'chat_id'   => env('MAX_CHAT_ID'),   // можно оставить на будущее
+        'user_id'   => env('MAX_USER_ID'),
+    ],
+
 ];

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderNotificationMail;
-use App\Src\TelegramMessage;
+//use App\Src\TelegramMessage;
+use App\Services\MaxMessenger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RequestControllerApi extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request, MaxMessenger $max) {
 
         $rules = [
             'name' => 'required',
@@ -42,12 +43,29 @@ class RequestControllerApi extends Controller
         }
 
         //отправляем уведомление в телеграм
-        try {
+/*        try {
             $telegramMessage = new TelegramMessage(name: $request->name, telephone: $request->phone, place: $request->place);
             $telegramMessage->sendMessage();
         } catch (\Throwable $exception) {
             Log::error($exception->getMessage());
             return ['telegramError' => $exception->getMessage()];
+        }*/
+
+        // отправляем уведомление в MAX
+        try {
+            $text = "Новая заявка с сайта\n"
+                . "Имя: {$request->name}\n"
+                . "Телефон: {$request->phone}\n"
+                . "Источник: " . ($request->place ?? '-');
+
+            $ok = $max->sendMessage($text);
+
+            if (! $ok) {
+                return ['maxError' => 'Не удалось отправить сообщение в MAX, подробности в логе'];
+            }
+        } catch (\Throwable $exception) {
+            Log::error($exception->getMessage());
+            return ['maxError' => $exception->getMessage()];
         }
 
         //отправляем уведомление на почту

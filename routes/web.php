@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Services\MaxMessenger;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,3 +122,4 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 
 Route::fallback([\App\Http\Controllers\ErrorController::class, 'error404']);
+
