@@ -254,6 +254,8 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="{{ asset('assets/admin/admin.js') }}" type="module"></script>
 
+@stack('scripts')
+
 </body>
 </html>
 

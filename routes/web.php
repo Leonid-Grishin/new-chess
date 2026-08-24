@@ -70,6 +70,16 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/gallery-slider', [\App\Http\Controllers\Admin\CampController::class, 'gallerySlider'])->name('admin.campGallerySlider');
     Route::post('/gallery-slider/update', [\App\Http\Controllers\Admin\CampController::class, 'gallerySliderUpdate'])->name('admin.campGallerySlider.update');
 
+// Слайдер Клуба
+    Route::post('/club/slider', [\App\Http\Controllers\Admin\ClubController::class, 'storeSlide'])
+        ->name('admin.club.slider.store');
+
+    Route::patch('/club/slider/{slide}', [\App\Http\Controllers\Admin\ClubController::class, 'updateSlide'])
+        ->name('admin.club.slider.update');
+
+    Route::delete('/club/slider/{slide}', [\App\Http\Controllers\Admin\ClubController::class, 'destroySlide'])
+        ->name('admin.club.slider.destroy');
+
     Route::resource('/news', NewsController::class)->names([
         'index' => 'admin.news',
         'create' => 'admin.news.create',

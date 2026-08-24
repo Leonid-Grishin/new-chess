@@ -19,92 +19,15 @@
             <h2 class="index-about__second-title second-title" id="about-school">Что такое шахматный клуб А5?</h2>
             <div class="index-about__wrapper">
                 <ul class="index-about__slider">
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children.webp" media="(min-width: 1700px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children.jpg" media="(min-width: 1700px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children-desktop.jpg" media="(min-width: 1200px)" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children-mobile.jpg" width="300" height="340"
-                                 alt="шахматный клуб в Санкт-Петербурге.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children2.webp" media="(min-width: 1700px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children2.jpg" media="(min-width: 1700px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children2-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children2-desktop.jpg" media="(min-width: 1200px)" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children2-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children2-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children2-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children2-mobile.jpg" width="300" height="340"
-                                 alt="Шахматы, метро Пионерская.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children3.webp" media="(min-width: 1700px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children3.jpg" media="(min-width: 1700px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children3-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children3-desktop.jpg" media="(min-width: 1200px)" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children3-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children3-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children3-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children3-mobile.jpg" width="300" height="340"
-                                 alt="Павел с детьми.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children4.webp" media="(min-width: 1700px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children4.jpg" media="(min-width: 1700px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children4-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children4-desktop.jpg" media="(min-width: 1200px)" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children4-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children4-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children4-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children4-mobile.jpg" width="300" height="340"
-                                 alt="клуб шахмат.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children5.webp" media="(min-width: 1200px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children5.jpg" media="(min-width: 1200px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children5-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="770" height="430">
-                            <source srcset="images/index-about-slider/pavel-children5-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children5-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children5-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children5-mobile.jpg" width="300" height="340"
-                                 alt="довольные ученики.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children6.webp" media="(min-width: 1200px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children6.jpg" media="(min-width: 1200px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children6-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children6-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children6-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children6-mobile.jpg" width="300" height="340"
-                                 alt="шахматы в СПб.">
-                        </picture>
-                    </li>
-                    <li class="index-about__slider-item">
-                        <picture>
-                            <source srcset="images/index-about-slider/pavel-children7.webp" media="(min-width: 1200px)" type="image/webp" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children7.jpg" media="(min-width: 1200px)" width="780" height="430">
-                            <source srcset="images/index-about-slider/pavel-children7-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children7-tablet.jpg" media="(min-width: 640px)" width="620" height="340">
-                            <source srcset="images/index-about-slider/pavel-children7-mobile.webp" type="image/webp" width="300" height="340">
-                            <img class="index-about__slider-image" src="images/index-about-slider/pavel-children7-mobile.jpg" width="300" height="340"
-                                 alt="шахматные курсы.">
-                        </picture>
-                    </li>
+                    @foreach($slides as $slide)
+                        <li class="index-about__slider-item">
+                            <picture>
+                                <source srcset="images/club/slider/{{ $slide->filename }}.webp" type="image/webp" width="780" height="430">
+                                <img class="index-about__slider-image" src="images/club/slider/{{ $slide->filename }}.jpg" width="780" height="430"
+                                     alt="{{ $slide->alt }}">
+                            </picture>
+                        </li>
+                    @endforeach
                 </ul>
                 <div class="index-about__description">
                     <p><span>Шахматный клуб А5</span> – детский образовательный проект, где учатся и&nbsp;играют в шахматы с удовольствием.</p>
@@ -125,7 +48,7 @@
     <section class="online-lessons">
         <h2 class="online-lessons__second-title second-title">Доступно онлайн обучение</h2>
         <ul class="online-lessons__list">
-            <li class="online-lessons__item">Занятия проходят в программе Skype или Zoom</li>
+            <li class="online-lessons__item">Занятия проходят в программе Телемост. Яндекс</li>
             <li class="online-lessons__item">У каждого ученика своя студия на <a class="online-lessons__platform-link" href="https://lichess.org" target="_blank">lichess.org</a>, где ребенок может посмотреть нужную информацию в любой момент времени</li>
             <li class="online-lessons__item">Тематические упражнения, теоретическая часть</li>
             <li class="online-lessons__item">Обзор и разбор ошибок сыгранных партий в&nbsp;онлайне</li>

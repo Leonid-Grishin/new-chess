@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Review;
 use Illuminate\Support\Facades\Cache;
+use App\Models\ClubSliderImage;
 
 class IndexController extends Controller
 {
@@ -15,7 +16,13 @@ class IndexController extends Controller
             'description' => 'Шахматный клуб «А5» предлагает детям занятия шахматами в классах и онлайн. Мы организовываем турниры, сборы и другие мероприятия в Санкт-Петербурге. Наши ученики часто становятся победителями различных первенств. Телефон клуба +79022027148',
             'og-image' => 'images/pavel-children-og.jpg'
         ];
+        $slides = ClubSliderImage::active()->get();
 
-        return view('index', ['reviews' => $reviews, 'news' => $news, 'meta' => $meta]);
+        return view('index', [
+            'reviews' => $reviews,
+            'news' => $news,
+            'meta' => $meta,
+            'slides' => $slides
+        ]);
     }
 }
