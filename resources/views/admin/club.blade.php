@@ -75,7 +75,7 @@
 
                     <div class="form-group ml-5">
                         <div class="mb-2"><b>Фото</b></div>
-                        <img src="/images/club/slider/{{ $slide->filename }}"
+                        <img src="/images/club/slider/{{ $slide->filename }}.jpg"
                              alt="{{ $slide->alt }}" width="240" class="d-block border">
                         <small class="text-muted">{{ $slide->filename }}</small>
                     </div>
