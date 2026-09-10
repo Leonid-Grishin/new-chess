@@ -208,7 +208,7 @@
             </li>
         </ul>
     </div>
-    <div class="footer__copyright">2022 - @php echo(date('Y')) @endphp &#169; Шахматный клуб А5. Все права защищены. <a class="footer__studio-link" href="https://rouks.ru">Сайт разработан в студии «Rouks»</a></div>
+    <div class="footer__copyright">2022 - @php echo(date('Y')) @endphp &#169; Шахматный клуб А5. Все права защищены. <a class="footer__studio-link" href="https://barro-web.ru">Сайт разработан в студии «Barro»</a></div>
 </footer>
     @yield('modal')
 <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>

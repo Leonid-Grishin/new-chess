@@ -43,6 +43,8 @@ Route::prefix('api')->group(function () {
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/club', [\App\Http\Controllers\Admin\ClubController::class, 'index'])->name('admin.club');
+    Route::patch('/club/video', [\App\Http\Controllers\Admin\ClubController::class, 'updateVideo'])->name('admin.club.video.update');
+
     Route::get('/school', [\App\Http\Controllers\Admin\SchoolController::class, 'index'])->name('admin.school');
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');
     Route::patch('/students/rating-update', [\App\Http\Controllers\Admin\StudentController::class, 'ratingUpdate'])->name('admin.students.ratingUpdate');
@@ -119,6 +121,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         'show' => 'admin.teachers.show',
         'destroy' => 'admin.teachers.destroy',
     ]);
+
+    Route::resource('/prices', \App\Http\Controllers\Admin\PriceController::class)
+        ->names([
+            'index' => 'admin.prices',
+            'create' => 'admin.prices.create',
+            'store' => 'admin.prices.store',
+            'edit' => 'admin.prices.edit',
+            'update' => 'admin.prices.update',
+            'show' => 'admin.prices.show',
+            'destroy' => 'admin.prices.destroy',
+        ]);
 
     Route::resource('/requests', \App\Http\Controllers\Admin\RequestController::class)->names([
         'index' => 'admin.requests',

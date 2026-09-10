@@ -190,6 +190,12 @@
                                     <p>Преподаватели</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.prices') }}" class="nav-link">
+                                    <i class="fa fa-angle-right nav-icon"></i>
+                                    <p>Цены</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item menu-open">

@@ -16,70 +16,29 @@
                 <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на пробное">Записаться на занятие</button>
             </div>
         </li>
-        <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Разовое <br>занятие</h3>
-            <p class="lessons-price__price">1200 <span class="lessons-price__price-wrapper">&#8381;</span></p>
-            <p class="lessons-price__description">Знакомство с образовательным процессом</p>
-            <ul class="lessons-price__sub-list">
-                <li class="lessons-price__sub-item">Определение уровня игры</li>
-                <li class="lessons-price__sub-item">Обратная связь от тренера</li>
-                <li class="lessons-price__sub-item">Занятие длительностью 60 минут</li>
-            </ul>
-            <div class="lessons-price__button-wrapper">
-                <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на разовое">Записаться на занятие</button>
-            </div>
-        </li>
-        <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Абонемент<br> на 4 занятия</h3>
-            <p class="lessons-price__price">4500 <span class="lessons-price__price-wrapper">&#8381;</span></p>
-            <p class="lessons-price__description">Для тех, кто хочет сохранить уровень игры</p>
-            <ul class="lessons-price__sub-list">
-                <li class="lessons-price__sub-item">Посещение занятий 1 раз в&#160;неделю</li>
-                <li class="lessons-price__sub-item">Длительность занятия 60 - 90 минут</li>
-                <li class="lessons-price__sub-item">Персональный дневник шахматиста</li>
-            </ul>
-            <div class="lessons-price__button-wrapper">
-                <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на 4 занятия">Записаться на занятие</button>
-            </div>
-        </li>
-        <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Абонемент<br> на 8 занятий</h3>
-            <p class="lessons-price__price">7200 <span class="lessons-price__price-wrapper">&#8381;</span></p>
-            <p class="lessons-price__description">Для тех,<br> кто хочет играть уверенно</p>
-            <ul class="lessons-price__sub-list">
-                <li class="lessons-price__sub-item">Посещение занятий 2 раза в&#160;неделю</li>
-                <li class="lessons-price__sub-item">Длительность занятия 60 - 90 минут</li>
-                <li class="lessons-price__sub-item">Персональный дневник шахматиста</li>
-            </ul>
-            <div class="lessons-price__button-wrapper">
-                <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на 8 занятий">Записаться на занятие</button>
-            </div>
-        </li>
-        <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Безлимит<br> на месяц</h3>
-            <p class="lessons-price__price">7900 <span class="lessons-price__price-wrapper">&#8381;</span></p>
-            <p class="lessons-price__description">Для тех,<br> кто готов двигаться вперед</p>
-            <ul class="lessons-price__sub-list">
-                <li class="lessons-price__sub-item">Выгодная стоимость занятий</li>
-                <li class="lessons-price__sub-item">Неограниченного занятий в месяц в своей группе</li>
-                <li class="lessons-price__sub-item">Турнир и практика входят в стоимость</li>
-            </ul>
-            <div class="lessons-price__button-wrapper">
-                <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на 16 занятий">Записаться на занятие</button>
-            </div>
-        </li>
-        <li class="lessons-price__item">
-            <h3 class="lessons-price__sub-title">Индивидуальное<br> занятие</h3>
-            <p class="lessons-price__price">по запросу</p>
-            <p class="lessons-price__description">Для тех, кому подходит индивидуальный график занятий</p>
-            <ul class="lessons-price__sub-list">
-                <li class="lessons-price__sub-item">Постоянная связь с тренером</li>
-                <li class="lessons-price__sub-item">Собственная программа обучения</li>
-                <li class="lessons-price__sub-item">Офлайн или онлайн формат</li>
-            </ul>
-            <div class="lessons-price__button-wrapper">
-                <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на индивидуальное">Записаться на занятие</button>
-            </div>
-        </li>
+        @if($prices->isNotEmpty())
+            @foreach($prices as $price)
+                <li class="lessons-price__item">
+                    <h3 class="lessons-price__sub-title">{!! $price->title !!}</h3>
+                    @if($price->price)
+                        <p class="lessons-price__price">{{ $price->price }} <span class="lessons-price__price-wrapper">&#8381;</span></p>
+                    @else
+                        <p class="lessons-price__price">по запросу</p>
+                    @endif
+
+                    <p class="lessons-price__description">{{ $price->description }}</p>
+                    @if($price->items->isNotEmpty())
+                        <ul class="lessons-price__sub-list">
+                            @foreach($price->items as $item)
+                                <li class="lessons-price__sub-item">{{ $item->title }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    <div class="lessons-price__button-wrapper">
+                        <button class="lessons-price__button button button--primary" type="button" data-name="{{ \App\Src\Functions::translateRoute(\Illuminate\Support\Facades\Route::currentRouteName()) }} > Цены > записаться на разовое">Записаться на занятие</button>
+                    </div>
+                </li>
+            @endforeach
+        @endif
     </ul>
 </section>

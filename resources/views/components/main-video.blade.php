@@ -17,9 +17,9 @@
 <section class="index-video">
     <h2 class="index-video__second-title second-title">Видео о школе</h2>
     <div class="index-video__wrapper">
-        <video class="index-video__videofile lazy" preload="none" muted="" loop="" playsinline="" poster="/images/main-video.jpg">
-            <source data-src="/video/main-video-prev.mp4" type="video/mp4"></video>
-        <a class="index-video__link button button--glass" data-fancybox="video-gallery" href="/video/main-video.mp4">Смотреть видео</a>
+        <video class="index-video__videofile lazy" preload="none" muted="" loop="" playsinline="" poster="/video/poster.jpg">
+            <source data-src="/video/video-prev.mp4" type="video/mp4"></video>
+        <a class="index-video__link button button--glass" data-fancybox="video-gallery" href="/video/video.mp4">Смотреть видео</a>
     </div>
 
 </section>
