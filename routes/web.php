@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Services\MaxMessenger;
+use App\Http\Controllers\Admin\MainVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,15 @@ Route::prefix('api')->group(function () {
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/club', [\App\Http\Controllers\Admin\ClubController::class, 'index'])->name('admin.club');
-    Route::patch('/club/video', [\App\Http\Controllers\Admin\ClubController::class, 'updateVideo'])->name('admin.club.video.update');
+    Route::get(
+        '/video',
+        [MainVideoController::class, 'edit']
+    )->name('admin.video');
+
+    Route::patch(
+        '/video',
+        [MainVideoController::class, 'update']
+    )->name('admin.video.update');
 
     Route::get('/school', [\App\Http\Controllers\Admin\SchoolController::class, 'index'])->name('admin.school');
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');

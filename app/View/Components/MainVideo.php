@@ -8,17 +8,13 @@ use Illuminate\View\Component;
 
 class MainVideo extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        public ?string $poster = null,
+        public ?string $video = null,
+        public ?string $videoPreview = null,
+    ) {
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
         return view('components.main-video');
