@@ -191,72 +191,46 @@
             </ul>
         </section>
     @endif
-    <section class="index-location">
-        <h2 class="index-location__title second-title" id="contacts-where" >Адрес школы шахмат</h2>
-        <h3 class="index-location__item-title">БЦ Level Up</h3>
-        <address class="index-location__address">Проспект Испытателей, дом 30 корпус 2, 3 этаж
-            <svg class="index-location__svg-pin" width="24" height="24">
-                <use href="images/icons/sprite/sprite.svg#address-pin"></use>
-            </svg>
-        </address>
-        <p class="index-location__telephone">телефон: <a class="index-location__telephone-link" href="tel:+79022027148">+7 (902) 202-71-48</a></p>
-        <ul class="index-location__list">
-            <li class="index-location__item">
-{{--                <h3 class="index-location__item-title">БЦ Level Up</h3>
-                <address class="index-location__address">Проспект Испытателей, дом 30 корпус 2, 3 этаж
+    @if ($addresses)
+        <section class="index-location">
+            @foreach ($addresses as $address)
+                <h2 class="index-location__title second-title" id="contacts-where" >Адрес школы шахмат</h2>
+                <h3 class="index-location__item-title">{{ $address->title }}</h3>
+                <address class="index-location__address">{{ $address->address }}
                     <svg class="index-location__svg-pin" width="24" height="24">
                         <use href="images/icons/sprite/sprite.svg#address-pin"></use>
                     </svg>
                 </address>
-                <p class="index-location__telephone">телефон: <a class="index-location__telephone-link" href="tel:+79022027148">+7 (902) 202-71-48</a></p>--}}
-                <picture>
-                    <source srcset="images/location/levelup-desktop-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="500">
-                    <source srcset="images/location/levelup-desktop-big.jpg" media="(min-width: 1700px)" width="740" height="500">
-                    <source srcset="images/location/levelup-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="380">
-                    <source srcset="images/location/levelup-desktop.jpg" media="(min-width: 1200px)" width="570" height="380">
-                    <source srcset="images/location/levelup-tablet.webp" type="image/webp" width="620" height="410">
-                    <img class="index-location__image" src="images/location/levelup-tablet.jpg" width="620" height="410"
-                         alt="школа Гран.">
-                </picture>
-            </li>
-            <li class="index-location__item">
-{{--                <h3 class="index-location__item-title">ДРЦ Дар речи</h3>
-                <address class="index-location__address">Переулок Лыжный, д.8 к1
-                    <svg class="index-location__svg-pin" width="24" height="24">
-                        <use href="images/icons/sprite/sprite.svg#address-pin"></use>
-                    </svg>
-                </address>
-                <p class="index-location__telephone">телефон: <a class="index-location__telephone-link" href="tel:+79022027148">+7 (902) 202-71-48</a></p>--}}
-                <picture>
-                    <source srcset="images/location/arifmosha-desktop-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="500">
-                    <source srcset="images/location/arifmosha-desktop-big.jpg" media="(min-width: 1700px)" width="740" height="500">
-                    <source srcset="images/location/arifmosha-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="380">
-                    <source srcset="images/location/arifmosha-desktop.jpg" media="(min-width: 1200px)" width="570" height="380">
-                    <source srcset="images/location/arifmosha-tablet.webp" type="image/webp" width="620" height="410">
-                    <img class="index-location__image" src="images/location/arifmosha-tablet.jpg" width="620" height="410"
-                         alt="Арифмоша.">
-                </picture>
-            </li>
-        </ul>
-        <dl class="index-location__features-list">
-            <div class="index-location__features-item">
-                <dt class="index-location__features-title">Парковка</dt>
-                <dd class="index-location__features-description">Наличие парковочных мест для автомобилей рядом со школами</dd>
-            </div>
-            <div class="index-location__features-item">
-                <dt class="index-location__features-title">Приветливый персонал</dt>
-                <dd class="index-location__features-description">Сотрудники школ помогут найти служебный кабинет</dd>
-            </div>
-            <div class="index-location__features-item">
-                <dt class="index-location__features-title">Светлые помещения</dt>
-                <dd class="index-location__features-description">Учебные классы соотвествуют требованиям</dd>
-            </div>
-            <div class="index-location__features-item">
-                <dt class="index-location__features-title">Зона ожидания</dt>
-                <dd class="index-location__features-description">В школах есть зона ожидания для родителей и детей</dd>
-            </div>
-        </dl>
-    </section>
+                <p class="index-location__telephone">телефон: <a class="index-location__telephone-link" href="tel:{{$address->phone_link}}">{{ $address->phone }}</a></p>
+                <ul class="index-location__list">
+                    <li class="index-location__item">
+                        <picture>
+                            <source srcset="images/location/{{$address->image_1}}.webp" type="image/webp" width="740" height="500">
+                            <img class="index-location__image" src="images/location/{{$address->image_1}}.jpg" width="740" height="500"
+                                 alt="{{ $address->image_1_alt }}">
+                        </picture>
+                    </li>
+                    <li class="index-location__item">
+                        <picture>
+                            <source srcset="images/location/{{$address->image_2}}.webp" type="image/webp" width="740" height="500">
+                            <img class="index-location__image" src="images/location/{{$address->image_2}}.jpg" width="740" height="500"
+                                 alt="П{{ $address->image_2_alt }}">
+                        </picture>
+                    </li>
+                </ul>
+                @if ($address->features->isNotEmpty())
+                    <dl class="index-location__features-list">
+                        @foreach ($address->features as $feature)
+                            <div class="index-location__features-item">
+                                <dt class="index-location__features-title">{{ $feature->title }}</dt>
+                                <dd class="index-location__features-description">{{ $feature->description }}</dd>
+                            </div>
+                        @endforeach
+                    </dl>
+                @endif
+            @endforeach
+        </section>
+    @endif
     <x-request />
 </main>
 @endsection

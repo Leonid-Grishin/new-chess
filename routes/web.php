@@ -44,15 +44,11 @@ Route::prefix('api')->group(function () {
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/club', [\App\Http\Controllers\Admin\ClubController::class, 'index'])->name('admin.club');
-    Route::get(
-        '/video',
-        [MainVideoController::class, 'edit']
-    )->name('admin.video');
 
-    Route::patch(
-        '/video',
-        [MainVideoController::class, 'update']
-    )->name('admin.video.update');
+    Route::patch('/club/address/{address}', [\App\Http\Controllers\Admin\ClubController::class, 'updateAddress']    )->name('admin.club.address.update');
+
+    Route::get('/video', [MainVideoController::class, 'edit'])->name('admin.video');
+    Route::patch('/video', [MainVideoController::class, 'update'])->name('admin.video.update');
 
     Route::get('/school', [\App\Http\Controllers\Admin\SchoolController::class, 'index'])->name('admin.school');
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');

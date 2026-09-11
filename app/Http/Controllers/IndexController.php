@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Review;
+use App\Models\Address;
 use Illuminate\Support\Facades\Cache;
 use App\Models\ClubSliderImage;
 
@@ -18,11 +19,24 @@ class IndexController extends Controller
         ];
         $slides = ClubSliderImage::active()->get();
 
+        $addresses = Address::with([
+            'features' => function ($query) {
+                $query
+                    ->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
         return view('index', [
             'reviews' => $reviews,
             'news' => $news,
             'meta' => $meta,
-            'slides' => $slides
+            'slides' => $slides,
+            'addresses' => $addresses,
         ]);
     }
 }
