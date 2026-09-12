@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Promo;
+use App\Models\SchoolSlider;
 use App\Src\Functions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -21,11 +22,22 @@ class SchoolController extends Controller
             ->orderBy('id')
             ->get();
 
+        $schoolSliders = SchoolSlider::query()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
         return view(
             'admin.school',
-            compact('promos')
+            compact('promos', 'schoolSliders')
         );
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Промо-блоки
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Добавление нового промо-блока.
@@ -60,17 +72,13 @@ class SchoolController extends Controller
             ],
         ]);
 
-        $imageName = $this->savePromoImage(
-            $request->file('image')
+        $imageName = $this->saveImage(
+            $request->file('image'),
+            'promos',
+            'promo'
         );
 
         Promo::create([
-            /*
-             * Сохраняется только имя без пути
-             * и расширения:
-             *
-             * promo_abc123
-             */
             'image' => $imageName,
             'image_alt' => $validated['image_alt'] ?? null,
             'title' => $validated['title'],
@@ -87,10 +95,8 @@ class SchoolController extends Controller
     /**
      * Обновление промо-блока.
      */
-    public function updatePromo(
-        Request $request,
-        Promo $promo
-    ) {
+    public function updatePromo(Request $request, Promo $promo)
+    {
         $validated = $request->validate([
             'image' => [
                 'nullable',
@@ -127,8 +133,10 @@ class SchoolController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $promo->image = $this->savePromoImage(
+            $promo->image = $this->saveImage(
                 $request->file('image'),
+                'promos',
+                'promo',
                 $promo->image
             );
         }
@@ -147,9 +155,7 @@ class SchoolController extends Controller
     public function destroyPromo(Promo $promo)
     {
         if ($promo->image) {
-            $this->deletePromoImage(
-                $promo->image
-            );
+            $this->deleteImage($promo->image, 'promos');
         }
 
         $promo->delete();
@@ -160,71 +166,161 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Сохранение изображения промо-блока.
-     *
-     * Оригинал сохраняется в:
-     *
-     * public/images/promos
-     *
-     * WebP создаётся рядом с оригиналом
-     * с помощью Functions::createWebp().
-     *
-     * В базу возвращается только имя без:
-     * - пути;
-     * - расширения.
-     */
-    private function savePromoImage(
-        $file,
-        ?string $oldImageName = null
-    ): string {
-        $directory = public_path('images/promos');
+    /*
+    |--------------------------------------------------------------------------
+    | Слайдеры школы
+    |--------------------------------------------------------------------------
+    */
 
-        if (!File::exists($directory)) {
-            File::makeDirectory(
-                $directory,
-                0755,
-                true
+    /**
+     * Добавление слайда школы.
+     */
+    public function storeSchoolSlider(Request $request)
+    {
+        $validated = $this->validateSchoolSlider($request, true);
+
+        $imageName = $this->saveImage(
+            $request->file('image'),
+            'school-sliders',
+            'school_slider'
+        );
+
+        SchoolSlider::create([
+            'image' => $imageName,
+            'image_alt' => $validated['image_alt'] ?? null,
+            'title' => $validated['title'] ?? null,
+            'description' => $validated['description'] ?? null,
+            'sort_order' => $validated['sort_order'] ?? 0,
+        ]);
+
+        return back()->with(
+            'success',
+            'Слайд школы успешно добавлен.'
+        );
+    }
+
+    /**
+     * Обновление слайда школы.
+     */
+    public function updateSchoolSlider(
+        Request $request,
+        SchoolSlider $schoolSlider
+    ) {
+        $validated = $this->validateSchoolSlider($request);
+
+        $schoolSlider->fill([
+            'image_alt' => $validated['image_alt'] ?? null,
+            'title' => $validated['title'] ?? null,
+            'description' => $validated['description'] ?? null,
+            'sort_order' => $validated['sort_order'] ?? 0,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $schoolSlider->image = $this->saveImage(
+                $request->file('image'),
+                'school-sliders',
+                'school_slider',
+                $schoolSlider->image
             );
         }
 
+        $schoolSlider->save();
+
+        return back()->with(
+            'success',
+            'Слайд школы успешно обновлён.'
+        );
+    }
+
+    /**
+     * Удаление слайда школы.
+     */
+    public function destroySchoolSlider(SchoolSlider $schoolSlider)
+    {
+        if ($schoolSlider->image) {
+            $this->deleteImage(
+                $schoolSlider->image,
+                'school-sliders'
+            );
+        }
+
+        $schoolSlider->delete();
+
+        return back()->with(
+            'success',
+            'Слайд школы удалён.'
+        );
+    }
+
+    /**
+     * Валидация данных слайда школы.
+     */
+    private function validateSchoolSlider(
+        Request $request,
+        bool $imageRequired = false
+    ): array {
+        return $request->validate([
+            'image' => [
+                $imageRequired ? 'required' : 'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'title' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'description' => [
+                'nullable',
+                'string',
+            ],
+            'sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+        ]);
+    }
+
+    /**
+     * Сохранение оригинала и WebP-версии изображения.
+     * В БД возвращается только имя файла без расширения.
+     */
+    private function saveImage(
+        $file,
+        string $directoryName,
+        string $prefix,
+        ?string $oldImageName = null
+    ): string {
+        $directory = public_path('images/' . $directoryName);
+
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true);
+        }
+
         if ($oldImageName) {
-            $this->deletePromoImage($oldImageName);
+            $this->deleteImage($oldImageName, $directoryName);
         }
 
         $extension = strtolower(
             $file->getClientOriginalExtension()
         );
 
-        $filename = 'promo_' . Str::uuid();
+        $filename = $prefix . '_' . Str::uuid();
+        $filenameWithExtension = $filename . '.' . $extension;
 
-        $filenameWithExtension =
-            $filename . '.' . $extension;
+        $file->move($directory, $filenameWithExtension);
 
-        /*
-         * Сначала сохраняем оригинал:
-         *
-         * public/images/promos/promo_xxx.png
-         */
-        $file->move(
-            $directory,
-            $filenameWithExtension
-        );
+        $originalPath = $directory . DIRECTORY_SEPARATOR . $filenameWithExtension;
 
-        $originalPath = $directory .
-            DIRECTORY_SEPARATOR .
-            $filenameWithExtension;
-
-        /*
-         * Затем создаём WebP:
-         *
-         * public/images/promos/promo_xxx.webp
-         */
         Functions::createWebp($originalPath);
 
-        /*
-         * Проверяем, что оригинал сохранился.
-         */
         if (!File::exists($originalPath)) {
             throw new \RuntimeException(
                 'Оригинальное изображение не найдено после сохранения: ' .
@@ -232,65 +328,25 @@ class SchoolController extends Controller
             );
         }
 
-        /*
-         * В базу сохраняем только имя:
-         *
-         * promo_xxx
-         */
         return $filename;
     }
 
     /**
-     * Удаление изображения промо-блока
-     * и WebP-версии.
-     *
-     * Метод поддерживает значения:
-     *
-     * promo_abc123
-     *
-     * и старый формат:
-     *
-     * images/promos/promo_abc123.jpg
+     * Удаление оригинала и WebP-версии изображения.
      */
-    private function deletePromoImage(
-        string $imageName
+    private function deleteImage(
+        string $imageName,
+        string $directoryName
     ): void {
-        $directory = public_path('images/promos');
+        $directory = public_path('images/' . $directoryName);
 
-        /*
-         * Нормализуем разделители.
-         */
-        $imageName = str_replace(
-            '\\',
-            '/',
-            $imageName
-        );
-
-        /*
-         * Убираем возможный путь.
-         */
+        $imageName = str_replace('\\', '/', $imageName);
         $imageName = basename($imageName);
+        $imageName = pathinfo($imageName, PATHINFO_FILENAME);
 
-        /*
-         * Убираем расширение,
-         * если оно было сохранено в старой записи.
-         */
-        $imageName = pathinfo(
-            $imageName,
-            PATHINFO_FILENAME
-        );
-
-        foreach ([
-                     'jpg',
-                     'jpeg',
-                     'png',
-                     'webp',
-                 ] as $extension) {
-            $filePath = $directory .
-                DIRECTORY_SEPARATOR .
-                $imageName .
-                '.' .
-                $extension;
+        foreach (['jpg', 'jpeg', 'png', 'webp'] as $extension) {
+            $filePath = $directory . DIRECTORY_SEPARATOR .
+                $imageName . '.' . $extension;
 
             if (File::exists($filePath)) {
                 File::delete($filePath);

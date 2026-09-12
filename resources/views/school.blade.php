@@ -256,51 +256,25 @@
             </ul>
         </section>
     @endif
-    <section class="gallery">
-        <h2 class="gallery__title second-title">Галерея фотографий А5</h2>
-        <ul class="gallery__list">
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-1.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-1-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-2.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-2-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-3.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-3-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-4.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-4-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-5.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-5-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-6.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-6-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-7.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-7-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-            <li class="gallery__item">
-                <a data-fancybox="gallery" href="images/school/gallery/gallery-8.jpg">
-                    <img class="gallery__image" src="images/school/gallery/gallery-8-prev.jpg" alt="детский тренер по шахматам." width="480" height="320">
-                </a>
-            </li>
-        </ul>
-    </section>
+    @if($schoolSliders->isNotEmpty())
+        <section class="gallery">
+            <h2 class="gallery__title second-title">Галерея фотографий А5</h2>
+            <ul class="gallery__list">
+                @foreach($schoolSliders as $slider)
+                    <li class="gallery__item">
+                        <a data-fancybox="gallery" href="images/school/gallery/{{$slider->image_big}}.jpg">
+                            <picture>
+                                <source srcset="images/school/gallery/{{$slider->image}}.webp" type="image/webp" width="1200" height="574">
+                                <img class="gallery__image" src="images/school/gallery/{{$slider->image}}.jpg" alt="{{$slider->image_alt}}" width="1200" height="574">
+                            </picture>
+                        </a>
+                    </li>
+                @endforeach
+
+            </ul>
+        </section>
+    @endif
+
     <section class="seo-text">
         <h2 class="seo-text__title second-title">Шахматная школа</h2>
         <h3 class="seo-text__subtitle">В чем польза шахмат для детей?</h3>

@@ -321,6 +321,372 @@
 
         @endif
 
+        {{-- ============================================================
+     Слайдер школы
+============================================================= --}}
+
+        <h2 class="bg-warning mt-5 text-center p-3">
+            Слайдер школы
+        </h2>
+
+        {{-- Добавление нового слайда --}}
+
+        <div class="card mt-4">
+
+            <div class="card-header">
+                <h3 class="mb-0">
+                    Добавить слайд
+                </h3>
+            </div>
+
+            <form method="POST"
+                  action="{{ route('admin.school.slider.store') }}"
+                  enctype="multipart/form-data">
+
+                @csrf
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        {{-- Маленькое изображение --}}
+
+                        <div class="form-group col-md-6">
+
+                            <label for="new_school_slider_image">
+                                <b>Маленькое изображение</b>
+                            </label>
+
+                            <div class="custom-file">
+                                <input type="file"
+                                       class="custom-file-input"
+                                       id="new_school_slider_image"
+                                       name="image"
+                                       accept="image/jpeg,image/png,image/webp"
+                                       required>
+
+                                <label class="custom-file-label"
+                                       for="new_school_slider_image"
+                                       data-browse="Выбрать">
+                                    Выберите изображение
+                                </label>
+                            </div>
+
+                            <small class="form-text text-muted">
+                                Изображение для обычного размера слайдера.
+                            </small>
+
+                            <img id="new_school_slider_image_preview"
+                                 src=""
+                                 alt="Предпросмотр изображения"
+                                 width="300"
+                                 class="d-none mt-3 border">
+                        </div>
+
+                        {{-- Большое изображение --}}
+
+                        <div class="form-group col-md-6">
+
+                            <label for="new_school_slider_image_big">
+                                <b>Большое изображение</b>
+                            </label>
+
+                            <div class="custom-file">
+                                <input type="file"
+                                       class="custom-file-input"
+                                       id="new_school_slider_image_big"
+                                       name="image_big"
+                                       accept="image/jpeg,image/png,image/webp"
+                                       required>
+
+                                <label class="custom-file-label"
+                                       for="new_school_slider_image_big"
+                                       data-browse="Выбрать">
+                                    Выберите изображение
+                                </label>
+                            </div>
+
+                            <small class="form-text text-muted">
+                                Изображение для большого экрана.
+                            </small>
+
+                            <img id="new_school_slider_image_big_preview"
+                                 src=""
+                                 alt="Предпросмотр большого изображения"
+                                 width="300"
+                                 class="d-none mt-3 border">
+                        </div>
+
+                        {{-- Alt --}}
+
+                        <div class="form-group col-md-8">
+
+                            <label for="new_school_slider_image_alt">
+                                <b>Alt изображений</b>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="new_school_slider_image_alt"
+                                   name="image_alt"
+                                   value="{{ old('image_alt') }}"
+                                   placeholder="Описание изображений">
+                        </div>
+
+                        {{-- Сортировка --}}
+
+                        <div class="form-group col-md-4">
+
+                            <label for="new_school_slider_sort_order">
+                                <b>Сортировка</b>
+                            </label>
+
+                            <input type="number"
+                                   class="form-control"
+                                   id="new_school_slider_sort_order"
+                                   name="sort_order"
+                                   value="{{ old('sort_order', 0) }}"
+                                   min="0">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <button type="submit"
+                            class="btn btn-success">
+                        Добавить слайд
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        {{-- Существующие слайды --}}
+
+        <h3 class="mt-5 mb-3">
+            Существующие слайды
+            ({{ $schoolSliders->count() }})
+        </h3>
+
+        @if($schoolSliders->isEmpty())
+
+            <p class="text-center text-muted mt-3">
+                Слайдов пока нет.
+            </p>
+
+        @else
+
+            @foreach($schoolSliders as $schoolSlider)
+
+                <div class="card mt-4">
+
+                    <div class="card-header">
+                        <h3 class="mb-0">
+                            Слайд №{{ $loop->iteration }}
+                        </h3>
+                    </div>
+
+                    <form method="POST"
+                          action="{{ route(
+                      'admin.school.slider.update',
+                      $schoolSlider->id
+                  ) }}"
+                          enctype="multipart/form-data">
+
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                {{-- Маленькое изображение --}}
+
+                                <div class="form-group col-md-6">
+
+                                    <label for="school_slider_image_{{ $schoolSlider->id }}">
+                                        <b>Маленькое изображение</b>
+                                    </label>
+
+                                    <div class="mb-2">
+
+                                        @if($schoolSlider->image)
+
+                                            <img
+                                                    id="school_slider_image_preview_{{ $schoolSlider->id }}"
+                                                    src="{{ asset(
+                                            'images/school-sliders/' .
+                                            $schoolSlider->image .
+                                            '.png'
+                                        ) }}"
+                                                    alt="{{ $schoolSlider->image_alt }}"
+                                                    width="300"
+                                                    class="d-block border"
+                                            >
+
+                                        @else
+
+                                            <img
+                                                    id="school_slider_image_preview_{{ $schoolSlider->id }}"
+                                                    src=""
+                                                    alt="Предпросмотр"
+                                                    width="300"
+                                                    class="d-none border"
+                                            >
+
+                                        @endif
+
+                                    </div>
+
+                                    <input type="file"
+                                           class="form-control-file"
+                                           id="school_slider_image_{{ $schoolSlider->id }}"
+                                           name="image"
+                                           accept="image/jpeg,image/png,image/webp">
+
+                                    <small class="form-text text-muted">
+                                        Новое изображение заменит текущее.
+                                    </small>
+
+                                </div>
+
+                                {{-- Большое изображение --}}
+
+                                <div class="form-group col-md-6">
+
+                                    <label for="school_slider_image_big_{{ $schoolSlider->id }}">
+                                        <b>Большое изображение</b>
+                                    </label>
+
+                                    <div class="mb-2">
+
+                                        @if($schoolSlider->image_big)
+
+                                            <img
+                                                    id="school_slider_image_big_preview_{{ $schoolSlider->id }}"
+                                                    src="{{ asset(
+                                            'images/school-sliders/' .
+                                            $schoolSlider->image_big .
+                                            '.png'
+                                        ) }}"
+                                                    alt="{{ $schoolSlider->image_alt }}"
+                                                    width="300"
+                                                    class="d-block border"
+                                            >
+
+                                        @else
+
+                                            <img
+                                                    id="school_slider_image_big_preview_{{ $schoolSlider->id }}"
+                                                    src=""
+                                                    alt="Предпросмотр"
+                                                    width="300"
+                                                    class="d-none border"
+                                            >
+
+                                        @endif
+
+                                    </div>
+
+                                    <input type="file"
+                                           class="form-control-file"
+                                           id="school_slider_image_big_{{ $schoolSlider->id }}"
+                                           name="image_big"
+                                           accept="image/jpeg,image/png,image/webp">
+
+                                    <small class="form-text text-muted">
+                                        Новое изображение заменит текущее.
+                                    </small>
+
+                                </div>
+
+                                {{-- Alt --}}
+
+                                <div class="form-group col-md-8">
+
+                                    <label for="school_slider_image_alt_{{ $schoolSlider->id }}">
+                                        <b>Alt изображений</b>
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           id="school_slider_image_alt_{{ $schoolSlider->id }}"
+                                           name="image_alt"
+                                           value="{{ old(
+                                       'image_alt',
+                                       $schoolSlider->image_alt
+                                   ) }}"
+                                           placeholder="Описание изображений">
+
+                                </div>
+
+                                {{-- Сортировка --}}
+
+                                <div class="form-group col-md-4">
+
+                                    <label for="school_slider_sort_order_{{ $schoolSlider->id }}">
+                                        <b>Сортировка</b>
+                                    </label>
+
+                                    <input type="number"
+                                           class="form-control"
+                                           id="school_slider_sort_order_{{ $schoolSlider->id }}"
+                                           name="sort_order"
+                                           value="{{ old(
+                                       'sort_order',
+                                       $schoolSlider->sort_order
+                                   ) }}"
+                                           min="0">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Сохранить слайд
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <div class="card-footer border-top">
+
+                        <form method="POST"
+                              action="{{ route(
+                          'admin.school.slider.destroy',
+                          $schoolSlider->id
+                      ) }}"
+                              onsubmit="return confirm('Удалить этот слайд?')">
+
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                Удалить слайд
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            @endforeach
+
+        @endif
     </section>
 
 @endsection
@@ -387,6 +753,86 @@
               preview.dataset.objectUrl = objectUrl;
               preview.classList.remove('d-none');
             });
+          });
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function setPreview(input, preview) {
+          if (!input || !preview) {
+            return;
+          }
+
+          input.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (!file) {
+              return;
+            }
+
+            if (preview.dataset.objectUrl) {
+              URL.revokeObjectURL(
+                preview.dataset.objectUrl
+              );
+            }
+
+            const objectUrl = URL.createObjectURL(file);
+
+            preview.src = objectUrl;
+            preview.dataset.objectUrl = objectUrl;
+            preview.classList.remove('d-none');
+          });
+        }
+
+        // Предпросмотр нового слайда
+        setPreview(
+          document.getElementById(
+            'new_school_slider_image'
+          ),
+          document.getElementById(
+            'new_school_slider_image_preview'
+          )
+        );
+
+        setPreview(
+          document.getElementById(
+            'new_school_slider_image_big'
+          ),
+          document.getElementById(
+            'new_school_slider_image_big_preview'
+          )
+        );
+
+        // Предпросмотр существующих слайдов
+        document
+          .querySelectorAll(
+            'input[id^="school_slider_image_"]'
+          )
+          .forEach(function (input) {
+            const sliderId = input.id
+              .replace('school_slider_image_', '');
+
+            const preview = document.getElementById(
+              'school_slider_image_preview_' + sliderId
+            );
+
+            setPreview(input, preview);
+          });
+
+        document
+          .querySelectorAll(
+            'input[id^="school_slider_image_big_"]'
+          )
+          .forEach(function (input) {
+            const sliderId = input.id
+              .replace('school_slider_image_big_', '');
+
+            const preview = document.getElementById(
+              'school_slider_image_big_preview_' + sliderId
+            );
+
+            setPreview(input, preview);
           });
       });
     </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Promo;
 use App\Models\Review;
+use App\Models\SchoolSlider;
 
 class SchoolController extends Controller
 {
@@ -19,6 +20,13 @@ class SchoolController extends Controller
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
-        return view('school', ['reviews' => $reviews, 'meta' => $meta, 'promos' => $promos]);
+
+        $schoolSliders = SchoolSlider::query()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+
+        return view('school', ['reviews' => $reviews, 'meta' => $meta, 'promos' => $promos, 'schoolSliders' => $schoolSliders]);
     }
 }
