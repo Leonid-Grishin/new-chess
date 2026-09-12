@@ -354,7 +354,7 @@
                         <div class="form-group col-md-6">
 
                             <label for="new_school_slider_image">
-                                <b>Маленькое изображение</b>
+                                <b>Маленькое изображение, jpg размер 480px * 320px</b>
                             </label>
 
                             <div class="custom-file">
@@ -388,7 +388,7 @@
                         <div class="form-group col-md-6">
 
                             <label for="new_school_slider_image_big">
-                                <b>Большое изображение</b>
+                                <b>Большое изображение, jpg размер 1080px * 720px</b>
                             </label>
 
                             <div class="custom-file">
@@ -511,7 +511,7 @@
                                 <div class="form-group col-md-6">
 
                                     <label for="school_slider_image_{{ $schoolSlider->id }}">
-                                        <b>Маленькое изображение</b>
+                                        <b>Маленькое изображение, jpg размер 480px * 320px</b>
                                     </label>
 
                                     <div class="mb-2">
@@ -521,9 +521,9 @@
                                             <img
                                                     id="school_slider_image_preview_{{ $schoolSlider->id }}"
                                                     src="{{ asset(
-                                            'images/school-sliders/' .
+                                            'images/school/gallery/' .
                                             $schoolSlider->image .
-                                            '.png'
+                                            '.jpg'
                                         ) }}"
                                                     alt="{{ $schoolSlider->image_alt }}"
                                                     width="300"
@@ -561,7 +561,7 @@
                                 <div class="form-group col-md-6">
 
                                     <label for="school_slider_image_big_{{ $schoolSlider->id }}">
-                                        <b>Большое изображение</b>
+                                        <b>Большое изображение, jpg размер 1080px * 720px</b>
                                     </label>
 
                                     <div class="mb-2">
@@ -571,9 +571,9 @@
                                             <img
                                                     id="school_slider_image_big_preview_{{ $schoolSlider->id }}"
                                                     src="{{ asset(
-                                            'images/school-sliders/' .
+                                            'images/school/gallery/' .
                                             $schoolSlider->image_big .
-                                            '.png'
+                                            '.jpg'
                                         ) }}"
                                                     alt="{{ $schoolSlider->image_alt }}"
                                                     width="300"

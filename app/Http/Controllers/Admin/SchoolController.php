@@ -40,7 +40,7 @@ class SchoolController extends Controller
     */
 
     /**
-     * Добавление нового промо-блока.
+     * Добавление промо-блока.
      */
     public function storePromo(Request $request)
     {
@@ -155,7 +155,10 @@ class SchoolController extends Controller
     public function destroyPromo(Promo $promo)
     {
         if ($promo->image) {
-            $this->deleteImage($promo->image, 'promos');
+            $this->deleteImage(
+                $promo->image,
+                'promos'
+            );
         }
 
         $promo->delete();
@@ -174,22 +177,39 @@ class SchoolController extends Controller
 
     /**
      * Добавление слайда школы.
+     *
+     * Используются два изображения:
+     *
+     * image      — обычное изображение;
+     * image_big  — большое изображение.
+     *
+     * Оба файла сохраняются в:
+     *
+     * public/images/school/gallery
      */
     public function storeSchoolSlider(Request $request)
     {
-        $validated = $this->validateSchoolSlider($request, true);
+        $validated = $this->validateSchoolSlider(
+            $request,
+            true
+        );
 
         $imageName = $this->saveImage(
             $request->file('image'),
-            'school-sliders',
+            'school/gallery',
             'school_slider'
+        );
+
+        $imageBigName = $this->saveImage(
+            $request->file('image_big'),
+            'school/gallery',
+            'school_slider_big'
         );
 
         SchoolSlider::create([
             'image' => $imageName,
+            'image_big' => $imageBigName,
             'image_alt' => $validated['image_alt'] ?? null,
-            'title' => $validated['title'] ?? null,
-            'description' => $validated['description'] ?? null,
             'sort_order' => $validated['sort_order'] ?? 0,
         ]);
 
@@ -210,17 +230,24 @@ class SchoolController extends Controller
 
         $schoolSlider->fill([
             'image_alt' => $validated['image_alt'] ?? null,
-            'title' => $validated['title'] ?? null,
-            'description' => $validated['description'] ?? null,
             'sort_order' => $validated['sort_order'] ?? 0,
         ]);
 
         if ($request->hasFile('image')) {
             $schoolSlider->image = $this->saveImage(
                 $request->file('image'),
-                'school-sliders',
+                'school/gallery',
                 'school_slider',
                 $schoolSlider->image
+            );
+        }
+
+        if ($request->hasFile('image_big')) {
+            $schoolSlider->image_big = $this->saveImage(
+                $request->file('image_big'),
+                'school/gallery',
+                'school_slider_big',
+                $schoolSlider->image_big
             );
         }
 
@@ -235,12 +262,20 @@ class SchoolController extends Controller
     /**
      * Удаление слайда школы.
      */
-    public function destroySchoolSlider(SchoolSlider $schoolSlider)
-    {
+    public function destroySchoolSlider(
+        SchoolSlider $schoolSlider
+    ) {
         if ($schoolSlider->image) {
             $this->deleteImage(
                 $schoolSlider->image,
-                'school-sliders'
+                'school/gallery'
+            );
+        }
+
+        if ($schoolSlider->image_big) {
+            $this->deleteImage(
+                $schoolSlider->image_big,
+                'school/gallery'
             );
         }
 
@@ -253,7 +288,7 @@ class SchoolController extends Controller
     }
 
     /**
-     * Валидация данных слайда школы.
+     * Валидация слайда школы.
      */
     private function validateSchoolSlider(
         Request $request,
@@ -266,19 +301,16 @@ class SchoolController extends Controller
                 'mimes:jpg,jpeg,png,webp',
                 'max:10240',
             ],
+            'image_big' => [
+                $imageRequired ? 'required' : 'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
             'image_alt' => [
                 'nullable',
                 'string',
                 'max:255',
-            ],
-            'title' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-            'description' => [
-                'nullable',
-                'string',
             ],
             'sort_order' => [
                 'nullable',
@@ -288,9 +320,17 @@ class SchoolController extends Controller
         ]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Работа с изображениями
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Сохранение оригинала и WebP-версии изображения.
-     * В БД возвращается только имя файла без расширения.
+     *
+     * В базу возвращается только имя файла
+     * без пути и расширения.
      */
     private function saveImage(
         $file,
@@ -298,14 +338,23 @@ class SchoolController extends Controller
         string $prefix,
         ?string $oldImageName = null
     ): string {
-        $directory = public_path('images/' . $directoryName);
+        $directory = public_path(
+            'images/' . $directoryName
+        );
 
         if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true);
+            File::makeDirectory(
+                $directory,
+                0755,
+                true
+            );
         }
 
         if ($oldImageName) {
-            $this->deleteImage($oldImageName, $directoryName);
+            $this->deleteImage(
+                $oldImageName,
+                $directoryName
+            );
         }
 
         $extension = strtolower(
@@ -313,11 +362,18 @@ class SchoolController extends Controller
         );
 
         $filename = $prefix . '_' . Str::uuid();
-        $filenameWithExtension = $filename . '.' . $extension;
 
-        $file->move($directory, $filenameWithExtension);
+        $filenameWithExtension =
+            $filename . '.' . $extension;
 
-        $originalPath = $directory . DIRECTORY_SEPARATOR . $filenameWithExtension;
+        $file->move(
+            $directory,
+            $filenameWithExtension
+        );
+
+        $originalPath = $directory .
+            DIRECTORY_SEPARATOR .
+            $filenameWithExtension;
 
         Functions::createWebp($originalPath);
 
@@ -338,15 +394,34 @@ class SchoolController extends Controller
         string $imageName,
         string $directoryName
     ): void {
-        $directory = public_path('images/' . $directoryName);
+        $directory = public_path(
+            'images/' . $directoryName
+        );
 
-        $imageName = str_replace('\\', '/', $imageName);
+        $imageName = str_replace(
+            '\\',
+            '/',
+            $imageName
+        );
+
         $imageName = basename($imageName);
-        $imageName = pathinfo($imageName, PATHINFO_FILENAME);
 
-        foreach (['jpg', 'jpeg', 'png', 'webp'] as $extension) {
-            $filePath = $directory . DIRECTORY_SEPARATOR .
-                $imageName . '.' . $extension;
+        $imageName = pathinfo(
+            $imageName,
+            PATHINFO_FILENAME
+        );
+
+        foreach ([
+                     'jpg',
+                     'jpeg',
+                     'png',
+                     'webp',
+                 ] as $extension) {
+            $filePath = $directory .
+                DIRECTORY_SEPARATOR .
+                $imageName .
+                '.' .
+                $extension;
 
             if (File::exists($filePath)) {
                 File::delete($filePath);
