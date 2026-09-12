@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Promo;
 use App\Models\Review;
+use App\Models\SchoolGoal;
 use App\Models\SchoolSlider;
+use App\Models\StudentGroup;
 
 class SchoolController extends Controller
 {
@@ -26,7 +28,13 @@ class SchoolController extends Controller
             ->orderBy('id')
             ->get();
 
+        $schoolGoal = SchoolGoal::first();
 
-        return view('school', ['reviews' => $reviews, 'meta' => $meta, 'promos' => $promos, 'schoolSliders' => $schoolSliders]);
+        $studentGroups = StudentGroup::with('items')
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        return view('school', ['reviews' => $reviews, 'meta' => $meta, 'promos' => $promos, 'schoolSliders' => $schoolSliders, 'schoolGoal' => $schoolGoal, 'studentGroups' => $studentGroups]);
     }
 }

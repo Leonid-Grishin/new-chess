@@ -22,25 +22,21 @@
             <img class="school-intro__image" src="images/school/school-intro-tablet.jpg" alt="детская школа шахмат." width="1200" height="574">
         </picture>
     </section>
-    <section class="school-offline">
-        <h2 class="school-offline__title second-title">Почему важно заниматься офлайн</h2>
-        <dl class="school-offline__mission determination">
-            <dt class="determination__title">Цель <span class="determination__container">А5</span></dt>
-            <dd class="determination__description">Сделать игру в шахматы интересной и доступной для нового поколения современных детей</dd>
-        </dl>
-        <picture class="school-offline__image-wrapper">
-            <source srcset="images/school/school-offline-big.webp" media="(min-width: 1700px)" type="image/webp" width="1520" height="592">
-            <source srcset="images/school/school-offline-big.jpg" media="(min-width: 1700px)" width="1520" height="592">
-            <source srcset="images/school/school-offline-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="1170" height="592">
-            <source srcset="images/school/school-offline-desktop.jpg" media="(min-width: 1200px)" width="1170" height="592">
-            <source srcset="images/school/school-offline-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="313">
-            <source srcset="images/school/school-offline-tablet.jpg" media="(min-width: 640px)" width="620" height="313">
-            <source srcset="images/school/school-offline-mobile.webp" type="image/webp" width="300" height="150">
-            <img class="school-offline__image" src="images/school/school-offline-mobile.jpg" alt="занятия шахматами" width="300" height="150">
-        </picture>
-        <p>Наиболее эффективными являются офлайн занятия. Общение с другими детьми и преподавателем помогает изучать шахматную науку эффективнее.</p>
-        <p>Дети учатся взаимодействовать друг с другом, играть с шахматными часами, записывать партии.<span class="school-offline__text-wrapper"> Любые сложные моменты обучения переносятся на жизненные ситуации, чтобы ученикам было доступнее та или иная мысль. Наши занятия не бывают скучными, ведь залог хорошего занятия - довольный ребенок и результат за доской</span></p>
-    </section>
+    @if($schoolGoal)
+        <section class="school-offline">
+            <h2 class="school-offline__title second-title">{{ $schoolGoal->title }}</h2>
+            <dl class="school-offline__mission determination">
+                <dt class="determination__title">Цель <span class="determination__container">А5</span></dt>
+                <dd class="determination__description">{{ $schoolGoal->description }}</dd>
+            </dl>
+            <picture class="school-offline__image-wrapper">
+                <source srcset="images/school/{{$schoolGoal->image}}.webp" type="image/webp" width="1520" height="592">
+                <img class="school-offline__image" src="images/school/{{$schoolGoal->image}}.jpg" alt="{{$schoolGoal->alt}}" width="1520" height="592">
+            </picture>
+            {!! $schoolGoal->text !!}
+        </section>
+    @endif
+
     <section class="school-principles">
         <h2 class="school-principles__title second-title">Принципы работы А5</h2>
         <ul class="school-principles__list">
@@ -98,112 +94,35 @@
 {{--            <button class="education-level__button button button--secondary" data-name="Школа > Этапы обучения">Получить программу <span>обучения на почту</span></button>--}}
         </div>
     </section>
-    <section class="school-groups">
-        <h2 class="school-groups__title second-title">Группы учащихся</h2>
-        <p class="school-groups__description">Каждый ученик сначала приходит на пробное занятие, а затем попадает в одну из групп в зависимости от уровня своей игры. Таким образом повышая уровень игры можно переходить из одной группы в другую</p>
-        <ul class="school-groups__list">
-            <li class="school-groups__item">
-                <div class="school-groups__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/group-pawn-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="330">
-                        <source srcset="images/school/group-pawn-big.jpg" media="(min-width: 1700px)" width="740" height="330">
-                        <source srcset="images/school/group-pawn-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="330">
-                        <source srcset="images/school/group-pawn-desktop.jpg" media="(min-width: 1200px)" width="570" height="330">
-                        <source srcset="images/school/group-pawn-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="285">
-                        <source srcset="images/school/group-pawn-tablet.jpg" media="(min-width: 640px)" width="620" height="285">
-                        <source srcset="images/school/group-pawn-mobile.webp" type="image/webp" width="300" height="180">
-                        <img class="school-groups__image" src="images/school/group-pawn-mobile.jpg" alt="группа начинающих детей." width="300" height="180">
-                    </picture>
-                    <span class="school-groups__hint">Новички</span>
-                </div>
-                <div class="school-groups__item-container">
-                    <h3 class="school-groups__item-title">Новички</h3>
-                    <ul class="school-groups__sublist">
-                        <li class="school-groups__subitem">В группу принимаются дети от 4 лет</li>
-                        <li class="school-groups__subitem">Занятия проходят в игровой форме для лучшего запоминания</li>
-                        <li class="school-groups__subitem">На зянятиях дети изучают какие есть фигуры и как они ходят</li>
-                    </ul>
-                    {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа пешка" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
-                </div>
-            </li>
-            <li class="school-groups__item">
-                <div class="school-groups__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/group-bishop-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="330">
-                        <source srcset="images/school/group-bishop-big.jpg" media="(min-width: 1700px)" width="740" height="330">
-                        <source srcset="images/school/group-bishop-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="330">
-                        <source srcset="images/school/group-bishop-desktop.jpg" media="(min-width: 1200px)" width="570" height="330">
-                        <source srcset="images/school/group-bishop-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="285">
-                        <source srcset="images/school/group-bishop-tablet.jpg" media="(min-width: 640px)" width="620" height="285">
-                        <source srcset="images/school/group-bishop-mobile.webp" type="image/webp" width="300" height="180">
-                        <img class="school-groups__image" src="images/school/group-bishop-mobile.jpg" alt="группа начинающих плюс детей." width="300" height="180">
-                    </picture>
-                    <span class="school-groups__hint">Начинающие</span>
-                </div>
-                <div class="school-groups__item-container">
-                    <h3 class="school-groups__item-title">Начинающие</h3>
-                    <ul class="school-groups__sublist">
-                        <li class="school-groups__subitem">В классах дети изучают основы шахмат</li>
-                        <li class="school-groups__subitem">Занятия по 60 минут, учимся вырабатывать усидчивость</li>
-                        <li class="school-groups__subitem">На зянятиях ученики пробуют играть свои первые партии</li>
-                    </ul>
-                    {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа слон" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
-                </div>
-            </li>
-            <li class="school-groups__item">
-                <div class="school-groups__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/group-1200-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="330">
-                        <source srcset="images/school/group-1200-big.jpg" media="(min-width: 1700px)" width="740" height="330">
-                        <source srcset="images/school/group-1200-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="330">
-                        <source srcset="images/school/group-1200-desktop.jpg" media="(min-width: 1200px)" width="570" height="330">
-                        <source srcset="images/school/group-1200-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="285">
-                        <source srcset="images/school/group-1200-tablet.jpg" media="(min-width: 640px)" width="620" height="285">
-                        <source srcset="images/school/group-1200-mobile.webp" type="image/webp" width="300" height="180">
-                        <img class="school-groups__image" src="images/school/group-1200-mobile.jpg" alt="группа до 1200." width="300" height="180">
-                    </picture>
-                    <span class="school-groups__hint">Рейтинг&#160;ФШР до 1200</span>
-                </div>
-                <div class="school-groups__item-container">
-                    <h3 class="school-groups__item-title">Начинающие + | Рейтинг&#160;ФШР до&#160;1200</h3>
-                    <ul class="school-groups__sublist">
-                        <li class="school-groups__subitem">Изучение дебютов, позиционной игры, тактических приемов</li>
-                        <li class="school-groups__subitem">Занятия длятся 75 минут: 40 минут теория, 35 минут практика</li>
-                        <li class="school-groups__subitem">Группы до 8 человек</li>
-                    </ul>
-                    {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа до 1200" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
-                </div>
-            </li>
-            <li class="school-groups__item">
-                <div class="school-groups__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/group-1200-more-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="330">
-                        <source srcset="images/school/group-1200-more-big.jpg" media="(min-width: 1700px)" width="740" height="330">
-                        <source srcset="images/school/group-1200-more-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="330">
-                        <source srcset="images/school/group-1200-more-desktop.jpg" media="(min-width: 1200px)" width="570" height="330">
-                        <source srcset="images/school/group-1200-more-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="285">
-                        <source srcset="images/school/group-1200-more-tablet.jpg" media="(min-width: 640px)" width="620" height="285">
-                        <source srcset="images/school/group-1200-more-mobile.webp" type="image/webp" width="300" height="180">
-                        <img class="school-groups__image" src="images/school/group-1200-more-mobile.jpg" alt="группа от 1200." width="300" height="180">
-                    </picture>
-                    <span class="school-groups__hint">Рейтинг ФШР от 1200</span>
-                </div>
-                <div class="school-groups__item-container">
-                    <h3 class="school-groups__item-title">Играющие | Рейтинг ФШР от&#160;1200</h3>
-                    <ul class="school-groups__sublist">
-                        <li class="school-groups__subitem">Углубленное изучение всех аспектов игры</li>
-                        <li class="school-groups__subitem">Занятия длятся 90 минут: 60 минут теория, 30 минут практика</li>
-                        <li class="school-groups__subitem">Группы до 8 человек</li>
-                    </ul>
-                    {{--<button class="school-groups__button button button--primary" data-name="Школа > Группа от 1200" type="button">Записаться в группу</button>--}}
-                    <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
-                </div>
-            </li>
-        </ul>
-    </section>
+    @if($studentGroups->isNotEmpty())
+        <section class="school-groups">
+            <h2 class="school-groups__title second-title">Группы учащихся</h2>
+            <p class="school-groups__description">Каждый ученик сначала приходит на пробное занятие, а затем попадает в одну из групп в зависимости от уровня своей игры. Таким образом повышая уровень игры можно переходить из одной группы в другую</p>
+            <ul class="school-groups__list">
+                @foreach($studentGroups as $studentGroup)
+                    <li class="school-groups__item">
+                        <div class="school-groups__image-wrapper">
+                            <picture>
+                                <source srcset="images/school/{{$studentGroup->image}}.webp" type="image/webp" width="300" height="180">
+                                <img class="school-groups__image" src="images/school/{{$studentGroup->image}}.jpg" alt="{{$studentGroup->image_alt}}" width="300" height="180">
+                            </picture>
+                            <span class="school-groups__hint">{{$studentGroup->image_alt}}</span>
+                        </div>
+                        <div class="school-groups__item-container">
+                            <h3 class="school-groups__item-title">{{$studentGroup->title}}</h3>
+                            <ul class="school-groups__sublist">
+                                @foreach($studentGroup->items as $item)
+                                    <li class="school-groups__subitem">{{ $item->text }}</li>
+                                @endforeach
+
+                            </ul>
+                            <a href="https://paraplancrm.ru/s/dfe59c70-6624-cbac-dd27-007f4196e10c" rel="nofollow" class="school-groups__button button button--primary" target="_blank">Записаться в группу</a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+    @endif
     <section class="trial-class">
         <div class="trial-class__wrapper">
             <h2 class="trial-class__title second-title">Первый шаг к&#160;цели - бесплатный пробный урок</h2>

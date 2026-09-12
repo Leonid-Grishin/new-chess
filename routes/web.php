@@ -61,7 +61,11 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::patch('/school/slider/{schoolSlider}', [\App\Http\Controllers\Admin\SchoolController::class,'updateSchoolSlider',])->name('admin.school.slider.update');
     Route::delete('/school/slider/{schoolSlider}', [\App\Http\Controllers\Admin\SchoolController::class,'destroySchoolSlider',])->name('admin.school.slider.destroy');
 
+    Route::patch('/school/goal', [\App\Http\Controllers\Admin\SchoolController::class,'updateSchoolGoal',])->name('admin.school.goal.update');
 
+    Route::post('/school/student-group',[\App\Http\Controllers\Admin\SchoolController::class, 'storeStudentGroup'])->name('admin.school.student-group.store');
+    Route::patch('/school/student-group/{studentGroup}',[\App\Http\Controllers\Admin\SchoolController::class, 'updateStudentGroup'])->name('admin.school.student-group.update');
+    Route::delete('/school/student-group/{studentGroup}',[\App\Http\Controllers\Admin\SchoolController::class, 'destroyStudentGroup'])->name('admin.school.student-group.destroy');
 
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');
     Route::patch('/students/rating-update', [\App\Http\Controllers\Admin\StudentController::class, 'ratingUpdate'])->name('admin.students.ratingUpdate');

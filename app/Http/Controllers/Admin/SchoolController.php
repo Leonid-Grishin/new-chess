@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Promo;
+use App\Models\SchoolGoal;
 use App\Models\SchoolSlider;
+use App\Models\StudentGroup;
+use App\Models\StudentGroupItem;
 use App\Src\Functions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -27,9 +31,27 @@ class SchoolController extends Controller
             ->orderBy('id')
             ->get();
 
+        $schoolGoal = SchoolGoal::first();
+
+        $studentGroups = StudentGroup::with([
+            'items' => function ($query) {
+                $query
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
         return view(
             'admin.school',
-            compact('promos', 'schoolSliders')
+            compact(
+                'promos',
+                'schoolSliders',
+                'schoolGoal',
+                'studentGroups'
+            )
         );
     }
 
@@ -39,9 +61,6 @@ class SchoolController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Добавление промо-блока.
-     */
     public function storePromo(Request $request)
     {
         $validated = $request->validate([
@@ -92,11 +111,10 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Обновление промо-блока.
-     */
-    public function updatePromo(Request $request, Promo $promo)
-    {
+    public function updatePromo(
+        Request $request,
+        Promo $promo
+    ) {
         $validated = $request->validate([
             'image' => [
                 'nullable',
@@ -149,9 +167,6 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Удаление промо-блока.
-     */
     public function destroyPromo(Promo $promo)
     {
         if ($promo->image) {
@@ -171,22 +186,10 @@ class SchoolController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Слайдеры школы
+    | Слайдер школы
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Добавление слайда школы.
-     *
-     * Используются два изображения:
-     *
-     * image      — обычное изображение;
-     * image_big  — большое изображение.
-     *
-     * Оба файла сохраняются в:
-     *
-     * public/images/school/gallery
-     */
     public function storeSchoolSlider(Request $request)
     {
         $validated = $this->validateSchoolSlider(
@@ -219,9 +222,6 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Обновление слайда школы.
-     */
     public function updateSchoolSlider(
         Request $request,
         SchoolSlider $schoolSlider
@@ -259,9 +259,6 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Удаление слайда школы.
-     */
     public function destroySchoolSlider(
         SchoolSlider $schoolSlider
     ) {
@@ -287,9 +284,6 @@ class SchoolController extends Controller
         );
     }
 
-    /**
-     * Валидация слайда школы.
-     */
     private function validateSchoolSlider(
         Request $request,
         bool $imageRequired = false
@@ -322,15 +316,330 @@ class SchoolController extends Controller
 
     /*
     |--------------------------------------------------------------------------
+    | Цель школы
+    |--------------------------------------------------------------------------
+    */
+
+    public function updateSchoolGoal(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'description' => [
+                'nullable',
+                'string',
+            ],
+            'text' => [
+                'nullable',
+                'string',
+            ],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+        ]);
+
+        $schoolGoal = SchoolGoal::first();
+
+        if (!$schoolGoal) {
+            $schoolGoal = new SchoolGoal();
+        }
+
+        $schoolGoal->fill([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'text' => $validated['text'] ?? null,
+            'image_alt' => $validated['image_alt'] ?? null,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $schoolGoal->image = $this->saveImage(
+                $request->file('image'),
+                'school',
+                'school_goal',
+                $schoolGoal->image
+            );
+        }
+
+        $schoolGoal->save();
+
+        return back()->with(
+            'success',
+            'Блок «Цель школы» успешно обновлён.'
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Группы учащихся
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Добавление группы учащихся.
+     *
+     * Изображение сохраняется в:
+     *
+     * public/images/school
+     *
+     * В базе хранится только имя файла без расширения.
+     */
+    public function storeStudentGroup(Request $request)
+    {
+        $validated = $request->validate([
+            'image' => [
+                'required',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+            'items' => [
+                'nullable',
+                'array',
+            ],
+            'items.*.text' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
+            'items.*.sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+        ]);
+
+        DB::transaction(function () use (
+            $request,
+            $validated
+        ) {
+            $imageName = $this->saveImage(
+                $request->file('image'),
+                'school',
+                'student_group'
+            );
+
+            $studentGroup = StudentGroup::create([
+                'image' => $imageName,
+                'image_alt' => $validated['image_alt'] ?? null,
+                'title' => $validated['title'],
+                'sort_order' => $validated['sort_order'] ?? 0,
+            ]);
+
+            $this->saveStudentGroupItems(
+                $studentGroup,
+                $validated['items'] ?? []
+            );
+        });
+
+        return back()->with(
+            'success',
+            'Группа учащихся успешно добавлена.'
+        );
+    }
+
+    /**
+     * Обновление группы учащихся.
+     */
+    public function updateStudentGroup(
+        Request $request,
+        StudentGroup $studentGroup
+    ) {
+        $validated = $request->validate([
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+            'items' => [
+                'nullable',
+                'array',
+            ],
+            'items.*.id' => [
+                'nullable',
+                'integer',
+                'exists:student_group_items,id',
+            ],
+            'items.*.text' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
+            'items.*.sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+        ]);
+
+        DB::transaction(function () use (
+            $request,
+            $validated,
+            $studentGroup
+        ) {
+            $studentGroup->fill([
+                'image_alt' => $validated['image_alt'] ?? null,
+                'title' => $validated['title'],
+                'sort_order' => $validated['sort_order'] ?? 0,
+            ]);
+
+            if ($request->hasFile('image')) {
+                $studentGroup->image = $this->saveImage(
+                    $request->file('image'),
+                    'school',
+                    'student_group',
+                    $studentGroup->image
+                );
+            }
+
+            $studentGroup->save();
+
+            $this->saveStudentGroupItems(
+                $studentGroup,
+                $validated['items'] ?? []
+            );
+        });
+
+        return back()->with(
+            'success',
+            'Группа учащихся успешно обновлена.'
+        );
+    }
+
+    /**
+     * Удаление группы учащихся.
+     */
+    public function destroyStudentGroup(
+        StudentGroup $studentGroup
+    ) {
+        DB::transaction(function () use ($studentGroup) {
+            if ($studentGroup->image) {
+                $this->deleteImage(
+                    $studentGroup->image,
+                    'school'
+                );
+            }
+
+            $studentGroup->delete();
+        });
+
+        return back()->with(
+            'success',
+            'Группа учащихся удалена.'
+        );
+    }
+
+    /**
+     * Сохранение пунктов группы.
+     *
+     * Существующие пункты обновляются.
+     * Отсутствующие в запросе удаляются.
+     * Новые пункты создаются.
+     */
+    private function saveStudentGroupItems(
+        StudentGroup $studentGroup,
+        array $items
+    ): void {
+        $savedItemIds = [];
+
+        foreach ($items as $itemData) {
+            $text = trim($itemData['text'] ?? '');
+
+            if ($text === '') {
+                continue;
+            }
+
+            $itemId = $itemData['id'] ?? null;
+
+            if ($itemId) {
+                $item = StudentGroupItem::query()
+                    ->where('student_group_id', $studentGroup->id)
+                    ->where('id', $itemId)
+                    ->first();
+
+                if (!$item) {
+                    continue;
+                }
+
+                $item->update([
+                    'text' => $text,
+                    'sort_order' => $itemData['sort_order'] ?? 0,
+                ]);
+
+                $savedItemIds[] = $item->id;
+            } else {
+                $item = $studentGroup->items()->create([
+                    'text' => $text,
+                    'sort_order' => $itemData['sort_order'] ?? 0,
+                ]);
+
+                $savedItemIds[] = $item->id;
+            }
+        }
+
+        $studentGroup->items()
+            ->whereNotIn('id', $savedItemIds)
+            ->delete();
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | Работа с изображениями
     |--------------------------------------------------------------------------
     */
 
     /**
-     * Сохранение оригинала и WebP-версии изображения.
+     * Сохраняет оригинал и WebP-версию.
      *
-     * В базу возвращается только имя файла
-     * без пути и расширения.
+     * Например, для группы:
+     *
+     * public/images/school/student_group_uuid.jpg
+     * public/images/school/student_group_uuid.webp
+     *
+     * В БД сохраняется:
+     *
+     * student_group_uuid
      */
     private function saveImage(
         $file,
@@ -363,24 +672,27 @@ class SchoolController extends Controller
 
         $filename = $prefix . '_' . Str::uuid();
 
-        $filenameWithExtension =
-            $filename . '.' . $extension;
+        $originalFilename = $filename . '.' . $extension;
 
         $file->move(
             $directory,
-            $filenameWithExtension
+            $originalFilename
         );
 
         $originalPath = $directory .
             DIRECTORY_SEPARATOR .
-            $filenameWithExtension;
+            $originalFilename;
 
         Functions::createWebp($originalPath);
 
-        if (!File::exists($originalPath)) {
+        $webpPath = $directory .
+            DIRECTORY_SEPARATOR .
+            $filename .
+            '.webp';
+
+        if (!File::exists($webpPath)) {
             throw new \RuntimeException(
-                'Оригинальное изображение не найдено после сохранения: ' .
-                $originalPath
+                'WebP-версия изображения не была создана.'
             );
         }
 
@@ -388,7 +700,7 @@ class SchoolController extends Controller
     }
 
     /**
-     * Удаление оригинала и WebP-версии изображения.
+     * Удаляет оригинал и WebP-версию.
      */
     private function deleteImage(
         string $imageName,
@@ -398,12 +710,6 @@ class SchoolController extends Controller
             'images/' . $directoryName
         );
 
-        $imageName = str_replace(
-            '\\',
-            '/',
-            $imageName
-        );
-
         $imageName = basename($imageName);
 
         $imageName = pathinfo(
@@ -411,12 +717,14 @@ class SchoolController extends Controller
             PATHINFO_FILENAME
         );
 
-        foreach ([
-                     'jpg',
-                     'jpeg',
-                     'png',
-                     'webp',
-                 ] as $extension) {
+        $extensions = [
+            'jpg',
+            'jpeg',
+            'png',
+            'webp',
+        ];
+
+        foreach ($extensions as $extension) {
             $filePath = $directory .
                 DIRECTORY_SEPARATOR .
                 $imageName .
