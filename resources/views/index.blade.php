@@ -45,17 +45,26 @@
     </section>
     <x-main-video/>
     <x-lessons-price/>
-    <section class="online-lessons">
-        <h2 class="online-lessons__second-title second-title">Доступно онлайн обучение</h2>
-        <ul class="online-lessons__list">
-            <li class="online-lessons__item">Занятия проходят в программе Телемост. Яндекс</li>
-            <li class="online-lessons__item">У каждого ученика своя студия на <a class="online-lessons__platform-link" href="https://lichess.org" target="_blank">lichess.org</a>, где ребенок может посмотреть нужную информацию в любой момент времени</li>
-            <li class="online-lessons__item">Тематические упражнения, теоретическая часть</li>
-            <li class="online-lessons__item">Обзор и разбор ошибок сыгранных партий в&nbsp;онлайне</li>
-            <li class="online-lessons__item">Возможность совмещать индивидуальные онлайн занятия с офлайн</li>
-        </ul>
-        <button class="online-lessons__primary-button button button--primary" type="button" data-name="Главная > онлайн">Записаться на <span>онлайн</span> занятие</button>
-    </section>
+    @if($onlineBlock)
+        <section class="online-lessons">
+            <h2 class="online-lessons__second-title second-title">{{ $onlineBlock->title }}</h2>
+            <div class="online-lessons__wrapper">
+                <div class="online-lessons__container">
+                    <ul class="online-lessons__list">
+                        @foreach($onlineBlock->items as $item)
+                            <li class="online-lessons__item">{!! $item->text !!}</li>
+                        @endforeach
+
+                    </ul>
+                    <button class="online-lessons__primary-button button button--primary" type="button" data-name="Главная > онлайн">Записаться на <span>онлайн</span> занятие</button>
+                </div>
+                <picture class="online-lessons__picture">
+                    <source srcset="images/online/{{ $onlineBlock->image }}.webp" type="image/webp" width="1000" height="540">
+                    <img class="online-lessons__image" src="images/online/{{ $onlineBlock->image }}.jpg" alt="{{ $onlineBlock->image_alt }}" width="1000" height="540">
+                </picture>
+            </div>
+        </section>
+    @endif
     <section class="index-camp">
         <h2 class="index-camp__title title title--second">Шахматный лагерь</h2>
         <ul class="index-camp__pictures-list">

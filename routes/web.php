@@ -61,6 +61,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::patch('/school/slider/{schoolSlider}', [\App\Http\Controllers\Admin\SchoolController::class,'updateSchoolSlider',])->name('admin.school.slider.update');
     Route::delete('/school/slider/{schoolSlider}', [\App\Http\Controllers\Admin\SchoolController::class,'destroySchoolSlider',])->name('admin.school.slider.destroy');
 
+
+
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');
     Route::patch('/students/rating-update', [\App\Http\Controllers\Admin\StudentController::class, 'ratingUpdate'])->name('admin.students.ratingUpdate');
     Route::delete('/students/trashed/{student}', [\App\Http\Controllers\Admin\StudentController::class, 'destroyForever'])->name('admin.students.destroyForever');
@@ -96,6 +98,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::delete('/club/slider/{slide}', [\App\Http\Controllers\Admin\ClubController::class, 'destroySlide'])
         ->name('admin.club.slider.destroy');
+
+    Route::patch('/club/online-block',[\App\Http\Controllers\Admin\ClubController::class, 'updateOnlineBlock'])->name('admin.club.online-block.update');
 
     Route::resource('/news', NewsController::class)->names([
         'index' => 'admin.news',

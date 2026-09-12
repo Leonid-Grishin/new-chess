@@ -66,7 +66,7 @@
                         </div>
 
                         <small class="form-text text-muted">
-                            Рекомендуемый размер: 780 × 430 px.
+                            Рекомендуемый размер: jpg, 780 × 430 px.
                         </small>
 
                         <img id="newSlidePreview"
@@ -533,55 +533,279 @@
             @endforeach
 
         @endif
+
+        {{-- ============================================================
+     Онлайн-обучение
+============================================================= --}}
+
+        <h2 class="bg-warning mt-5 text-center p-3">
+            Блок «Доступно онлайн обучение»
+        </h2>
+
+        <div class="card mt-4 mb-5">
+
+            <form method="POST"
+                  action="{{ route('admin.club.online-block.update') }}"
+                  enctype="multipart/form-data">
+
+                @csrf
+                @method('PATCH')
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        {{-- Заголовок --}}
+                        <div class="form-group col-md-6">
+                            <label for="online_block_title">
+                                <b>Заголовок блока</b>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="online_block_title"
+                                   name="title"
+                                   value="{{ old('title', $onlineBlock?->title) }}"
+                                   placeholder="Доступно онлайн обучение"
+                                   required>
+                        </div>
+
+                        {{-- Alt изображения --}}
+                        <div class="form-group col-md-6">
+                            <label for="online_block_image_alt">
+                                <b>Alt-текст изображения</b>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="online_block_image_alt"
+                                   name="image_alt"
+                                   value="{{ old('image_alt', $onlineBlock?->image_alt) }}"
+                                   placeholder="Описание изображения для SEO">
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    {{-- Изображение --}}
+                    <div class="form-group">
+
+                        <label for="online_block_image">
+                            <b>Изображение блока</b>
+                        </label>
+
+                        @if($onlineBlock?->image)
+
+                            <div class="mb-3">
+                                <img
+                                        id="onlineBlockImagePreview"
+                                        src="{{ asset('images/online/' . $onlineBlock->image . '.jpg') }}"
+                                        alt="{{ $onlineBlock->image_alt }}"
+                                        width="400"
+                                        class="d-block border"
+                                >
+                            </div>
+
+                        @else
+
+                            <img
+                                    id="onlineBlockImagePreview"
+                                    src=""
+                                    alt="Предпросмотр изображения"
+                                    width="400"
+                                    class="d-none border mb-3"
+                            >
+
+                        @endif
+
+                        <input type="file"
+                               class="form-control-file"
+                               id="online_block_image"
+                               name="image"
+                               accept="image/jpeg,image/png,image/webp">
+
+                        <small class="form-text text-muted">
+                            Рекомендуемый размер: jpg, 1000 × 540 px.
+                        </small>
+
+                    </div>
+
+                    <hr>
+
+                    {{-- Пункты блока --}}
+                    <h4 class="mb-3">
+                        Преимущества
+                    </h4>
+
+                    @if($onlineBlock?->items?->isNotEmpty())
+
+                        @foreach($onlineBlock->items as $item)
+
+                            <div class="border rounded p-3 mb-3">
+
+                                <input type="hidden"
+                                       name="items[{{ $item->id }}][id]"
+                                       value="{{ $item->id }}">
+
+                                <div class="row align-items-end">
+
+                                    <div class="form-group col-md-8 mb-0">
+                                        <label for="online_item_text_{{ $item->id }}">
+                                            <b>Текст пункта</b>
+                                        </label>
+
+                                        <textarea
+                                                class="form-control"
+                                                id="online_item_text_{{ $item->id }}"
+                                                name="items[{{ $item->id }}][text]"
+                                                rows="3"
+                                                required>{{ old('items.' . $item->id . '.text', $item->text) }}</textarea>
+                                    </div>
+
+                                    <div class="form-group col-md-2 mb-0">
+                                        <label for="online_item_sort_{{ $item->id }}">
+                                            <b>Сортировка</b>
+                                        </label>
+
+                                        <input type="number"
+                                               class="form-control"
+                                               id="online_item_sort_{{ $item->id }}"
+                                               name="items[{{ $item->id }}][sort_order]"
+                                               value="{{ old('items.' . $item->id . '.sort_order', $item->sort_order) }}"
+                                               min="0">
+                                    </div>
+
+                                    <div class="form-group col-md-2 mb-0">
+
+                                        <input type="hidden"
+                                               name="items[{{ $item->id }}][is_active]"
+                                               value="0">
+
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox"
+                                                   class="custom-control-input"
+                                                   id="online_item_active_{{ $item->id }}"
+                                                   name="items[{{ $item->id }}][is_active]"
+                                                   value="1"
+                                                    {{ $item->is_active ? 'checked' : '' }}>
+
+                                            <label class="custom-control-label"
+                                                   for="online_item_active_{{ $item->id }}">
+                                                Активен
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
+                    @else
+
+                        <p class="text-muted">
+                            Пунктов пока нет.
+                        </p>
+
+                    @endif
+
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Сохранить блок
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
     </section>
 @endsection
 
 @push('scripts')
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+
+        /*
+         * Предпросмотр нового слайда
+         */
         const slideImageInput =
           document.getElementById('newSlideImage');
 
-        if (slideImageInput) {
+        const slidePreview =
+          document.getElementById('newSlidePreview');
+
+        if (slideImageInput && slidePreview) {
           slideImageInput.addEventListener('change', function () {
-            const preview =
-              document.getElementById('newSlidePreview');
-
-            const file = this.files[0];
-
-            if (file) {
-              preview.src = URL.createObjectURL(file);
-              preview.classList.remove('d-none');
-            }
+            showPreview(this, slidePreview);
           });
         }
 
-        document.querySelectorAll('input[type="file"][name="image_1"]')
+
+        /*
+         * Предпросмотр первого изображения адреса
+         */
+        document
+          .querySelectorAll('input[type="file"][name="image_1"]')
           .forEach(function (input) {
             input.addEventListener('change', function () {
-              const addressId = this.id.replace('image_1_', '');
+              const addressId =
+                this.id.replace('image_1_', '');
 
-              const preview = document.getElementById(
-                'image_1_preview_' + addressId
-              );
+              const preview =
+                document.getElementById(
+                  'image_1_preview_' + addressId
+                );
 
               showPreview(this, preview);
             });
           });
 
-        document.querySelectorAll('input[type="file"][name="image_2"]')
+
+        /*
+         * Предпросмотр второго изображения адреса
+         */
+        document
+          .querySelectorAll('input[type="file"][name="image_2"]')
           .forEach(function (input) {
             input.addEventListener('change', function () {
-              const addressId = this.id.replace('image_2_', '');
+              const addressId =
+                this.id.replace('image_2_', '');
 
-              const preview = document.getElementById(
-                'image_2_preview_' + addressId
-              );
+              const preview =
+                document.getElementById(
+                  'image_2_preview_' + addressId
+                );
 
               showPreview(this, preview);
             });
           });
 
+
+        /*
+         * Предпросмотр изображения онлайн-блока
+         */
+        const onlineImageInput =
+          document.getElementById('online_block_image');
+
+        const onlineImagePreview =
+          document.getElementById('onlineBlockImagePreview');
+
+        if (onlineImageInput && onlineImagePreview) {
+          onlineImageInput.addEventListener('change', function () {
+            showPreview(this, onlineImagePreview);
+          });
+        }
+
+
+        /*
+         * Общая функция предпросмотра
+         */
         function showPreview(input, preview) {
           const file = input.files[0];
 
@@ -589,11 +813,18 @@
             return;
           }
 
+          /*
+           * Освобождаем ранее созданный URL,
+           * чтобы не расходовать память браузера.
+           */
           if (preview.dataset.objectUrl) {
-            URL.revokeObjectURL(preview.dataset.objectUrl);
+            URL.revokeObjectURL(
+              preview.dataset.objectUrl
+            );
           }
 
-          const objectUrl = URL.createObjectURL(file);
+          const objectUrl =
+            URL.createObjectURL(file);
 
           preview.src = objectUrl;
           preview.dataset.objectUrl = objectUrl;

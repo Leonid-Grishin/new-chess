@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\ClubOnlineBlock;
 use App\Models\ClubSliderImage;
 use App\Src\Functions;
 use Illuminate\Http\Request;
@@ -33,9 +34,18 @@ class ClubController extends Controller
             ->orderBy('id')
             ->get();
 
+        $onlineBlock = ClubOnlineBlock::with([
+            'items' => function ($query) {
+                $query
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])->first();
+
         return view('admin.club', compact(
             'slides',
-            'addresses'
+            'addresses',
+            'onlineBlock'
         ));
     }
 
@@ -76,7 +86,10 @@ class ClubController extends Controller
 
         $filename = time() . '_' . Str::slug($originalName);
 
-        if (!$filename || $filename === (string) time() . '_') {
+        if (
+            !$filename ||
+            $filename === (string) time() . '_'
+        ) {
             $filename = time() . '_slider';
         }
 
@@ -112,8 +125,10 @@ class ClubController extends Controller
     /**
      * Обновление данных слайда.
      */
-    public function updateSlide(Request $request, $id)
-    {
+    public function updateSlide(
+        Request $request,
+                $id
+    ) {
         $slide = ClubSliderImage::findOrFail($id);
 
         $validated = $request->validate([
@@ -276,14 +291,6 @@ class ClubController extends Controller
             'sort_order' => $validated['sort_order'] ?? 0,
         ]);
 
-        /*
-         * В image_1 и image_2 после выполнения метода
-         * попадёт только имя файла без пути и расширения.
-         *
-         * Например:
-         * location_1_abc123
-         * location_2_def456
-         */
         if ($request->hasFile('image_1')) {
             $address->image_1 = $this->saveLocationImage(
                 $request->file('image_1'),
@@ -328,16 +335,123 @@ class ClubController extends Controller
     }
 
     /**
+     * Обновление блока «Доступно онлайн обучение».
+     */
+    public function updateOnlineBlock(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'image_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            /*
+             * Принимаем только JPG/JPEG.
+             * На диске сохраняем как .jpg и .webp.
+             */
+            'image' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg',
+                'max:10240',
+            ],
+
+            'items' => [
+                'nullable',
+                'array',
+            ],
+
+            'items.*.id' => [
+                'required',
+                'integer',
+            ],
+
+            'items.*.text' => [
+                'required',
+                'string',
+                'max:1000',
+            ],
+
+            'items.*.sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+
+            'items.*.is_active' => [
+                'nullable',
+                'boolean',
+            ],
+        ]);
+
+        $onlineBlock = ClubOnlineBlock::query()
+            ->with('items')
+            ->first();
+
+        if (!$onlineBlock) {
+            $onlineBlock = new ClubOnlineBlock();
+        }
+
+        $onlineBlock->fill([
+            'title' => $validated['title'] ?? null,
+            'image_alt' => $validated['image_alt'] ?? null,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $onlineBlock->image = $this->saveOnlineImage(
+                $request->file('image'),
+                $onlineBlock->image
+            );
+        }
+
+        $onlineBlock->save();
+
+        foreach ($validated['items'] ?? [] as $itemData) {
+            $item = $onlineBlock->items()
+                ->whereKey($itemData['id'])
+                ->first();
+
+            /*
+             * Обновляем только пункт,
+             * принадлежащий текущему блоку.
+             */
+            if (!$item) {
+                continue;
+            }
+
+            $item->update([
+                'text' => $itemData['text'],
+                'sort_order' => $itemData['sort_order'] ?? 0,
+                'is_active' => !empty(
+                $itemData['is_active']
+                ),
+            ]);
+        }
+
+        return back()->with(
+            'success',
+            'Блок онлайн-обучения успешно сохранён.'
+        );
+    }
+
+    /**
      * Сохранение изображения адреса.
      *
-     * В БД сохраняется только имя без расширения:
+     * В базе данных сохраняется:
      *
-     * location_1_abc123
+     * location_1_uuid
      *
      * Физические файлы:
      *
-     * public/images/location/location_1_abc123.jpg
-     * public/images/location/location_1_abc123.webp
+     * public/images/location/location_1_uuid.jpg
+     * public/images/location/location_1_uuid.webp
      */
     private function saveLocationImage(
         $file,
@@ -356,9 +470,6 @@ class ClubController extends Controller
             $file->getClientOriginalExtension()
         );
 
-        /*
-         * Генерируем имя без расширения.
-         */
         $filename = $prefix . '_' . Str::uuid();
 
         $filenameWithExtension = $filename . '.' . $extension;
@@ -371,15 +482,60 @@ class ClubController extends Controller
         $fullPath = $directory . DIRECTORY_SEPARATOR .
             $filenameWithExtension;
 
+        Functions::createWebp($fullPath);
+
+        return $filename;
+    }
+
+    /**
+     * Сохранение изображения онлайн-блока.
+     *
+     * В базе данных сохраняется:
+     *
+     * online_uuid
+     *
+     * Физические файлы:
+     *
+     * public/images/online/online_uuid.jpg
+     * public/images/online/online_uuid.webp
+     */
+    private function saveOnlineImage(
+        $file,
+        ?string $oldImageName
+    ): string {
+        $directory = public_path('images/online');
+
+        $this->createDirectory($directory);
+
+        if ($oldImageName) {
+            $this->deleteOnlineImage($oldImageName);
+        }
+
+        $filename = 'online_' . Str::uuid();
+
         /*
-         * Создаём WebP рядом с оригиналом.
+         * Валидация разрешает только jpg/jpeg.
+         * Поэтому сохраняем изображение с единым именем .jpg.
+         */
+        $filenameWithExtension = $filename . '.jpg';
+
+        $file->move(
+            $directory,
+            $filenameWithExtension
+        );
+
+        $fullPath = $directory . DIRECTORY_SEPARATOR .
+            $filenameWithExtension;
+
+        /*
+         * Создаётся файл:
+         *
+         * public/images/online/online_uuid.webp
          */
         Functions::createWebp($fullPath);
 
         /*
-         * В БД возвращается только basename:
-         *
-         * location_1_abc123
+         * В БД сохраняется только имя без расширения.
          */
         return $filename;
     }
@@ -387,13 +543,11 @@ class ClubController extends Controller
     /**
      * Удаление изображения адреса.
      *
-     * Метод принимает как новое имя:
+     * Поддерживает:
      *
-     * location_1_abc123
-     *
-     * так и старый формат:
-     *
-     * images/location/location_1_abc123.jpg
+     * location_1_uuid
+     * location_1_uuid.jpg
+     * images/location/location_1_uuid.jpg
      */
     private function deleteLocationImage(
         string $imageName
@@ -406,14 +560,41 @@ class ClubController extends Controller
             $imageName
         );
 
-        /*
-         * Убираем путь и оставляем только имя файла.
-         */
         $imageName = basename($imageName);
 
-        /*
-         * Убираем расширение, если оно есть.
-         */
+        $imageName = pathinfo(
+            $imageName,
+            PATHINFO_FILENAME
+        );
+
+        $this->deleteFilesByName(
+            $directory,
+            $imageName
+        );
+    }
+
+    /**
+     * Удаление изображения онлайн-блока.
+     *
+     * Поддерживает:
+     *
+     * online_uuid
+     * online_uuid.jpg
+     * images/online/online_uuid.jpg
+     */
+    private function deleteOnlineImage(
+        string $imageName
+    ): void {
+        $directory = public_path('images/online');
+
+        $imageName = str_replace(
+            '\\',
+            '/',
+            $imageName
+        );
+
+        $imageName = basename($imageName);
+
         $imageName = pathinfo(
             $imageName,
             PATHINFO_FILENAME
@@ -433,6 +614,11 @@ class ClubController extends Controller
         string $directory,
         string $filename
     ): void {
+        $filename = pathinfo(
+            basename($filename),
+            PATHINFO_FILENAME
+        );
+
         foreach ([
                      'jpg',
                      'jpeg',
@@ -455,7 +641,7 @@ class ClubController extends Controller
     private function createDirectory(
         string $directory
     ): void {
-        if (!File::exists($directory)) {
+        if (!File::isDirectory($directory)) {
             File::makeDirectory(
                 $directory,
                 0755,

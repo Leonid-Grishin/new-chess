@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\Address;
 use Illuminate\Support\Facades\Cache;
 use App\Models\ClubSliderImage;
+use App\Models\ClubOnlineBlock;
 
 class IndexController extends Controller
 {
@@ -31,12 +32,24 @@ class IndexController extends Controller
             ->orderBy('id')
             ->get();
 
+        $onlineBlock = ClubOnlineBlock::query()
+            ->with([
+                'items' => function ($query) {
+                    $query
+                        ->where('is_active', true)
+                        ->orderBy('sort_order')
+                        ->orderBy('id');
+                },
+            ])
+            ->first();
+
         return view('index', [
             'reviews' => $reviews,
             'news' => $news,
             'meta' => $meta,
             'slides' => $slides,
             'addresses' => $addresses,
+            'onlineBlock' => $onlineBlock,
         ]);
     }
 }
