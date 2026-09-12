@@ -724,6 +724,249 @@
             </form>
 
         </div>
+
+        {{-- ============================================================
+     Шахматный лагерь
+============================================================= --}}
+
+        <h2 class="bg-warning mt-5 text-center p-3">
+            Блок «Шахматный лагерь»
+        </h2>
+
+        <div class="card mt-4 mb-5">
+
+            <form method="POST"
+                  action="{{ route('admin.club.camp-block.update') }}"
+                  enctype="multipart/form-data">
+
+                @csrf
+                @method('PATCH')
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        {{-- Заголовок --}}
+                        <div class="form-group col-md-6">
+                            <label for="camp_block_title">
+                                <b>Заголовок</b>
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="camp_block_title"
+                                   name="title"
+                                   value="{{ old('title', $campBlock?->title) }}"
+                                   placeholder="Шахматный лагерь"
+                                   required>
+                        </div>
+
+                        {{-- Описание --}}
+                        <div class="form-group col-md-6">
+                            <label for="camp_block_description">
+                                <b>Описание</b>
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="camp_block_description"
+                                      name="description"
+                                      rows="3"
+                                      placeholder="Описание блока">{{ old('description', $campBlock?->description) }}</textarea>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <h4 class="mb-3">
+                        Изображения
+                    </h4>
+
+                    <div class="row">
+
+                        {{-- Первое изображение --}}
+                        <div class="form-group col-md-6">
+
+                            <label for="camp_image_1">
+                                <b>Первое изображение, jpg 940px * 540px</b>
+                            </label>
+
+                            @if($campBlock?->image_1)
+
+                                <div class="mb-3">
+                                    <img
+                                            id="campImage1Preview"
+                                            src="{{ asset('images/club/camp/' . $campBlock->image_1 . '.jpg') }}"
+                                            alt="{{ $campBlock->image_1_alt }}"
+                                            width="400"
+                                            class="d-block border"
+                                    >
+                                </div>
+
+                            @else
+
+                                <img
+                                        id="campImage1Preview"
+                                        src=""
+                                        alt="Предпросмотр первого изображения"
+                                        width="400"
+                                        class="d-none border mb-3"
+                                >
+
+                            @endif
+
+                            <input type="file"
+                                   class="form-control-file"
+                                   id="camp_image_1"
+                                   name="image_1"
+                                   accept="image/jpeg,image/png,image/webp">
+
+                            <label for="camp_image_1_alt"
+                                   class="mt-3">
+                                Alt первого изображения
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="camp_image_1_alt"
+                                   name="image_1_alt"
+                                   value="{{ old('image_1_alt', $campBlock?->image_1_alt) }}">
+                        </div>
+
+                        {{-- Второе изображение --}}
+                        <div class="form-group col-md-6">
+
+                            <label for="camp_image_2">
+                                <b>Второе изображение, jpg 940px * 540px</b>
+                            </label>
+
+                            @if($campBlock?->image_2)
+
+                                <div class="mb-3">
+                                    <img
+                                            id="campImage2Preview"
+                                            src="{{ asset('images/club/camp/' . $campBlock->image_2 . '.jpg') }}"
+                                            alt="{{ $campBlock->image_2_alt }}"
+                                            width="400"
+                                            class="d-block border"
+                                    >
+                                </div>
+
+                            @else
+
+                                <img
+                                        id="campImage2Preview"
+                                        src=""
+                                        alt="Предпросмотр второго изображения"
+                                        width="400"
+                                        class="d-none border mb-3"
+                                >
+
+                            @endif
+
+                            <input type="file"
+                                   class="form-control-file"
+                                   id="camp_image_2"
+                                   name="image_2"
+                                   accept="image/jpeg,image/png,image/webp">
+
+                            <label for="camp_image_2_alt"
+                                   class="mt-3">
+                                Alt второго изображения
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="camp_image_2_alt"
+                                   name="image_2_alt"
+                                   value="{{ old('image_2_alt', $campBlock?->image_2_alt) }}">
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <h4 class="mb-3">
+                        Пункты блока
+                    </h4>
+
+                    @if($campBlock?->items?->isNotEmpty())
+
+                        @foreach($campBlock->items as $item)
+
+                            <div class="border rounded p-3 mb-3">
+
+                                <input type="hidden"
+                                       name="items[{{ $item->id }}][id]"
+                                       value="{{ $item->id }}">
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-4">
+                                        <label for="camp_item_title_{{ $item->id }}">
+                                            <b>Заголовок пункта</b>
+                                        </label>
+
+                                        <input type="text"
+                                               class="form-control"
+                                               id="camp_item_title_{{ $item->id }}"
+                                               name="items[{{ $item->id }}][title]"
+                                               value="{{ old('items.' . $item->id . '.title', $item->title) }}"
+                                               required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="camp_item_description_{{ $item->id }}">
+                                            <b>Описание пункта</b>
+                                        </label>
+
+                                        <textarea class="form-control"
+                                                  id="camp_item_description_{{ $item->id }}"
+                                                  name="items[{{ $item->id }}][description]"
+                                                  rows="3"
+                                                  required>{{ old('items.' . $item->id . '.description', $item->description) }}</textarea>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label for="camp_item_sort_{{ $item->id }}">
+                                            <b>Сортировка</b>
+                                        </label>
+
+                                        <input type="number"
+                                               class="form-control"
+                                               id="camp_item_sort_{{ $item->id }}"
+                                               name="items[{{ $item->id }}][sort_order]"
+                                               value="{{ old('items.' . $item->id . '.sort_order', $item->sort_order) }}"
+                                               min="0">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
+                    @else
+
+                        <p class="text-muted">
+                            Пунктов блока пока нет.
+                        </p>
+
+                    @endif
+
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Сохранить блок «Шахматный лагерь»
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
     </section>
 @endsection
 
@@ -825,6 +1068,59 @@
 
           const objectUrl =
             URL.createObjectURL(file);
+
+          preview.src = objectUrl;
+          preview.dataset.objectUrl = objectUrl;
+          preview.classList.remove('d-none');
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const campImage1Input =
+          document.getElementById('camp_image_1');
+
+        const campImage1Preview =
+          document.getElementById('campImage1Preview');
+
+        if (campImage1Input && campImage1Preview) {
+          campImage1Input.addEventListener('change', function () {
+            showCampImagePreview(
+              this,
+              campImage1Preview
+            );
+          });
+        }
+
+        const campImage2Input =
+          document.getElementById('camp_image_2');
+
+        const campImage2Preview =
+          document.getElementById('campImage2Preview');
+
+        if (campImage2Input && campImage2Preview) {
+          campImage2Input.addEventListener('change', function () {
+            showCampImagePreview(
+              this,
+              campImage2Preview
+            );
+          });
+        }
+
+        function showCampImagePreview(input, preview) {
+          const file = input.files[0];
+
+          if (!file) {
+            return;
+          }
+
+          if (preview.dataset.objectUrl) {
+            URL.revokeObjectURL(
+              preview.dataset.objectUrl
+            );
+          }
+
+          const objectUrl = URL.createObjectURL(file);
 
           preview.src = objectUrl;
           preview.dataset.objectUrl = objectUrl;

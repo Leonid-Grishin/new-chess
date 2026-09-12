@@ -161,7 +161,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Блоки
+                                Сквозные Блоки
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>

@@ -101,6 +101,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::patch('/club/online-block',[\App\Http\Controllers\Admin\ClubController::class, 'updateOnlineBlock'])->name('admin.club.online-block.update');
 
+    Route::patch('/club/camp-block', [\App\Http\Controllers\Admin\ClubController::class,'updateCampBlock',])->name('admin.club.camp-block.update');
+
     Route::resource('/news', NewsController::class)->names([
         'index' => 'admin.news',
         'create' => 'admin.news.create',

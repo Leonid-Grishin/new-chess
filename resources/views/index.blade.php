@@ -65,53 +65,44 @@
             </div>
         </section>
     @endif
-    <section class="index-camp">
-        <h2 class="index-camp__title title title--second">Шахматный лагерь</h2>
-        <ul class="index-camp__pictures-list">
-            <li class="index-camp__picture-item">
-                <picture class="index-camp__picture">
-                    <source srcset="images/index-camp-1.webp" type="image/webp">
-                    <img class="index-camp__image" src="images/index-camp-1.jpg" alt="сообщество молодых шахматистов." width="940" height="540">
-                </picture>
-            </li>
-            <li class="index-camp__picture-item">
-                <picture class="index-camp__picture">
-                    <source srcset="images/index-camp-2.webp" type="image/webp">
-                    <img class="index-camp__image" src="images/index-camp-2.jpg" alt="летние каникулы в лагере." width="940" height="540">
-                </picture>
-            </li>
-        </ul>
+    @if($campBlock)
+        <section class="index-camp">
+            <h2 class="index-camp__title title title--second">Шахматный лагерь</h2>
+            <ul class="index-camp__pictures-list">
+                <li class="index-camp__picture-item">
+                    <picture class="index-camp__picture">
+                        <source srcset="images/club/camp/{{$campBlock->image_1}}.webp" type="image/webp">
+                        <img class="index-camp__image" src="images/club/camp/{{$campBlock->image_1}}.jpg" alt="{{$campBlock->image_1_alt}}" width="940" height="540">
+                    </picture>
+                </li>
+                <li class="index-camp__picture-item">
+                    <picture class="index-camp__picture">
+                        <source srcset="images/club/camp/{{$campBlock->image_2}}.webp" type="image/webp">
+                        <img class="index-camp__image" src="images/club/camp/{{$campBlock->image_2}}.jpg" alt="{{$campBlock->image_2_alt}}" width="940" height="540">
+                    </picture>
+                </li>
+            </ul>
 
-        <ul class="index-camp__features-list">
-            <li class="index-camp__features-item">
-                <span class="index-camp__features-item-number title title--second">01</span>
-                <span class="index-camp__features-item-text">Более 3 часов ежедневных занятий шахматами</span>
-            </li>
-            <li class="index-camp__features-item">
-                <span class="index-camp__features-item-number title title--second">02</span>
-                <span class="index-camp__features-item-text">Формирование навыка самодисциплины</span>
-            </li>
+            <ul class="index-camp__features-list">
+                @foreach($campBlock->items as $item)
+                    <li class="index-camp__features-item">
+                        <span class="index-camp__features-item-number title title--second">{{ $item->title }}</span>
+                        <span class="index-camp__features-item-text">{{ $item->description }}</span>
+                    </li>
+                @endforeach
+            </ul>
 
-            <li class="index-camp__features-item">
-                <span class="index-camp__features-item-number title title--second">03</span>
-                <span class="index-camp__features-item-text">Более 8 часов ежедневной коммуникации</span>
-            </li>
+            <div class="index-camp__text-wrapper">
+                <p class="index-camp__text-title title title--third">{{ $campBlock->title }}</p>
+                <p class="index-camp__text-description">{{ $campBlock->description }}</p>
+                <div class="index-camp__link-wrapper">
+                    <a class="index-camp__link button button--secondary" href="{{ route('camp') }}">Узнать подробнее</a>
+                </div>
 
-            <li class="index-camp__features-item">
-                <span class="index-camp__features-item-number title title--second">04</span>
-                <span class="index-camp__features-item-text">Активные игры на свежем воздухе, пешие “походы”</span>
-            </li>
-        </ul>
-
-        <div class="index-camp__text-wrapper">
-            <p class="index-camp__text-title title title--third">А еще можно совместить 2 смены сразу!</p>
-            <p class="index-camp__text-description">Интенсивы по шахматам, веселые старты, игры на свежем воздухе, активный отдых и настольные игры</p>
-            <div class="index-camp__link-wrapper">
-                <a class="index-camp__link button button--secondary" href="{{ route('camp') }}">Узнать подробнее</a>
             </div>
+        </section>
+    @endif
 
-        </div>
-    </section>
 {{--    <section class="index-subscription">
         <div class="index-subscription__wrapper">
             <h2 class="visually-hidden">Подписка</h2>

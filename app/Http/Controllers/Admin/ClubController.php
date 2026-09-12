@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\ClubCampBlock;
 use App\Models\ClubOnlineBlock;
 use App\Models\ClubSliderImage;
 use App\Src\Functions;
@@ -13,9 +14,6 @@ use Illuminate\Support\Str;
 
 class ClubController extends Controller
 {
-    /**
-     * Страница админки клуба.
-     */
     public function index()
     {
         $slides = ClubSliderImage::query()
@@ -42,16 +40,22 @@ class ClubController extends Controller
             },
         ])->first();
 
+        $campBlock = ClubCampBlock::with([
+            'items' => function ($query) {
+                $query
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])->first();
+
         return view('admin.club', compact(
             'slides',
             'addresses',
-            'onlineBlock'
+            'onlineBlock',
+            'campBlock'
         ));
     }
 
-    /**
-     * Добавление нового слайда.
-     */
     public function storeSlide(Request $request)
     {
         $validated = $request->validate([
@@ -122,9 +126,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Обновление данных слайда.
-     */
     public function updateSlide(
         Request $request,
                 $id
@@ -160,9 +161,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Удаление слайда.
-     */
     public function destroySlide($id)
     {
         $slide = ClubSliderImage::findOrFail($id);
@@ -182,10 +180,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Обновление адреса, контактов, изображений
-     * и преимуществ.
-     */
     public function updateAddress(
         Request $request,
         Address $address
@@ -226,7 +220,6 @@ class ClubController extends Controller
                 'integer',
                 'min:0',
             ],
-
             'image_1' => [
                 'nullable',
                 'image',
@@ -238,7 +231,6 @@ class ClubController extends Controller
                 'string',
                 'max:255',
             ],
-
             'image_2' => [
                 'nullable',
                 'image',
@@ -250,7 +242,6 @@ class ClubController extends Controller
                 'string',
                 'max:255',
             ],
-
             'features' => [
                 'nullable',
                 'array',
@@ -334,9 +325,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Обновление блока «Доступно онлайн обучение».
-     */
     public function updateOnlineBlock(Request $request)
     {
         $validated = $request->validate([
@@ -345,46 +333,35 @@ class ClubController extends Controller
                 'string',
                 'max:255',
             ],
-
             'image_alt' => [
                 'nullable',
                 'string',
                 'max:255',
             ],
-
-            /*
-             * Принимаем только JPG/JPEG.
-             * На диске сохраняем как .jpg и .webp.
-             */
             'image' => [
                 'nullable',
                 'file',
                 'mimes:jpg,jpeg',
                 'max:10240',
             ],
-
             'items' => [
                 'nullable',
                 'array',
             ],
-
             'items.*.id' => [
                 'required',
                 'integer',
             ],
-
             'items.*.text' => [
                 'required',
                 'string',
                 'max:1000',
             ],
-
             'items.*.sort_order' => [
                 'nullable',
                 'integer',
                 'min:0',
             ],
-
             'items.*.is_active' => [
                 'nullable',
                 'boolean',
@@ -418,10 +395,6 @@ class ClubController extends Controller
                 ->whereKey($itemData['id'])
                 ->first();
 
-            /*
-             * Обновляем только пункт,
-             * принадлежащий текущему блоку.
-             */
             if (!$item) {
                 continue;
             }
@@ -442,17 +415,181 @@ class ClubController extends Controller
     }
 
     /**
-     * Сохранение изображения адреса.
+     * Обновление блока «Шахматный лагерь».
      *
-     * В базе данных сохраняется:
+     * В БД сохраняется только имя файла без расширения:
      *
-     * location_1_uuid
+     * camp_1_uuid
      *
-     * Физические файлы:
+     * В файловой системе создаются:
      *
-     * public/images/location/location_1_uuid.jpg
-     * public/images/location/location_1_uuid.webp
+     * public/images/club/camp/camp_1_uuid.jpg
+     * public/images/club/camp/camp_1_uuid.webp
      */
+    public function updateCampBlock(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'description' => [
+                'nullable',
+                'string',
+            ],
+            'image_1' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_1_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'image_2' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:10240',
+            ],
+            'image_2_alt' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'items' => [
+                'nullable',
+                'array',
+            ],
+            'items.*.id' => [
+                'required',
+                'integer',
+            ],
+            'items.*.title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'items.*.description' => [
+                'required',
+                'string',
+            ],
+            'items.*.sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
+            ],
+        ]);
+
+        $campBlock = ClubCampBlock::query()
+            ->with('items')
+            ->first();
+
+        if (!$campBlock) {
+            $campBlock = new ClubCampBlock();
+        }
+
+        $campBlock->fill([
+            'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'image_1_alt' => $validated['image_1_alt'] ?? null,
+            'image_2_alt' => $validated['image_2_alt'] ?? null,
+        ]);
+
+        if ($request->hasFile('image_1')) {
+            $campBlock->image_1 = $this->saveCampImage(
+                $request->file('image_1'),
+                $campBlock->image_1,
+                'camp_1'
+            );
+        }
+
+        if ($request->hasFile('image_2')) {
+            $campBlock->image_2 = $this->saveCampImage(
+                $request->file('image_2'),
+                $campBlock->image_2,
+                'camp_2'
+            );
+        }
+
+        $campBlock->save();
+
+        foreach ($validated['items'] ?? [] as $itemData) {
+            $item = $campBlock->items()
+                ->whereKey($itemData['id'])
+                ->first();
+
+            if (!$item) {
+                continue;
+            }
+
+            $item->update([
+                'title' => $itemData['title'],
+                'description' => $itemData['description'],
+                'sort_order' => $itemData['sort_order'] ?? 0,
+            ]);
+        }
+
+        return back()->with(
+            'success',
+            'Блок «Шахматный лагерь» успешно сохранён.'
+        );
+    }
+
+    /**
+     * Сохранение изображения лагеря.
+     *
+     * Загруженный файл сохраняется как JPG.
+     * Дополнительно создаётся WebP-версия.
+     *
+     * В БД возвращается имя без расширения.
+     */
+    private function saveCampImage(
+        $file,
+        ?string $oldImageName,
+        string $prefix
+    ): string {
+        $directory = public_path('images/club/camp');
+
+        $this->createDirectory($directory);
+
+        if ($oldImageName) {
+            $this->deleteCampImage($oldImageName);
+        }
+
+        $filename = $prefix . '_' . Str::uuid();
+
+        /*
+         * Файл всегда имеет расширение .jpg.
+         */
+        $filenameWithExtension = $filename . '.jpg';
+
+        $file->move(
+            $directory,
+            $filenameWithExtension
+        );
+
+        $fullPath = $directory . DIRECTORY_SEPARATOR .
+            $filenameWithExtension;
+
+        /*
+         * Создаётся файл:
+         *
+         * public/images/club/camp/{filename}.webp
+         */
+        Functions::createWebp($fullPath);
+
+        /*
+         * В БД сохраняется только:
+         *
+         * camp_1_uuid
+         */
+        return $filename;
+    }
+
     private function saveLocationImage(
         $file,
         ?string $oldImageName,
@@ -471,7 +608,6 @@ class ClubController extends Controller
         );
 
         $filename = $prefix . '_' . Str::uuid();
-
         $filenameWithExtension = $filename . '.' . $extension;
 
         $file->move(
@@ -487,18 +623,6 @@ class ClubController extends Controller
         return $filename;
     }
 
-    /**
-     * Сохранение изображения онлайн-блока.
-     *
-     * В базе данных сохраняется:
-     *
-     * online_uuid
-     *
-     * Физические файлы:
-     *
-     * public/images/online/online_uuid.jpg
-     * public/images/online/online_uuid.webp
-     */
     private function saveOnlineImage(
         $file,
         ?string $oldImageName
@@ -512,11 +636,6 @@ class ClubController extends Controller
         }
 
         $filename = 'online_' . Str::uuid();
-
-        /*
-         * Валидация разрешает только jpg/jpeg.
-         * Поэтому сохраняем изображение с единым именем .jpg.
-         */
         $filenameWithExtension = $filename . '.jpg';
 
         $file->move(
@@ -527,28 +646,35 @@ class ClubController extends Controller
         $fullPath = $directory . DIRECTORY_SEPARATOR .
             $filenameWithExtension;
 
-        /*
-         * Создаётся файл:
-         *
-         * public/images/online/online_uuid.webp
-         */
         Functions::createWebp($fullPath);
 
-        /*
-         * В БД сохраняется только имя без расширения.
-         */
         return $filename;
     }
 
-    /**
-     * Удаление изображения адреса.
-     *
-     * Поддерживает:
-     *
-     * location_1_uuid
-     * location_1_uuid.jpg
-     * images/location/location_1_uuid.jpg
-     */
+    private function deleteCampImage(
+        string $imageName
+    ): void {
+        $directory = public_path('images/club/camp');
+
+        $imageName = str_replace(
+            '\\',
+            '/',
+            $imageName
+        );
+
+        $imageName = basename($imageName);
+
+        $imageName = pathinfo(
+            $imageName,
+            PATHINFO_FILENAME
+        );
+
+        $this->deleteFilesByName(
+            $directory,
+            $imageName
+        );
+    }
+
     private function deleteLocationImage(
         string $imageName
     ): void {
@@ -573,15 +699,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Удаление изображения онлайн-блока.
-     *
-     * Поддерживает:
-     *
-     * online_uuid
-     * online_uuid.jpg
-     * images/online/online_uuid.jpg
-     */
     private function deleteOnlineImage(
         string $imageName
     ): void {
@@ -606,10 +723,6 @@ class ClubController extends Controller
         );
     }
 
-    /**
-     * Удаление файлов с одинаковым именем
-     * и разными расширениями.
-     */
     private function deleteFilesByName(
         string $directory,
         string $filename
@@ -635,9 +748,6 @@ class ClubController extends Controller
         }
     }
 
-    /**
-     * Создание директории, если её нет.
-     */
     private function createDirectory(
         string $directory
     ): void {

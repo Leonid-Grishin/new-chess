@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\ClubCampBlock;
 use App\Models\News;
 use App\Models\Review;
 use App\Models\Address;
@@ -43,6 +44,14 @@ class IndexController extends Controller
             ])
             ->first();
 
+        $campBlock = ClubCampBlock::with([
+            'items' => function ($query) {
+                $query
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])->first();
+
         return view('index', [
             'reviews' => $reviews,
             'news' => $news,
@@ -50,6 +59,7 @@ class IndexController extends Controller
             'slides' => $slides,
             'addresses' => $addresses,
             'onlineBlock' => $onlineBlock,
+            'campBlock' => $campBlock,
         ]);
     }
 }
