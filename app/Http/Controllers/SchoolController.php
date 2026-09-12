@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
 use App\Models\Review;
 
 class SchoolController extends Controller
@@ -13,6 +14,11 @@ class SchoolController extends Controller
             'description' => 'Школа шахмат А5 для детей на севере Санкт-Петербурга занимается подготовкой к соревнованиям по дисциплине шахматы. Наши спортсмены часто становятся победителями и призерами городских и междугородних соревнований. Телефон школы +79022027148',
             'og-image' => 'images/school/chess-school-og.jpg'
         ];
-        return view('school', ['reviews' => $reviews, 'meta' => $meta]);
+
+        $promos = Promo::query()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        return view('school', ['reviews' => $reviews, 'meta' => $meta, 'promos' => $promos]);
     }
 }

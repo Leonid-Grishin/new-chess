@@ -366,7 +366,7 @@
                                 {{-- Первое изображение --}}
                                 <div class="form-group col-md-6">
                                     <label for="image_1_{{ $address->id }}">
-                                        <b>Первое изображение</b>
+                                        <b>Первое изображение, jpg  740px * 500px</b>
                                     </label>
 
                                     <div class="mb-2">
@@ -403,7 +403,7 @@
                                 {{-- Второе изображение --}}
                                 <div class="form-group col-md-6">
                                     <label for="image_2_{{ $address->id }}">
-                                        <b>Второе изображение</b>
+                                        <b>Второе изображение, jpg  740px * 500px</b>
                                     </label>
 
                                     <div class="mb-2">

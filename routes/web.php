@@ -50,7 +50,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/video', [MainVideoController::class, 'edit'])->name('admin.video');
     Route::patch('/video', [MainVideoController::class, 'update'])->name('admin.video.update');
 
+// Админка страницы «Школа»
     Route::get('/school', [\App\Http\Controllers\Admin\SchoolController::class, 'index'])->name('admin.school');
+    Route::post('/school/promo', [\App\Http\Controllers\Admin\SchoolController::class, 'storePromo'] )->name('admin.school.promo.store');
+    Route::patch('/school/promo/{promo}', [\App\Http\Controllers\Admin\SchoolController::class, 'updatePromo'] )->name('admin.school.promo.update');
+    Route::delete( '/school/promo/{promo}', [\App\Http\Controllers\Admin\SchoolController::class, 'destroyPromo'] )->name('admin.school.promo.destroy');
+
+
     Route::get('/students/trashed', [\App\Http\Controllers\Admin\StudentController::class, 'trashed'])->name('admin.students.trashed');
     Route::patch('/students/rating-update', [\App\Http\Controllers\Admin\StudentController::class, 'ratingUpdate'])->name('admin.students.ratingUpdate');
     Route::delete('/students/trashed/{student}', [\App\Http\Controllers\Admin\StudentController::class, 'destroyForever'])->name('admin.students.destroyForever');

@@ -213,49 +213,28 @@
     </section>
     <x-main-video/>
     <x-rating type=""/>
-    <section class="school-promo">
-        <h2 class="school-promo__title">Акции школы шахмат А5</h2>
-        <ul class="school-promo__list">
-            <li class="school-promo__item">
-                <div class="school-promo__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/promo-first-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="325">
-                        <source srcset="images/school/promo-first-big.png" media="(min-width: 1700px)" width="740" height="325">
-                        <source srcset="images/school/promo-first-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="325">
-                        <source srcset="images/school/promo-first-desktop.png" media="(min-width: 1200px)" width="570" height="325">
-                        <source srcset="images/school/promo-first-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="286">
-                        <source srcset="images/school/promo-first-tablet.png" media="(min-width: 640px)" width="620" height="286">
-                        <source srcset="images/school/promo-first.webp" type="image/webp" width="300" height="167">
-                        <img class="school-promo__item-image" src="images/school/promo-first.png" alt="скидка на абонимент." width="300" height="167">
-                    </picture>
-                </div>
-                <div class="school-promo__item-wrapper">
-                    <h3 class="school-promo__item-title">Скидка 10% на абонемент в день пробного занятия</h3>
-                    <p class="school-promo__item-description">Купи абонемент в день пробного занятия и получи скидку&#160;10%</p>
-                    <button class="school-promo__button button button--primary" data-name="Школа > акции > скидка после пробного">Записаться на <span>пробное </span>занятие</button>
-                </div>
-            </li>
-            <li class="school-promo__item">
-                <div class="school-promo__image-wrapper">
-                    <picture>
-                        <source srcset="images/school/promo-friends-big.webp" media="(min-width: 1700px)" type="image/webp" width="740" height="280">
-                        <source srcset="images/school/promo-friends-big.png" media="(min-width: 1700px)" width="740" height="280">
-                        <source srcset="images/school/promo-friends-desktop.webp" media="(min-width: 1200px)" type="image/webp" width="570" height="280">
-                        <source srcset="images/school/promo-friends-desktop.png" media="(min-width: 1200px)" width="570" height="280">
-                        <source srcset="images/school/promo-friends-tablet.webp" media="(min-width: 640px)" type="image/webp" width="620" height="240">
-                        <source srcset="images/school/promo-friends-tablet.png" media="(min-width: 640px)" width="620" height="240">
-                        <source srcset="images/school/promo-friends.webp" type="image/webp" width="300" height="140">
-                        <img class="school-promo__item-image" src="images/school/promo-friends.png" alt="с друзьями выгоднее." width="300" height="140">
-                    </picture>
-                </div>
-                <div class="school-promo__item-wrapper">
-                    <h3 class="school-promo__item-title">С друзьями веселее и&#160;выгоднее</h3>
-                    <p class="school-promo__item-description">Приходите заниматься вместе с друзьями и получите скидку 10% на следующий абонимент для вас и ваших друзей</p>
-                    <button class="school-promo__button button button--primary" data-name="Школа > акции > записать друга">Записать друга<span> на занятие</span></button>
-                </div>
-            </li>
-        </ul>
-    </section>
+    @if($promos->isNotEmpty())
+        <section class="school-promo">
+            <h2 class="school-promo__title">Акции школы шахмат А5</h2>
+            <ul class="school-promo__list">
+                @foreach($promos as $promo)
+                    <li class="school-promo__item">
+                        <div class="school-promo__image-wrapper">
+                            <picture>
+                                <source srcset="{{ asset('images/promos/' . $promo->image . '.webp') }}" type="image/webp" width="740" height="325">
+                                <img class="school-promo__item-image" src="{{ asset('images/promos/' . $promo->image . '.png') }}" alt="{{ $promo->image_alt }}" width="740" height="325">
+                            </picture>
+                        </div>
+                        <div class="school-promo__item-wrapper">
+                            <h3 class="school-promo__item-title">{{ $promo->title }}</h3>
+                            <p class="school-promo__item-description">{{ $promo->description }}</p>
+                            <button class="school-promo__button button button--primary" data-name="Школа > акции > скидка после пробного">Записаться на <span>пробное </span>занятие</button>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+    @endif
     <x-lessons-price/>
     <x-teachers/>
     @if(count($reviews) > 0)
