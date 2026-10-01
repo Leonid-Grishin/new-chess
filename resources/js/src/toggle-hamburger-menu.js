@@ -1,30 +1,48 @@
 import MobileMenuView from "../view/mobile-menu-view.js";
 const pageBodyElement = document.body;
 
-const toggleHamburgerMenu = function() {
-  const mainHeaderElement = document.querySelector('.main-header');
-  const mobileMenuElement = mainHeaderElement.querySelector('.main-header__mobile-menu');
-  const menuItemElements = mainHeaderElement.querySelectorAll('.navigation__menu-item');
 
-  if(!mobileMenuElement) {
-    window.scrollTo(0, 0)
+const toggleHamburgerMenu = function () {
+  const mainHeaderElement = document.querySelector(".main-header");
+  const hamburgerElement = document.querySelector("#hamburger-menu");
+  const mobileMenuElement = mainHeaderElement.querySelector(".main-header__mobile-menu");
+  const menuItemElements = mainHeaderElement.querySelectorAll(".navigation__menu-item");
+
+  if (!mobileMenuElement) {
+    window.scrollTo(0, 0);
+
     const mobileMenuComponent = new MobileMenuView();
-    pageBodyElement.classList.add('hide-overflow');
-    mainHeaderElement.insertAdjacentElement('beforeend', mobileMenuComponent.element);
-    menuItemElements.forEach((item) => {
 
-      let newItem = item.cloneNode(true)
-      mobileMenuComponent.element.querySelector('.navigation__menu--mobile').appendChild(newItem);
-      newItem.addEventListener('click', () => {
-        mainHeaderElement.querySelector('.main-header__mobile-menu').remove();
-        pageBodyElement.classList.remove('hide-overflow');
-      })
-    } )
+    pageBodyElement.classList.add("hide-overflow");
+    hamburgerElement.classList.add("hamburger-menu--active");
+
+    mainHeaderElement.insertAdjacentElement(
+      "beforeend",
+      mobileMenuComponent.element
+    );
+
+    menuItemElements.forEach((item) => {
+      const newItem = item.cloneNode(true);
+
+      mobileMenuComponent.element
+        .querySelector(".navigation__menu--mobile")
+        .appendChild(newItem);
+
+      newItem.addEventListener("click", () => {
+        mainHeaderElement
+          .querySelector(".main-header__mobile-menu")
+          .remove();
+
+        pageBodyElement.classList.remove("hide-overflow");
+        hamburgerElement.classList.remove("hamburger-menu--active");
+      });
+    });
   } else {
     mobileMenuElement.remove();
-    pageBodyElement.classList.remove('hide-overflow');
+    pageBodyElement.classList.remove("hide-overflow");
+    hamburgerElement.classList.remove("hamburger-menu--active");
   }
-}
+};
 
 /*const toggleHamburgerMenu = function() {
     const mobileMenuElement = mainHeaderElement.querySelector('.main-header__mobile-menu');
